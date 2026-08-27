@@ -547,6 +547,50 @@ Registrar
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+
+<script>
+const { createClient } = supabase;
+
+const db = createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+let UVAN_PERFIL = null;
+
+async function verificarAcceso() {
+
+  const {
+    data: { session }
+  } = await db.auth.getSession();
+
+  if (!session) {
+    window.location.href = "login.html";
+    return false;
+  }
+
+  const { data: perfil, error } = await db
+    .from("profiles")
+    .select("id,nombre,rol,sucursal,activo,vendedor_id")
+    .eq("id", session.user.id)
+    .single();
+
+  if (error || !perfil || !perfil.activo) {
+
+    await db.auth.signOut();
+
+    window.location.href = "login.html";
+
+    return false;
+  }
+
+  UVAN_PERFIL = perfil;
+
+  return true;
+}
+</script>
 
 <!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
