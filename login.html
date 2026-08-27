@@ -3,450 +3,243 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>UVAN METAS · Iniciar sesión</title>
-
 <meta name="theme-color" content="#111111">
-
 <style>
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  min-height:100vh;
-  background:#f4f4f4;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#151515;
-}
-
-.login{
-  width:100%;
-  max-width:420px;
-  padding:20px;
-}
-
-.logo{
-  text-align:center;
-  margin-bottom:30px;
-}
-
-.logo-main{
-  font-size:30px;
-  font-weight:900;
-  letter-spacing:-1px;
-}
-
-.logo-main span{
-  color:#888;
-  font-weight:500;
-}
-
-.logo-sub{
-  color:#777;
-  font-size:13px;
-  margin-top:6px;
-}
-
-.card{
-  background:white;
-  border-radius:24px;
-  padding:28px;
-  box-shadow:0 8px 30px rgba(0,0,0,.08);
-}
-
-.title{
-  font-size:24px;
-  font-weight:800;
-  margin-bottom:7px;
-}
-
-.subtitle{
-  color:#777;
-  font-size:14px;
-  margin-bottom:25px;
-}
-
-label{
-  display:block;
-  font-size:12px;
-  font-weight:800;
-  color:#555;
-  margin-bottom:7px;
-}
-
-.field{
-  margin-bottom:18px;
-}
-
-input{
-  width:100%;
-  padding:15px;
-  border:1px solid #ddd;
-  border-radius:13px;
-  font-size:16px;
-  outline:none;
-}
-
-input:focus{
-  border-color:#111;
-}
-
-button{
-  width:100%;
-  padding:16px;
-  border:0;
-  border-radius:14px;
-  background:#111;
-  color:white;
-  font-size:16px;
-  font-weight:800;
-  cursor:pointer;
-}
-
-button:disabled{
-  opacity:.6;
-}
-
-.message{
-  min-height:20px;
-  text-align:center;
-  margin-top:15px;
-  font-size:13px;
-  color:#777;
-}
-
-.footer{
-  text-align:center;
-  margin-top:20px;
-  color:#aaa;
-  font-size:11px;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;min-height:100vh;background:#f4f4f4;display:flex;align-items:center;justify-content:center;color:#151515}
+.login{width:100%;max-width:420px;padding:20px}
+.logo{text-align:center;margin-bottom:30px}
+.logo-main{font-size:30px;font-weight:900;letter-spacing:-1px}
+.logo-main span{color:#888;font-weight:500}
+.logo-sub{color:#777;font-size:13px;margin-top:6px}
+.card{background:white;border-radius:24px;padding:28px;box-shadow:0 8px 30px rgba(0,0,0,.08)}
+.title{font-size:24px;font-weight:800;margin-bottom:7px}
+.subtitle{color:#777;font-size:14px;margin-bottom:25px}
+label{display:block;font-size:12px;font-weight:800;color:#555;margin-bottom:7px}
+.field{margin-bottom:18px}
+input{width:100%;padding:15px;border:1px solid #ddd;border-radius:13px;font-size:16px;outline:none}
+input:focus{border-color:#111}
+button{width:100%;padding:16px;border:0;border-radius:14px;background:#111;color:white;font-size:16px;font-weight:800;cursor:pointer}
+button:disabled{opacity:.6}
+.message{min-height:20px;text-align:center;margin-top:15px;font-size:13px;color:#777}
+.footer{text-align:center;margin-top:20px;color:#aaa;font-size:11px}
 </style>
 </head>
-
 <body>
-
 <div class="login">
-
   <div class="logo">
-
-    <div class="logo-main">
-      UVAN <span>METAS</span> 🔋
-    </div>
-
-    <div class="logo-sub">
-      UVAN BATTERY · Expertos en baterías
-    </div>
-
+    <div class="logo-main">UVAN <span>METAS</span> 🔋</div>
+    <div class="logo-sub">UVAN BATTERY · Expertos en baterías</div>
   </div>
-
 
   <div class="card">
-
-    <div class="title">
-      Bienvenido
-    </div>
-
-    <div class="subtitle">
-      Inicia sesión para continuar
-    </div>
-
+    <div class="title">Bienvenido</div>
+    <div class="subtitle">Inicia sesión para continuar</div>
 
     <div class="field">
-
-      <label for="email">
-        CORREO
-      </label>
-
-      <input
-        id="email"
-        type="email"
-        placeholder="usuario@uvanbattery.com"
-        autocomplete="username"
-      >
-
+      <label for="email">CORREO</label>
+      <input id="email" type="email" placeholder="usuario@uvanbattery.com" autocomplete="username">
     </div>
-
 
     <div class="field">
-
-      <label for="password">
-        CONTRASEÑA
-      </label>
-
-      <input
-        id="password"
-        type="password"
-        placeholder="••••••••"
-        autocomplete="current-password"
-      >
-
+      <label for="password">CONTRASEÑA</label>
+      <input id="password" type="password" placeholder="••••••••" autocomplete="current-password">
     </div>
 
-
-    <button id="loginButton">
-      INICIAR SESIÓN
-    </button>
-
-    <div
-      class="message"
-      id="message"
-    ></div>
-
+    <button id="loginButton">INICIAR SESIÓN</button>
+    <div class="message" id="message"></div>
   </div>
 
-
-  <div class="footer">
-    UVAN METAS · Control de ventas y metas
-  </div>
-
+  <div class="footer">UVAN METAS · Control de ventas y metas</div>
 </div>
 
-
-<!-- SUPABASE -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script src="supabase-config.js"></script>
 
-
 <script>
+"use strict";
 
-const {
-  createClient
-} = supabase;
-
-
-const db =
-  createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-  );
-
-
-const emailInput =
-  document.getElementById("email");
-
-
-const passwordInput =
-  document.getElementById("password");
-
-
-const loginButton =
-  document.getElementById("loginButton");
-
-
-const message =
-  document.getElementById("message");
-
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const loginButton = document.getElementById("loginButton");
+const message = document.getElementById("message");
 
 /*
- * COMPROBAR SI YA HAY UNA SESIÓN
- */
+  IMPORTANTE:
+  supabase-config.js debe estar en la misma carpeta y declarar:
+  const SUPABASE_URL = "...";
+  const SUPABASE_ANON_KEY = "...";
+*/
 
-async function comprobarSesion(){
+function obtenerConfiguracion(){
+  const url =
+    (typeof SUPABASE_URL !== "undefined" ? SUPABASE_URL : "") ||
+    window.SUPABASE_URL || "";
 
-  const {
-    data,
-    error
-  } = await db.auth.getSession();
+  const key =
+    (typeof SUPABASE_ANON_KEY !== "undefined" ? SUPABASE_ANON_KEY : "") ||
+    window.SUPABASE_ANON_KEY ||
+    window.SUPABASE_KEY || "";
 
-
-  if(error){
-
-    console.error(error);
-
-    return;
-
-  }
-
-
-  if(data.session){
-
-    window.location.href =
-      "index.html";
-
-  }
-
+  return {
+    url: String(url).trim(),
+    key: String(key).trim()
+  };
 }
 
+let db = null;
 
-/*
- * INICIAR SESIÓN
- */
+function mostrarMensaje(texto, error=false){
+  message.textContent = texto;
+  message.style.color = error ? "#a00000" : "#777";
+}
 
-async function iniciarSesion(){
-
-  const email =
-    emailInput.value.trim();
-
-  const password =
-    passwordInput.value;
-
-
-  if(!email || !password){
-
-    message.textContent =
-      "Escribe tu correo y contraseña.";
-
-    return;
-
-  }
-
-
-  loginButton.disabled =
-    true;
-
-  loginButton.textContent =
-    "ENTRANDO...";
-
-  message.textContent =
-    "";
-
-
+function iniciarCliente(){
   try{
-
-    const {
-      data,
-      error
-    } = await db.auth.signInWithPassword({
-
-      email:
-        email,
-
-      password:
-        password
-
-    });
-
-
-    if(error){
-
-      throw error;
-
+    if(!window.supabase || !window.supabase.createClient){
+      throw new Error("No se pudo cargar la librería de Supabase.");
     }
 
+    const config = obtenerConfiguracion();
 
-    /*
-     * Verificar que tenga perfil
-     */
-
-    const {
-      data: perfil,
-      error: perfilError
-    } = await db
-      .from("profiles")
-      .select("id,nombre,rol,sucursal,activo,vendedor_id")
-      .eq("id", data.user.id)
-      .single();
-
-
-    if(perfilError){
-
-      await db.auth.signOut();
-
-      throw new Error(
-        "El usuario no tiene un perfil configurado."
-      );
-
+    if(!config.url){
+      throw new Error("Falta SUPABASE_URL en supabase-config.js.");
     }
 
-
-    if(!perfil.activo){
-
-      await db.auth.signOut();
-
-      throw new Error(
-        "Este usuario está desactivado."
-      );
-
+    if(!config.key){
+      throw new Error("Falta SUPABASE_ANON_KEY en supabase-config.js.");
     }
 
-
-    /*
-     * Todo correcto
-     */
-
-    message.textContent =
-      "Bienvenido, " +
-      perfil.nombre +
-      " 🔋";
-
-
-    setTimeout(
-      function(){
-
-        window.location.href =
-          "index.html";
-
-      },
-      500
+    db = window.supabase.createClient(
+      config.url,
+      config.key,
+      {
+        auth:{
+          persistSession:true,
+          autoRefreshToken:true,
+          detectSessionInUrl:true
+        }
+      }
     );
 
-
+    return true;
   }catch(error){
-
-    console.error(error);
-
-    message.textContent =
-      error.message ||
-      "No se pudo iniciar sesión.";
-
-
-    loginButton.disabled =
-      false;
-
-    loginButton.textContent =
-      "INICIAR SESIÓN";
-
+    console.error("Error configurando Supabase:", error);
+    mostrarMensaje(error.message || "No se pudo configurar Supabase.", true);
+    loginButton.disabled = true;
+    return false;
   }
-
 }
 
+async function comprobarSesion(){
+  if(!db) return;
 
-/*
- * BOTÓN
- */
+  try{
+    const {data,error} = await db.auth.getSession();
 
-loginButton.addEventListener(
-  "click",
-  iniciarSesion
-);
+    if(error) throw error;
 
+    if(data && data.session){
+      window.location.replace("index.html");
+    }
+  }catch(error){
+    console.error("Error comprobando sesión:", error);
+    // No bloqueamos el formulario por este chequeo.
+  }
+}
 
-/*
- * ENTER
- */
+async function iniciarSesion(){
+  const email = emailInput.value.trim();
+  const password = passwordInput.value;
 
-passwordInput.addEventListener(
-  "keydown",
-  function(event){
+  if(!email || !password){
+    mostrarMensaje("Escribe tu correo y contraseña.", true);
+    return;
+  }
 
-    if(event.key === "Enter"){
+  if(!db){
+    mostrarMensaje("Supabase no está configurado correctamente.", true);
+    return;
+  }
 
-      iniciarSesion();
+  loginButton.disabled = true;
+  loginButton.textContent = "ENTRANDO...";
+  mostrarMensaje("Conectando...");
 
+  try{
+    const {data,error} = await db.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if(error){
+      console.error("Supabase Auth:", error);
+      throw new Error(
+        error.message === "Failed to fetch"
+          ? "No se pudo conectar con Supabase. Revisa tu conexión y que supabase-config.js tenga el URL y la clave correctos."
+          : error.message
+      );
     }
 
+    if(!data || !data.user){
+      throw new Error("Supabase no devolvió el usuario.");
+    }
+
+    const {data:perfil,error:perfilError} = await db
+      .from("profiles")
+      .select("id,nombre,rol,sucursal,activo,vendedor_id")
+      .eq("id",data.user.id)
+      .maybeSingle();
+
+    if(perfilError){
+      console.error("Error leyendo profiles:",perfilError);
+      await db.auth.signOut();
+      throw new Error(
+        "Entraste a Supabase, pero no se pudo leer tu perfil: " +
+        perfilError.message
+      );
+    }
+
+    if(!perfil){
+      await db.auth.signOut();
+      throw new Error("El usuario no tiene un perfil configurado.");
+    }
+
+    if(perfil.activo === false){
+      await db.auth.signOut();
+      throw new Error("Este usuario está desactivado.");
+    }
+
+    mostrarMensaje("Bienvenido, " + (perfil.nombre || "Usuario") + " 🔋");
+
+    setTimeout(function(){
+      window.location.replace("index.html");
+    },400);
+
+  }catch(error){
+    console.error("Error de inicio de sesión:",error);
+    mostrarMensaje(
+      error.message || "No se pudo iniciar sesión.",
+      true
+    );
+
+    loginButton.disabled = false;
+    loginButton.textContent = "INICIAR SESIÓN";
   }
-);
+}
 
+loginButton.addEventListener("click",iniciarSesion);
 
-/*
- * INICIO
- */
+passwordInput.addEventListener("keydown",function(event){
+  if(event.key === "Enter"){
+    iniciarSesion();
+  }
+});
 
-comprobarSesion();
-
+if(iniciarCliente()){
+  comprobarSesion();
+}
 </script>
-
 </body>
 </html>
