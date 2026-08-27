@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -183,6 +182,7 @@ select{
   width:0;
   background:#111;
   border-radius:20px;
+  transition:.3s;
 }
 
 .daily{
@@ -212,6 +212,7 @@ button{
   color:white;
   font-size:16px;
   font-weight:800;
+  cursor:pointer;
 }
 
 button:disabled{
@@ -252,6 +253,7 @@ button:disabled{
   justify-content:center;
   font-size:12px;
   font-weight:800;
+  flex-shrink:0;
 }
 
 .team-name,
@@ -270,6 +272,7 @@ button:disabled{
   width:25px;
   font-weight:800;
   color:#777;
+  text-align:center;
 }
 
 .branch-info{
@@ -385,6 +388,13 @@ button:disabled{
   display:none!important;
 }
 
+.empty{
+  color:#999;
+  font-size:13px;
+  padding:10px 0;
+  text-align:center;
+}
+
 footer{
   text-align:center;
   padding:20px;
@@ -434,23 +444,25 @@ Verificando sesión...
 
 <section id="profileCard" class="card admin-card hidden">
 
-<div id="profileName" style="font-size:18px;font-weight:800">
+<div id="profileName"
+style="font-size:18px;font-weight:800">
 —
 </div>
 
-<div id="profileRole" style="font-size:12px;color:#aaa;margin-top:5px;text-transform:uppercase">
+<div id="profileRole"
+style="font-size:12px;color:#aaa;margin-top:5px;text-transform:uppercase">
 —
 </div>
 
 </section>
 
 
-<!-- PANEL GENERAL ADMIN -->
+<!-- RESUMEN GENERAL -->
 
 <section id="adminDashboard" class="card hidden">
 
 <div class="title">
-📊 RESUMEN GENERAL
+📊 RESUMEN GENERAL DE SUCURSALES
 </div>
 
 <div id="branchSummary"></div>
@@ -593,6 +605,7 @@ baterías por día necesita vender la sucursal para alcanzar su meta.
 
 
 <!-- VENDEDOR DE LA SEMANA -->
+<!-- AHORA LO VEN TODOS -->
 
 <section id="winnerCard" class="card admin-card hidden">
 
@@ -620,6 +633,7 @@ baterías por día necesita vender la sucursal para alcanzar su meta.
 
 
 <!-- RANKING -->
+<!-- AHORA LO VEN TODOS -->
 
 <section id="rankingCard" class="card hidden">
 
@@ -662,7 +676,7 @@ VENTAS DEL EQUIPO
 </section>
 
 
-<!-- HISTORIAL -->
+<!-- HISTORIAL SOLO ADMIN -->
 
 <section id="historyCard" class="card hidden">
 
@@ -677,7 +691,8 @@ VENTAS DEL EQUIPO
 
 <section class="card hidden" id="refreshCard">
 
-<button id="refreshButton" class="secondary">
+<button id="refreshButton"
+class="secondary">
 🔄 ACTUALIZAR DATOS
 </button>
 
@@ -686,7 +701,8 @@ VENTAS DEL EQUIPO
 
 <section class="card hidden" id="logoutCard">
 
-<button id="logoutButton" class="secondary">
+<button id="logoutButton"
+class="secondary">
 CERRAR SESIÓN
 </button>
 
@@ -720,7 +736,8 @@ Selecciona el vendedor que realizó la venta.
 
 <div class="modal-actions">
 
-<button class="secondary" id="cancelButton">
+<button class="secondary"
+id="cancelButton">
 Cancelar
 </button>
 
@@ -747,17 +764,55 @@ Registrar
 'use strict';
 
 
+/*
+====================================================
+CONEXIÓN SUPABASE
+====================================================
+Acepta cualquiera de estas dos variables:
+
+SUPABASE_ANON_KEY
+o
+SUPABASE_KEY
+
+Así evitamos que la página se quede bloqueada
+si tu archivo supabase-config.js usa uno u otro nombre.
+====================================================
+*/
+
+const UVAN_URL =
+window.SUPABASE_URL ||
+"https://rbucdijidzxvkxbrimwh.supabase.co";
+
+const UVAN_KEY =
+window.SUPABASE_ANON_KEY ||
+window.SUPABASE_KEY;
+
+
+if(!UVAN_KEY){
+
+document.getElementById("loading")
+.textContent =
+"Falta la clave de Supabase.";
+
+throw new Error(
+"SUPABASE_ANON_KEY / SUPABASE_KEY no encontrada."
+);
+
+}
+
+
 const db =
 supabase.createClient(
-SUPABASE_URL,
-SUPABASE_ANON_KEY,
+UVAN_URL,
+UVAN_KEY,
 {
 auth:{
 persistSession:true,
 autoRefreshToken:true,
 detectSessionInUrl:true
 }
-});
+}
+);
 
 
 let perfil = null;
@@ -772,26 +827,45 @@ let currentSeller = 0;
 
 
 const $ =
-id => document.getElementById(id);
+id =>
+document.getElementById(id);
 
 
-const esAdmin =
-() => {
+/*
+====================================================
+ROLES
+====================================================
+*/
 
-const rol =
-String(
+function obtenerRol(){
+
+return String(
 perfil?.rol || ""
 )
 .toLowerCase()
 .trim();
+
+}
+
+
+function esAdmin(){
+
+const rol =
+obtenerRol();
 
 return (
 rol === "supervisor" ||
 rol === "administrador"
 );
 
-};
+}
 
+
+/*
+====================================================
+FECHAS
+====================================================
+*/
 
 const ahora =
 new Date();
@@ -823,9 +897,15 @@ year:"numeric"
 ).toUpperCase();
 
 
+/*
+====================================================
+TIMEOUT
+====================================================
+*/
+
 function esperar(
 promesa,
-tiempo = 12000
+tiempo = 15000
 ){
 
 return Promise.race([
@@ -833,16 +913,19 @@ return Promise.race([
 promesa,
 
 new Promise(
-(_,reject) =>
+(_,reject) => {
 
 setTimeout(
-() => reject(
+() =>
+reject(
 new Error(
 "Supabase tardó demasiado en responder."
 )
 ),
 tiempo
-)
+);
+
+}
 
 )
 
@@ -850,6 +933,12 @@ tiempo
 
 }
 
+
+/*
+====================================================
+MOSTRAR APP
+====================================================
+*/
 
 function mostrarApp(){
 
@@ -869,26 +958,44 @@ function mostrarApp(){
 
 .forEach(
 id =>
-$(id).classList.remove("hidden")
+$(id)
+.classList
+.remove("hidden")
 );
 
+
+/*
+ADMINISTRACIÓN
+*/
 
 if(esAdmin()){
 
 $("adminDashboard")
-.classList.remove("hidden");
+.classList
+.remove("hidden");
 
 $("historyCard")
-.classList.remove("hidden");
+.classList
+.remove("hidden");
 
 }
 
 }
 
+
+/*
+====================================================
+VERIFICAR SESIÓN
+====================================================
+*/
 
 async function verificarAcceso(){
 
 try{
+
+$("loading").textContent =
+"Verificando sesión...";
+
 
 const respuesta =
 await esperar(
@@ -901,7 +1008,7 @@ throw respuesta.error;
 
 
 const session =
-respuesta.data.session;
+respuesta.data?.session;
 
 
 if(!session){
@@ -914,6 +1021,10 @@ return false;
 
 }
 
+
+/*
+PERFIL
+*/
 
 const resultado =
 await esperar(
@@ -940,13 +1051,19 @@ if(resultado.error)
 throw resultado.error;
 
 
-const perfilDB =
-resultado.data;
+if(
+!resultado.data
+){
+
+throw new Error(
+"No existe un perfil para este usuario."
+);
+
+}
 
 
 if(
-!perfilDB ||
-perfilDB.activo === false
+resultado.data.activo === false
 ){
 
 await db.auth.signOut();
@@ -961,8 +1078,12 @@ return false;
 
 
 perfil =
-perfilDB;
+resultado.data;
 
+
+/*
+DATOS DEL USUARIO
+*/
 
 $("greeting").textContent =
 "Hola, " +
@@ -992,22 +1113,22 @@ return true;
 }catch(error){
 
 console.error(
-"Error de acceso:",
+"ERROR DE SESIÓN:",
 error
 );
 
 
 $("loading").textContent =
-"No se pudo iniciar";
+"Error al iniciar sesión";
 
 
 $("error").textContent =
-"No se pudo verificar tu sesión: " +
 error.message;
 
 
 $("error")
-.classList.remove("hidden");
+.classList
+.remove("hidden");
 
 
 return false;
@@ -1016,6 +1137,12 @@ return false;
 
 }
 
+
+/*
+====================================================
+CARGAR DATOS
+====================================================
+*/
 
 async function cargarDatos(){
 
@@ -1089,10 +1216,11 @@ inicioSiguienteMes.toISOString()
 {
 ascending:false
 }
+)
 
 )
 
-)]);
+]);
 
 
 const resultadoSucursales =
@@ -1127,10 +1255,13 @@ ventas =
 resultadoVentas.data || [];
 
 
+/*
+CONSTRUIR VENDEDORES
+*/
+
 sellers =
 (resultadoVendedores.data || [])
 .map(
-
 vendedor => {
 
 const sucursal =
@@ -1169,11 +1300,19 @@ null
 };
 
 }
-
 );
 
 
+/*
+SELECTOR
+*/
+
 llenarSelector();
+
+
+/*
+PANTALLAS
+*/
 
 render();
 
@@ -1185,7 +1324,8 @@ renderHistorial();
 
 
 $("loading")
-.classList.add("hidden");
+.classList
+.add("hidden");
 
 
 $("message").textContent =
@@ -1195,23 +1335,33 @@ $("message").textContent =
 }catch(error){
 
 console.error(
-"Error cargando datos:",
+"ERROR CARGANDO DATOS:",
 error
 );
 
 
+$("loading").textContent =
+"No se pudieron cargar los datos";
+
+
 $("error").textContent =
-"No se pudieron cargar los datos: " +
 error.message;
 
 
 $("error")
-.classList.remove("hidden");
+.classList
+.remove("hidden");
 
 }
 
 }
 
+
+/*
+====================================================
+SELECTOR DE VENDEDORES
+====================================================
+*/
 
 function llenarSelector(){
 
@@ -1226,6 +1376,10 @@ selector.innerHTML =
 let lista =
 sellers;
 
+
+/*
+VENDEDOR NORMAL
+*/
 
 if(
 !esAdmin() &&
@@ -1271,14 +1425,13 @@ option
 
 
 if(
-selector.options.length
+selector.options.length > 0
 ){
 
 currentSeller =
 Number(
 selector.options[0].value
 );
-
 
 selector.value =
 currentSeller;
@@ -1287,6 +1440,12 @@ currentSeller;
 
 }
 
+
+/*
+====================================================
+SUCURSAL
+====================================================
+*/
 
 function obtenerSucursal(
 vendedor
@@ -1300,6 +1459,12 @@ String(vendedor.sucursalId)
 
 }
 
+
+/*
+====================================================
+VENTAS POR VENDEDOR
+====================================================
+*/
 
 function ventasVendedor(
 id,
@@ -1333,7 +1498,6 @@ fecha >= desde
 );
 
 }
-
 )
 
 .reduce(
@@ -1347,6 +1511,12 @@ venta.cantidad || 0
 
 }
 
+
+/*
+====================================================
+VENTAS POR SUCURSAL
+====================================================
+*/
 
 function ventasSucursal(
 sucursalId
@@ -1392,6 +1562,12 @@ venta.cantidad || 0
 }
 
 
+/*
+====================================================
+PANTALLA PRINCIPAL
+====================================================
+*/
+
 function render(){
 
 const vendedor =
@@ -1411,9 +1587,11 @@ vendedor
 const meta =
 sucursal
 ?
-sucursal.meta_mensual
+Number(
+sucursal.meta_mensual || 0
+)
 :
-null;
+0;
 
 
 const ventasEquipo =
@@ -1444,7 +1622,7 @@ $("branchSales").textContent =
 ventasEquipo;
 
 
-if(meta){
+if(meta > 0){
 
 $("branchGoal").textContent =
 meta;
@@ -1534,26 +1712,20 @@ diasRestantes
 $("branchGoal").textContent =
 "—";
 
-
 $("percent").textContent =
 "—";
-
 
 $("remaining").textContent =
 "Meta pendiente";
 
-
 $("progressText").textContent =
 "Meta pendiente";
 
-
 $("fill").style.width =
-"0";
-
+"0%";
 
 $("circle").style.background =
 "#e5e5e5";
-
 
 $("daily").textContent =
 "—";
@@ -1568,6 +1740,12 @@ vendedor.sucursalId
 }
 
 
+/*
+====================================================
+EQUIPO DE LA SUCURSAL
+====================================================
+*/
+
 function renderEquipo(
 sucursalId
 ){
@@ -1576,15 +1754,25 @@ $("team").innerHTML =
 "";
 
 
-sellers
-
-.filter(
+const equipo =
+sellers.filter(
 v =>
 String(v.sucursalId) ===
 String(sucursalId)
-)
+);
 
-.forEach(
+
+if(!equipo.length){
+
+$("team").innerHTML =
+'<div class="empty">Sin vendedores</div>';
+
+return;
+
+}
+
+
+equipo.forEach(
 vendedor => {
 
 const ventas =
@@ -1630,6 +1818,13 @@ $("team")
 }
 
 
+/*
+====================================================
+RESUMEN DE TODAS LAS SUCURSALES
+SOLO SUPERVISOR / ADMINISTRADOR
+====================================================
+*/
+
 function renderResumen(){
 
 if(!esAdmin())
@@ -1644,382 +1839,10 @@ contenedor.innerHTML =
 "";
 
 
-sucursales.forEach(
-sucursal => {
-
-const meta =
-Number(
-sucursal.meta_mensual || 0
-);
-
-
-const ventas =
-ventasSucursal(
-sucursal.id
-);
-
-
-const porcentaje =
-meta
-?
-Math.min(
-Math.round(
-ventas /
-meta *
-100
-),
-100
-)
-:
-0;
-
-
-const row =
-document.createElement(
-"div"
-);
-
-
-row.className =
-"branch-row";
-
-
-row.innerHTML = `
-
-<div class="branch-info">
-
-<div class="branch-name">
-${sucursal.nombre}
-</div>
-
-<div class="branch-meta">
-Meta: ${meta || "Sin meta"}
-</div>
-
-</div>
-
-<div class="branch-sales">
-
-<strong>
-${ventas}
-</strong>
-🔋
-
-<div class="branch-percent">
-${meta ? porcentaje + "%" : "—"}
-</div>
-
-</div>
-
-`;
-
-
-contenedor.appendChild(
-row
-);
-
-});
-
-}
-
-
-function renderRanking(){
-
-const inicio =
-new Date();
-
-
-const dia =
-inicio.getDay();
-
-
-inicio.setDate(
-inicio.getDate() -
-(dia === 0 ? 6 : dia - 1)
-);
-
-
-inicio.setHours(
-0,0,0,0
-);
-
-
-const ranking =
-sellers
-
-.map(
-vendedor => ({
-
-vendedor,
-
-ventas:
-ventasVendedor(
-vendedor.id,
-inicio
-)
-
-})
-
-)
-
-.sort(
-(a,b) =>
-b.ventas -
-a.ventas
-);
-
-
-if(
-ranking.length &&
-ranking[0].ventas > 0
-){
-
-$("weekWinner").textContent =
-ranking[0]
-.vendedor
-.nombre;
-
-
-$("weekWinnerSales").textContent =
-ranking[0]
-.ventas;
-
-}else{
-
-$("weekWinner").textContent =
-"—";
-
-
-$("weekWinnerSales").textContent =
-"0";
-
-}
-
-
-$("ranking").innerHTML =
-"";
-
-
-ranking.forEach(
-(item,index) => {
-
-const row =
-document.createElement(
-"div"
-);
-
-
-row.className =
-"rank-row";
-
-
-row.innerHTML = `
-
-<div class="position">
-${index + 1}
-</div>
-
-<div class="avatar">
-${item.vendedor.nombre
-.substring(0,2)
-.toUpperCase()}
-</div>
-
-<div class="rank-name">
-
-${item.vendedor.nombre}
-
-<div style="
-font-size:11px;
-color:#888;
-margin-top:3px;
-">
-
-${item.vendedor.sucursal}
-
-</div>
-
-</div>
-
-<div class="rank-sales">
-${item.ventas} 🔋
-</div>
-
-`;
-
-
-$("ranking")
-.appendChild(row);
-
-});
-
-}
-
-
-function renderHistorial(){
-
-if(!esAdmin())
-return;
-
-
-const contenedor =
-$("history");
-
+if(!sucursales.length){
 
 contenedor.innerHTML =
-"";
+'<div class="empty">No hay sucursales.</div>';
 
 
-if(!ventas.length){
-
-contenedor.textContent =
-"No hay ventas registradas este mes.";
-
-return;
-
-}
-
-
-ventas
-
-.slice(0,50)
-
-.forEach(
-venta => {
-
-const vendedor =
-sellers.find(
-v =>
-String(v.id) ===
-String(venta.vendedor_id)
-);
-
-
-const row =
-document.createElement(
-"div"
-);
-
-
-row.className =
-"history-row";
-
-
-row.innerHTML = `
-
-<div style="flex:1">
-
-<strong>
-${vendedor
-?
-vendedor.nombre
-:
-"Vendedor"}
-</strong>
-
-<div class="history-date">
-
-${vendedor
-?
-vendedor.sucursal
-:
-""}
-
-<br>
-
-${new Date(
-venta.fecha
-).toLocaleString(
-"es-MX"
-)}
-
-· ${venta.cantidad} 🔋
-
-</div>
-
-</div>
-
-<button
-class="delete"
-data-id="${venta.id}"
->
-Borrar
-</button>
-
-`;
-
-
-contenedor.appendChild(
-row
-);
-
-});
-
-}
-
-
-$("sellerSelect")
-.addEventListener(
-"change",
-function(){
-
-currentSeller =
-Number(
-this.value
-);
-
-render();
-
-});
-
-
-$("saleButton")
-.addEventListener(
-"click",
-function(){
-
-$("modalSeller")
-.innerHTML =
-"";
-
-
-if(esAdmin()){
-
-sellers.forEach(
-(vendedor,index) => {
-
-const option =
-document.createElement(
-"option"
-);
-
-
-option.value =
-index;
-
-
-option.textContent =
-vendedor.nombre +
-" · " +
-vendedor.sucursal;
-
-
-$("modalSeller")
-.appendChild(
-option
-);
-
-});
-
-
-}else{
-
-const vendedor =
-sellers[currentSeller];
-
-
-const option =
-document.createElement(
-"option"
-);
 
