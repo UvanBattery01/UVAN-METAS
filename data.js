@@ -1,4 +1,4 @@
-const UVAN_DATA = {
+window.UVAN_DATA = {
   mes: "Agosto 2026",
 
   sucursales: [
