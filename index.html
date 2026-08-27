@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>UVAN METAS | UVAN BATTERY</title>
+
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="Sistema de metas y ventas de UVAN BATTERY">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f4f4;
+      color: #151515;
+      min-height: 100vh;
+    }
+
+    .app {
+      max-width: 520px;
+      margin: auto;
+      min-height: 100vh;
+      background: #f7f7f7;
+    }
+
+    /* HEADER */
+    .header {
+      background: #111;
+      color: white;
+      padding: 22px 20px 25px;
+      border-radius: 0 0 24px 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .brand-name {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
+
+    .brand-name span {
+      color: #aaa;
+      font-weight: 500;
+    }
+
+    .month {
+      font-size: 12px;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .greeting {
+      font-size: 27px;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    /* CONTENT */
+    .content {
+      padding: 18px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 3px 15px rgba(0,0,0,.06);
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #666;
+      margin-bottom: 12px;
+    }
+
+    /* META */
+    .goal-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .progress-circle {
+      width: 120px;
+      height: 120px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: conic-gradient(
+        #111 0deg 223deg,
+        #e5e5e5 223deg 360deg
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .progress-inner {
+      width: 91px;
+      height: 91px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .progress-percent {
+      font-size: 25px;
+      font-weight: 800;
+    }
+
+    .progress-label {
+      font-size: 11px;
+      color: #777;
+    }
+
+    .goal-info {
+      flex: 1;
+    }
+
+    .goal-info h2 {
+      font-size: 34px;
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+
+    .goal-info p {
+      color: #777;
+      font-size: 13px;
+    }
+
+    .remaining {
+      margin-top: 13px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .stat {
+      background: white;
+      border-radius: 15px;
+      padding: 15px 10px;
+      box-shadow: 0 3px 12px rgba(0,0,0,.05);
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 7px;
+    }
+
+    .stat-value {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    /* PROGRESS */
+    .progress-box {
+      margin-top: 15px;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-bottom: 7px;
+      color: #666;
+    }
+
+    .bar {
+      width: 100%;
+      height: 10px;
+      background: #e8e8e8;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 62%;
+      background: #111;
+      border-radius: 20px;
+    }
+
+    /* DAILY TARGET */
+    .daily-target {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .daily-number {
+      font-size: 36px;
+      font-weight: 800;
+    }
+
+    .daily-text {
+      color: #777;
+      font-size: 13px;
+      line-height: 1.4;
+      max-width: 210px;
+      text-align: right;
+    }
+
+    /* BUTTON */
+    .sale-button {
+      width: 100%;
+      border: none;
+      border-radius: 15px;
+      padding: 17px;
+      background: #111;
+      color: white;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .sale-button:active {
+      transform: scale(.98);
+    }
+
+    .message {
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+      margin-top: 10px;
+      min-height: 18px;
+    }
+
+    /* RANKING */
+    .ranking-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .ranking-row:last-child {
+      border-bottom: none;
+    }
+
+    .position {
+      width: 30px;
+      font-weight: 800;
+      color: #888;
+    }
+
+    .avatar {
+      width: 38px;
+      height: 38px;
+      background: #111;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .seller {
+      flex: 1;
+    }
+
+    .seller-name {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .seller-meta {
+      font-size: 11px;
+      color: #888;
+      margin-top: 3px;
+    }
+
+    .seller-sales {
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: #aaa;
+      font-size: 11px;
+    }
+
+    @media (max-width: 380px) {
+      .goal-card {
+        gap: 12px;
+      }
+
+      .progress-circle {
+        width: 100px;
+        height: 100px;
+      }
+
+      .progress-inner {
+        width: 76px;
+        height: 76px;
+      }
+
+      .goal-info h2 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <!-- ENCABEZADO -->
+    <header class="header">
+
+      <div class="brand">
+        <div class="brand-name">
+          UVAN <span>METAS</span>
+        </div>
+
+        <div class="month">
+          Agosto 2026
+        </div>
+      </div>
+
+      <div class="greeting">
+        Hola, vendedor 👋
+      </div>
+
+      <div class="subtitle">
+        Este es tu avance del mes.
+      </div>
+
+    </header>
+
+
+    <main class="content">
+
+      <!-- META PRINCIPAL -->
+      <section class="card">
+
+        <div class="card-title">
+          META MENSUAL
+        </div>
+
+        <div class="goal-card">
+
+          <div class="progress-circle">
+            <div class="progress-inner">
+              <div class="progress-percent" id="percent">
+                62%
+              </div>
+
+              <div class="progress-label">
+                cumplido
+              </div>
+            </div>
+          </div>
+
+          <div class="goal-info">
+
+            <h2>
+              <span id="sales">43</span>
+              <small style="font-size:18px;color:#888;">
+                / 70
+              </small>
+            </h2>
+
+            <p>
+              baterías vendidas
+            </p>
+
+            <div class="remaining">
+              Faltan <span id="remaining">27</span> 🔋
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="progress-box">
+
+          <div class="progress-header">
+            <span>Avance de la meta</span>
+            <span id="progressText">43 de 70</span>
+          </div>
+
+          <div class="bar">
+            <div class="bar-fill" id="barFill"></div>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ESTADÍSTICAS -->
+      <section class="stats">
+
+        <div class="stat">
+          <div class="stat-label">
+            HOY
+          </div>
+
+          <div class="stat-value">
+            3 🔋
+          </div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-label">
+            SEMANA
+          </div>
+
+          <div class="stat-value">
+            14
+          </div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-label">
+            POSICIÓN
+          </div>
+
+          <div class="stat-value">
+            #2 🏆
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- RITMO NECESARIO -->
+      <section class="card">
+
+        <div class="card-title">
+          TU RITMO
+        </div>
+
+        <div class="daily-target">
+
+          <div class="daily-number">
+            2.3
+          </div>
+
+          <div class="daily-text">
+            baterías por día para alcanzar tu meta al cierre del mes.
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- REGISTRAR VENTA -->
+      <section class="card">
+
+        <div class="card-title">
+          REGISTRAR VENTA
+        </div>
+
+        <button
+          class="sale-button"
+          id="saleButton"
+          type="button">
+          + REGISTRAR BATERÍA
+        </button>
+
+        <div
+          class="message"
+          id="message"
+          aria-live="polite">
+        </div>
+
+      </section>
+
+
+      <!-- RANKING -->
+      <section class="card">
+
+        <div class="card-title">
+          RANKING DE VENDEDORES
+        </div>
+
+
+        <div class="ranking-row">
+
+          <div class="position">
+            1
+          </div>
+
+          <div class="avatar">
+            KA
+          </div>
+
+          <div class="seller">
+            <div class="seller-name">
+              Kateryn
+            </div>
+
+            <div class="seller-meta">
+              Santa Rosa
+            </div>
+          </div>
+
+          <div class="seller-sales">
+            48
+          </div>
+
+        </div>
+
+
+        <div class="ranking-row">
+
+          <div class="position">
+            2
+          </div>
+
+          <div class="avatar">
+            AL
+          </div>
+
+          <div class="seller">
+            <div class="seller-name">
+              Alejandro
+            </div>
+
+            <div class="seller-meta">
+              Ixtapaluca
+            </div>
+          </div>
+
+          <div class="seller-sales">
+            43
+          </div>
+
+        </div>
+
+
+        <div class="ranking-row">
+
+          <div class="position">
+            3
+          </div>
+
+          <div class="avatar">
+            CH
+          </div>
+
+          <div class="seller">
+            <div class="seller-name">
+              Christopher
+            </div>
+
+            <div class="seller-meta">
+              Texcoco
+            </div>
+          </div>
+
+          <div class="seller-sales">
+            39
+          </div>
+
+        </div>
+
+
+      </section>
+
+    </main>
+
+
+    <footer class="footer">
+      UVAN BATTERY · Expertos en baterías
+    </footer>
+
+  </div>
+
+
+  <script>
+
+    let sales = 43;
+
+    const goal = 70;
+
+    const saleButton = document.getElementById("saleButton");
+    const salesElement = document.getElementById("sales");
+    const remainingElement = document.getElementById("remaining");
+    const percentElement = document.getElementById("percent");
+    const progressText = document.getElementById("progressText");
+    const barFill = document.getElementById("barFill");
+    const message = document.getElementById("message");
+    const circle = document.querySelector(".progress-circle");
+
+
+    function updateGoal() {
+
+      const percent = Math.min(
+        Math.round((sales / goal) * 100),
+        100
+      );
+
+      const remaining = Math.max(
+        goal - sales,
+        0
+      );
+
+      const degrees = percent * 3.6;
+
+      salesElement.textContent = sales;
+
+      remainingElement.textContent = remaining;
+
+      percentElement.textContent = percent + "%";
+
+      progressText.textContent =
+        sales + " de " + goal;
+
+      barFill.style.width =
+        percent + "%";
+
+      circle.style.background =
+        "conic-gradient(#111 0deg " +
+        degrees +
+        "deg, #e5e5e5 " +
+        degrees +
+        "deg 360deg)";
+
+    }
+
+
+    saleButton.addEventListener(
+      "click",
+      function() {
+
+        if (sales < goal) {
+
+          sales++;
+
+          updateGoal();
+
+          message.textContent =
+            "¡Venta registrada! 🔋 Sigue así.";
+
+        } else {
+
+          message.textContent =
+            "🎉 ¡Meta alcanzada!";
+
+        }
+
+      }
+    );
+
+
+    updateGoal();
+
+  </script>
+
+</body>
+</html>
