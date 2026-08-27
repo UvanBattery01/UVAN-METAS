@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
 <title>UVAN METAS</title>
-<meta name="theme-color" content="#111111">
+
+<meta
+  name="theme-color"
+  content="#111111"
+>
 
 <style>
+
+/* =========================
+   BASE
+========================= */
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -14,505 +30,852 @@
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
   background:#f4f4f4;
+
   color:#151515;
 }
 
 .app{
+
   max-width:520px;
+
   margin:auto;
+
   min-height:100vh;
+
   background:#f7f7f7;
 }
 
+
+/* =========================
+   HEADER
+========================= */
+
 .header{
+
   background:#111;
+
   color:white;
+
   padding:22px 20px 28px;
-  border-radius:0 0 25px 25px;
+
+  border-radius:
+    0 0 25px 25px;
 }
 
 .brand{
+
   display:flex;
-  justify-content:space-between;
+
+  justify-content:
+    space-between;
+
   margin-bottom:25px;
 }
 
 .brand-name{
+
   font-size:21px;
+
   font-weight:800;
 }
 
 .brand-name span{
+
   color:#999;
+
   font-weight:500;
 }
 
 .month{
+
   color:#aaa;
+
   font-size:12px;
+
   text-transform:uppercase;
 }
 
 .greeting{
+
   font-size:28px;
+
   font-weight:800;
 }
 
 .subtitle{
+
   color:#aaa;
+
   margin-top:5px;
 }
 
+
+/* =========================
+   CONTENIDO
+========================= */
+
 .content{
+
   padding:18px;
 }
 
 .card{
+
   background:white;
+
   border-radius:18px;
+
   padding:18px;
+
   margin-bottom:14px;
-  box-shadow:0 3px 15px rgba(0,0,0,.06);
+
+  box-shadow:
+    0 3px 15px
+    rgba(0,0,0,.06);
 }
 
 .title{
+
   font-size:13px;
+
   font-weight:800;
+
   color:#666;
+
   margin-bottom:12px;
 }
 
-select{
-  width:100%;
-  padding:14px;
-  border:1px solid #ddd;
-  border-radius:12px;
-  background:white;
-  font-size:16px;
+
+/* =========================
+   PERFIL
+========================= */
+
+.profile-card{
+
+  background:#111;
+
+  color:white;
+
+  border-radius:18px;
+
+  padding:17px;
+
+  margin-bottom:14px;
 }
 
+.profile-name{
+
+  font-size:17px;
+
+  font-weight:800;
+}
+
+.profile-role{
+
+  color:#aaa;
+
+  font-size:12px;
+
+  margin-top:4px;
+
+  text-transform:uppercase;
+}
+
+
+/* =========================
+   SELECT
+========================= */
+
+select{
+
+  width:100%;
+
+  padding:14px;
+
+  border:
+    1px solid #ddd;
+
+  border-radius:12px;
+
+  background:white;
+
+  font-size:16px;
+
+  color:#151515;
+}
+
+
+/* =========================
+   META
+========================= */
+
 .goal{
+
   display:flex;
+
   align-items:center;
+
   gap:20px;
 }
 
 .circle{
+
   width:120px;
+
   height:120px;
+
   border-radius:50%;
+
   background:#e5e5e5;
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   flex-shrink:0;
 }
 
 .circle-inner{
+
   width:91px;
+
   height:91px;
+
   background:white;
+
   border-radius:50%;
+
   display:flex;
+
   flex-direction:column;
+
   align-items:center;
+
   justify-content:center;
 }
 
 .percent{
+
   font-size:25px;
+
   font-weight:800;
 }
 
 .small{
+
   font-size:11px;
+
   color:#777;
 }
 
 .numbers{
+
   font-size:34px;
+
   font-weight:800;
 }
 
 .numbers small{
+
   font-size:18px;
+
   color:#888;
 }
 
 .branch{
+
   color:#777;
+
   font-size:13px;
+
   margin-top:5px;
 }
 
 .remaining{
+
   margin-top:13px;
+
   font-size:13px;
+
   font-weight:700;
 }
 
+
+/* =========================
+   PROGRESS
+========================= */
+
 .progress{
+
   margin-top:18px;
 }
 
 .progress-head{
+
   display:flex;
-  justify-content:space-between;
+
+  justify-content:
+    space-between;
+
   font-size:12px;
+
   color:#666;
+
   margin-bottom:7px;
 }
 
 .bar{
+
   height:10px;
+
   background:#e5e5e5;
+
   border-radius:20px;
+
   overflow:hidden;
 }
 
 .fill{
+
   height:100%;
+
   width:0;
+
   background:#111;
+
   border-radius:20px;
+
   transition:.3s;
 }
 
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
 
-.stat{
-  background:white;
-  padding:15px 10px;
-  border-radius:15px;
-  box-shadow:0 3px 12px rgba(0,0,0,.05);
-}
-
-.stat-label{
-  font-size:10px;
-  color:#888;
-  margin-bottom:7px;
-}
-
-.stat-value{
-  font-size:21px;
-  font-weight:800;
-}
+/* =========================
+   RITMO
+========================= */
 
 .daily{
+
   display:flex;
-  justify-content:space-between;
+
+  justify-content:
+    space-between;
+
   align-items:center;
 }
 
 .daily-number{
+
   font-size:38px;
+
   font-weight:800;
 }
 
 .daily-text{
+
   color:#777;
+
   font-size:13px;
+
   text-align:right;
+
   max-width:210px;
 }
 
-button{
-  width:100%;
-  padding:17px;
-  border:0;
-  border-radius:15px;
+
+/* =========================
+   RANKING
+========================= */
+
+.week-card{
+
   background:#111;
+
   color:white;
-  font-size:16px;
+
+  border-radius:18px;
+
+  padding:20px;
+
+  margin-bottom:14px;
+}
+
+.week-title{
+
+  font-size:13px;
+
   font-weight:800;
-  cursor:pointer;
+
+  color:#ddd;
+
+  margin-bottom:14px;
 }
 
-button:disabled{
-  opacity:.5;
+.week-winner{
+
+  font-size:25px;
+
+  font-weight:800;
+
+  margin-bottom:7px;
 }
 
-.message{
-  text-align:center;
-  color:#777;
+.week-sales{
+
+  font-size:34px;
+
+  font-weight:800;
+}
+
+.week-sales span{
+
   font-size:12px;
-  margin-top:10px;
+
+  color:#aaa;
+
+  font-weight:600;
 }
+
+.ranking{
+
+  display:flex;
+
+  flex-direction:column;
+}
+
+.rank-row{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  padding:12px 0;
+
+  border-bottom:
+    1px solid #eee;
+}
+
+.rank-position{
+
+  width:28px;
+
+  font-weight:800;
+
+  color:#777;
+}
+
+.rank-avatar{
+
+  width:38px;
+
+  height:38px;
+
+  border-radius:50%;
+
+  background:#111;
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:12px;
+
+  font-weight:800;
+}
+
+.rank-name{
+
+  flex:1;
+
+  font-weight:700;
+}
+
+.rank-sales{
+
+  font-size:18px;
+
+  font-weight:800;
+}
+
+
+/* =========================
+   EQUIPO
+========================= */
 
 .team{
+
   display:flex;
+
   flex-direction:column;
 }
 
 .team-row{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:12px 0;
-  border-bottom:1px solid #eee;
-}
 
-.team-row:last-child{
-  border-bottom:0;
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  padding:12px 0;
+
+  border-bottom:
+    1px solid #eee;
 }
 
 .avatar{
+
   width:38px;
+
   height:38px;
+
   border-radius:50%;
+
   background:#111;
+
   color:white;
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   font-size:12px;
+
   font-weight:800;
 }
 
 .team-name{
+
   flex:1;
+
   font-weight:700;
 }
 
 .team-sales{
+
   font-size:18px;
+
   font-weight:800;
 }
 
-.logout{
-  background:#e9e9e9;
-  color:#111;
-}
 
-.week-winner{
+/* =========================
+   BOTONES
+========================= */
+
+button{
+
+  width:100%;
+
+  padding:17px;
+
+  border:0;
+
+  border-radius:15px;
+
   background:#111;
+
   color:white;
-  border-radius:18px;
-  padding:20px;
-  margin-bottom:14px;
-}
 
-.week-winner .title{
-  color:#aaa;
-}
+  font-size:16px;
 
-.winner-name{
-  font-size:27px;
   font-weight:800;
+
+  cursor:pointer;
 }
 
-.winner-info{
-  color:#aaa;
-  margin-top:5px;
-  font-size:13px;
+button:disabled{
+
+  opacity:.5;
+
+  cursor:not-allowed;
 }
 
-.winner-sales{
-  font-size:42px;
-  font-weight:800;
-  margin-top:15px;
+.secondary{
+
+  background:#e9e9e9;
+
+  color:#111;
+
+  margin-top:10px;
 }
 
-.winner-sales small{
-  font-size:14px;
-  color:#aaa;
+.danger{
+
+  background:#b00020;
+
+  color:white;
 }
 
-.rank-row{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:13px 0;
-  border-bottom:1px solid #eee;
-}
 
-.rank-row:last-child{
-  border-bottom:0;
-}
+/* =========================
+   MENSAJES
+========================= */
 
-.rank-position{
-  width:32px;
-  font-size:17px;
-  font-weight:800;
+.message{
+
   text-align:center;
+
+  color:#777;
+
+  font-size:12px;
+
+  margin-top:10px;
+
+  min-height:16px;
 }
 
-.rank-info{
-  flex:1;
+.error-box{
+
+  background:#fff0f0;
+
+  color:#a00000;
+
+  border-radius:14px;
+
+  padding:14px;
+
+  margin-bottom:14px;
+
+  font-size:13px;
+
+  display:none;
 }
 
-.rank-name{
+
+/* =========================
+   HISTORIAL
+========================= */
+
+.history{
+
+  display:flex;
+
+  flex-direction:column;
+}
+
+.history-row{
+
+  padding:12px 0;
+
+  border-bottom:
+    1px solid #eee;
+}
+
+.history-top{
+
+  display:flex;
+
+  justify-content:
+    space-between;
+
+  align-items:center;
+}
+
+.history-name{
+
   font-weight:800;
+
+  font-size:14px;
 }
 
-.rank-branch{
-  color:#888;
+.history-date{
+
   font-size:11px;
-  margin-top:3px;
-}
 
-.rank-sales{
-  font-size:19px;
-  font-weight:800;
+  color:#888;
+
+  margin-top:4px;
 }
 
 .delete-sale{
+
   width:auto;
-  padding:8px 11px;
+
+  padding:8px 10px;
+
   border-radius:10px;
-  background:#eee;
-  color:#111;
-  font-size:12px;
-}
 
-.sale-row{
-  padding:13px 0;
-  border-bottom:1px solid #eee;
-}
-
-.sale-row:last-child{
-  border-bottom:0;
-}
-
-.sale-top{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.sale-info{
-  flex:1;
-}
-
-.sale-name{
-  font-weight:800;
-  font-size:14px;
-}
-
-.sale-date{
-  color:#888;
   font-size:11px;
-  margin-top:3px;
+
+  background:#b00020;
 }
 
-.supervisor-badge{
-  background:#111;
-  color:white;
-  padding:10px 13px;
-  border-radius:12px;
-  font-size:11px;
-  font-weight:800;
-  margin-bottom:15px;
-}
 
-.hidden{
-  display:none!important;
-}
-
-.empty{
-  text-align:center;
-  color:#999;
-  padding:15px 0;
-  font-size:13px;
-}
-
-footer{
-  text-align:center;
-  padding:20px;
-  color:#aaa;
-  font-size:11px;
-}
-
-/* MODAL */
+/* =========================
+   MODAL
+========================= */
 
 .modal{
+
   display:none;
+
   position:fixed;
+
   inset:0;
-  background:rgba(0,0,0,.55);
+
+  background:
+    rgba(0,0,0,.55);
+
   align-items:flex-end;
+
   justify-content:center;
-  z-index:100;
+
+  z-index:1000;
 }
 
 .modal-box{
+
   width:100%;
+
   max-width:520px;
+
   background:white;
-  border-radius:25px 25px 0 0;
+
+  border-radius:
+    25px 25px 0 0;
+
   padding:24px;
+
+  max-height:90vh;
+
+  overflow-y:auto;
 }
 
 .modal-title{
+
   font-size:22px;
+
   font-weight:800;
+
   margin-bottom:5px;
 }
 
 .modal-subtitle{
+
   color:#777;
+
   font-size:13px;
+
   margin-bottom:20px;
 }
 
 .modal-actions{
+
   display:flex;
+
   gap:10px;
+
   margin-top:15px;
 }
 
-.cancel{
-  background:#e9e9e9;
-  color:#111;
+.modal-actions button{
+
+  flex:1;
 }
 
-@media(max-width:380px){
-  .goal{
-    gap:12px;
-  }
 
-  .circle{
-    width:105px;
-    height:105px;
-  }
+/* =========================
+   LOADING
+========================= */
 
-  .circle-inner{
-    width:80px;
-    height:80px;
-  }
+.loading{
 
-  .numbers{
-    font-size:29px;
-  }
+  background:#111;
+
+  color:white;
+
+  border-radius:15px;
+
+  padding:15px;
+
+  font-size:13px;
+
+  margin-bottom:14px;
 }
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+  text-align:center;
+
+  padding:20px;
+
+  color:#aaa;
+
+  font-size:11px;
+}
+
+
+/* =========================
+   HIDDEN
+========================= */
+
+.hidden{
+
+  display:none !important;
+}
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="app">
+
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <header class="header">
 
   <div class="brand">
+
     <div class="brand-name">
       UVAN <span>METAS</span>
     </div>
 
-    <div class="month" id="month">
+    <div
+      class="month"
+      id="month"
+    >
       —
     </div>
+
   </div>
 
-  <div class="greeting" id="greeting">
+
+  <div
+    class="greeting"
+    id="greeting"
+  >
     UVAN METAS 🔋
   </div>
+
 
   <div class="subtitle">
     Control de metas y ventas
@@ -520,271 +883,436 @@ footer{
 
 </header>
 
+
 <main class="content">
 
-  <!-- PERFIL -->
 
-  <section class="supervisor-badge" id="profileBox">
-    Cargando usuario...
-  </section>
+<!-- =========================
+     ESTADO
+========================= -->
 
-
-  <!-- VENDEDOR -->
-
-  <section class="card">
-
-    <div class="title">
-      VENDEDOR
-    </div>
-
-    <select id="sellerSelect"></select>
-
-  </section>
+<div
+  class="loading"
+  id="loading"
+>
+  Verificando sesión...
+</div>
 
 
-  <!-- META DE SUCURSAL -->
+<div
+  class="error-box"
+  id="errorBox"
+></div>
 
-  <section class="card">
 
-    <div class="title">
-      META DE SUCURSAL
-    </div>
+<!-- =========================
+     PERFIL
+========================= -->
 
-    <div class="goal">
+<section
+  class="profile-card hidden"
+  id="profileCard"
+>
 
-      <div class="circle" id="circle">
+  <div
+    class="profile-name"
+    id="profileName"
+  >
+    —
+  </div>
 
-        <div class="circle-inner">
+  <div
+    class="profile-role"
+    id="profileRole"
+  >
+    —
+  </div>
 
-          <div class="percent" id="percent">
-            0%
-          </div>
+</section>
 
-          <div class="small">
-            cumplido
-          </div>
 
+<!-- =========================
+     VENDEDOR
+========================= -->
+
+<section
+  class="card hidden"
+  id="sellerCard"
+>
+
+  <div class="title">
+    VENDEDOR
+  </div>
+
+  <select
+    id="sellerSelect"
+  ></select>
+
+</section>
+
+
+<!-- =========================
+     META
+========================= -->
+
+<section
+  class="card hidden"
+  id="mainContent"
+>
+
+  <div class="title">
+    META DE SUCURSAL
+  </div>
+
+
+  <div class="goal">
+
+
+    <div
+      class="circle"
+      id="circle"
+    >
+
+      <div class="circle-inner">
+
+        <div
+          class="percent"
+          id="percent"
+        >
+          0%
+        </div>
+
+        <div class="small">
+          cumplido
         </div>
 
       </div>
 
-      <div>
+    </div>
 
-        <div class="numbers">
 
-          <span id="branchSales">
-            0
+    <div>
+
+      <div class="numbers">
+
+        <span
+          id="branchSales"
+        >
+          0
+        </span>
+
+        <small>
+          /
+          <span
+            id="branchGoal"
+          >
+            —
           </span>
+        </small>
 
-          <small>
-            /
-            <span id="branchGoal">
-              —
-            </span>
-          </small>
+      </div>
 
-        </div>
 
-        <div class="branch" id="branch">
-          Sucursal
-        </div>
+      <div
+        class="branch"
+        id="branch"
+      >
+        Sucursal
+      </div>
 
-        <div class="remaining" id="remaining">
-          Meta pendiente
-        </div>
 
+      <div
+        class="remaining"
+        id="remaining"
+      >
+        Meta pendiente
       </div>
 
     </div>
 
-    <div class="progress">
-
-      <div class="progress-head">
-
-        <span>
-          Avance de la sucursal
-        </span>
-
-        <span id="progressText">
-          —
-        </span>
-
-      </div>
-
-      <div class="bar">
-
-        <div class="fill" id="fill"></div>
-
-      </div>
-
-    </div>
-
-  </section>
+  </div>
 
 
-  <!-- MIS VENTAS -->
+  <div class="progress">
 
-  <section class="card">
+    <div class="progress-head">
 
-    <div class="title">
-      MIS VENTAS
-    </div>
-
-    <div class="numbers">
-      <span id="personalSales">0</span>
-    </div>
-
-    <div class="branch">
-      Baterías vendidas por este vendedor
-    </div>
-
-  </section>
-
-
-  <!-- RITMO -->
-
-  <section class="card">
-
-    <div class="title">
-      RITMO DE LA SUCURSAL
-    </div>
-
-    <div class="daily">
-
-      <div class="daily-number" id="daily">
-        —
-      </div>
-
-      <div class="daily-text">
-        baterías por día necesita vender la sucursal para alcanzar su meta.
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- VENDEDOR DE LA SEMANA -->
-
-  <section class="week-winner">
-
-    <div class="title">
-      🏆 VENDEDOR DE LA SEMANA
-    </div>
-
-    <div class="winner-name" id="winnerName">
-      —
-    </div>
-
-    <div class="winner-info" id="winnerBranch">
-      —
-    </div>
-
-    <div class="winner-sales">
-
-      <span id="winnerSales">
-        0
+      <span>
+        Avance de la sucursal
       </span>
 
-      <small>
-        🔋 esta semana
-      </small>
+      <span
+        id="progressText"
+      >
+        —
+      </span>
 
     </div>
 
-  </section>
 
+    <div class="bar">
 
-  <!-- RANKING -->
+      <div
+        class="fill"
+        id="fill"
+      ></div>
 
-  <section class="card">
-
-    <div class="title">
-      🏆 RANKING DE LA SEMANA
     </div>
 
-    <div id="ranking">
-      <div class="empty">
-        Cargando ranking...
-      </div>
+  </div>
+
+</section>
+
+
+<!-- =========================
+     MIS VENTAS
+========================= -->
+
+<section
+  class="card hidden"
+  id="personalCard"
+>
+
+  <div class="title">
+    MIS VENTAS
+  </div>
+
+  <div class="numbers">
+
+    <span
+      id="personalSales"
+    >
+      0
+    </span>
+
+  </div>
+
+  <div class="branch">
+    Baterías vendidas por este vendedor
+  </div>
+
+</section>
+
+
+<!-- =========================
+     RITMO
+========================= -->
+
+<section
+  class="card hidden"
+  id="rhythmCard"
+>
+
+  <div class="title">
+    RITMO DE LA SUCURSAL
+  </div>
+
+
+  <div class="daily">
+
+    <div
+      class="daily-number"
+      id="daily"
+    >
+      —
     </div>
 
-  </section>
-
-
-  <!-- REGISTRAR -->
-
-  <section class="card">
-
-    <div class="title">
-      REGISTRAR VENTA
+    <div class="daily-text">
+      baterías por día necesita vender
+      la sucursal para alcanzar su meta.
     </div>
 
-    <button id="saleButton">
-      + REGISTRAR BATERÍA
-    </button>
+  </div>
 
-    <div class="message" id="message"></div>
-
-  </section>
+</section>
 
 
-  <!-- EQUIPO -->
+<!-- =========================
+     VENDEDOR DE LA SEMANA
+========================= -->
 
-  <section class="card">
+<section
+  class="week-card hidden"
+  id="winnerCard"
+>
 
-    <div class="title">
-      VENTAS DEL EQUIPO
-    </div>
+  <div class="week-title">
+    🏆 VENDEDOR DE LA SEMANA
+  </div>
 
-    <div class="team" id="team"></div>
+  <div
+    class="week-winner"
+    id="weekWinner"
+  >
+    —
+  </div>
 
-  </section>
+  <div class="week-sales">
 
+    <span id="weekWinnerSales">
+      0
+    </span>
 
-  <!-- HISTORIAL DEL SUPERVISOR -->
+    <span>
+      🔋 esta semana
+    </span>
 
-  <section class="card hidden" id="historyCard">
+  </div>
 
-    <div class="title">
-      🗑️ HISTORIAL DE VENTAS
-    </div>
-
-    <div class="message" style="margin-bottom:10px;">
-      Como supervisor puedes eliminar una venta registrada por error.
-    </div>
-
-    <div id="salesHistory">
-      <div class="empty">
-        Cargando...
-      </div>
-    </div>
-
-  </section>
+</section>
 
 
-  <!-- CERRAR SESIÓN -->
+<!-- =========================
+     RANKING
+========================= -->
 
-  <section class="card">
+<section
+  class="card hidden"
+  id="rankingCard"
+>
 
-    <button class="logout" id="logoutButton">
-      CERRAR SESIÓN
-    </button>
+  <div class="title">
+    🏆 RANKING DE LA SEMANA
+  </div>
 
-  </section>
+  <div
+    class="ranking"
+    id="ranking"
+  >
+    Cargando ranking...
+  </div>
+
+</section>
+
+
+<!-- =========================
+     REGISTRAR
+========================= -->
+
+<section
+  class="card hidden"
+  id="registerCard"
+>
+
+  <div class="title">
+    REGISTRAR VENTA
+  </div>
+
+  <button
+    id="saleButton"
+  >
+    + REGISTRAR BATERÍA
+  </button>
+
+  <div
+    class="message"
+    id="message"
+  ></div>
+
+</section>
+
+
+<!-- =========================
+     EQUIPO
+========================= -->
+
+<section
+  class="card hidden"
+  id="teamCard"
+>
+
+  <div class="title">
+    VENTAS DEL EQUIPO
+  </div>
+
+  <div
+    class="team"
+    id="team"
+  ></div>
+
+</section>
+
+
+<!-- =========================
+     HISTORIAL SUPERVISOR
+========================= -->
+
+<section
+  class="card hidden"
+  id="historyCard"
+>
+
+  <div class="title">
+    🗑️ HISTORIAL DE VENTAS
+  </div>
+
+  <div
+    class="history"
+    id="history"
+  >
+    Cargando historial...
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ACTUALIZAR
+========================= -->
+
+<section
+  class="card hidden"
+  id="refreshCard"
+>
+
+  <button
+    class="secondary"
+    id="refreshButton"
+  >
+    🔄 ACTUALIZAR DATOS
+  </button>
+
+</section>
+
+
+<!-- =========================
+     CERRAR SESIÓN
+========================= -->
+
+<section
+  class="card hidden"
+  id="logoutCard"
+>
+
+  <button
+    class="secondary"
+    id="logoutButton"
+  >
+    CERRAR SESIÓN
+  </button>
+
+</section>
+
 
 </main>
+
 
 <footer>
   UVAN BATTERY · Expertos en baterías
 </footer>
 
+
 </div>
 
 
-<!-- MODAL REGISTRAR -->
+<!-- =========================
+     MODAL REGISTRAR
+========================= -->
 
-<div class="modal" id="modal">
+<div
+  class="modal"
+  id="modal"
+>
 
   <div class="modal-box">
 
@@ -793,18 +1321,27 @@ footer{
     </div>
 
     <div class="modal-subtitle">
-      Confirma el vendedor que realizó la venta.
+      Selecciona el vendedor que realizó la venta.
     </div>
 
-    <select id="modalSeller"></select>
+
+    <select
+      id="modalSeller"
+    ></select>
+
 
     <div class="modal-actions">
 
-      <button class="cancel" id="cancelButton">
+      <button
+        class="secondary"
+        id="cancelButton"
+      >
         Cancelar
       </button>
 
-      <button id="confirmButton">
+      <button
+        id="confirmButton"
+      >
         Registrar
       </button>
 
@@ -815,17 +1352,25 @@ footer{
 </div>
 
 
-<!-- SUPABASE -->
+<!-- =========================
+     SUPABASE
+========================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <script>
+
+/* =====================================================
+   CONFIGURACIÓN SUPABASE
+===================================================== */
 
 const SUPABASE_URL =
   "https://rbucdijidzxvkxbrimwh.supabase.co";
 
 const SUPABASE_KEY =
   "sb_publishable_SfsU0-sUu19pjQRoeWD2Yw_O0UQdn_M";
+
 
 const db =
   supabase.createClient(
@@ -834,9 +1379,9 @@ const db =
   );
 
 
-/* =========================
+/* =====================================================
    VARIABLES
-========================= */
+===================================================== */
 
 let UVAN_PERFIL = null;
 
@@ -849,24 +1394,66 @@ let ventas = [];
 let currentSeller = 0;
 
 
-/* =========================
+/* =====================================================
    ELEMENTOS
-========================= */
+===================================================== */
 
-const sellerSelect =
-  document.getElementById("sellerSelect");
+const loading =
+  document.getElementById("loading");
 
-const modalSeller =
-  document.getElementById("modalSeller");
-
-const month =
-  document.getElementById("month");
+const errorBox =
+  document.getElementById("errorBox");
 
 const greeting =
   document.getElementById("greeting");
 
-const profileBox =
-  document.getElementById("profileBox");
+const month =
+  document.getElementById("month");
+
+const profileCard =
+  document.getElementById("profileCard");
+
+const profileName =
+  document.getElementById("profileName");
+
+const profileRole =
+  document.getElementById("profileRole");
+
+const sellerCard =
+  document.getElementById("sellerCard");
+
+const sellerSelect =
+  document.getElementById("sellerSelect");
+
+const mainContent =
+  document.getElementById("mainContent");
+
+const personalCard =
+  document.getElementById("personalCard");
+
+const rhythmCard =
+  document.getElementById("rhythmCard");
+
+const winnerCard =
+  document.getElementById("winnerCard");
+
+const rankingCard =
+  document.getElementById("rankingCard");
+
+const registerCard =
+  document.getElementById("registerCard");
+
+const teamCard =
+  document.getElementById("teamCard");
+
+const historyCard =
+  document.getElementById("historyCard");
+
+const refreshCard =
+  document.getElementById("refreshCard");
+
+const logoutCard =
+  document.getElementById("logoutCard");
 
 const branch =
   document.getElementById("branch");
@@ -901,37 +1488,35 @@ const daily =
 const team =
   document.getElementById("team");
 
+const ranking =
+  document.getElementById("ranking");
+
+const history =
+  document.getElementById("history");
+
+const weekWinner =
+  document.getElementById("weekWinner");
+
+const weekWinnerSales =
+  document.getElementById("weekWinnerSales");
+
 const modal =
   document.getElementById("modal");
+
+const modalSeller =
+  document.getElementById("modalSeller");
 
 const message =
   document.getElementById("message");
 
-const ranking =
-  document.getElementById("ranking");
 
-const winnerName =
-  document.getElementById("winnerName");
-
-const winnerBranch =
-  document.getElementById("winnerBranch");
-
-const winnerSales =
-  document.getElementById("winnerSales");
-
-const historyCard =
-  document.getElementById("historyCard");
-
-const salesHistory =
-  document.getElementById("salesHistory");
-
-
-/* =========================
+/* =====================================================
    FECHAS
-========================= */
+===================================================== */
 
 const ahora =
   new Date();
+
 
 const inicioMes =
   new Date(
@@ -940,6 +1525,7 @@ const inicioMes =
     1
   );
 
+
 const inicioSiguienteMes =
   new Date(
     ahora.getFullYear(),
@@ -947,32 +1533,26 @@ const inicioSiguienteMes =
     1
   );
 
-const nombreMes =
+
+month.textContent =
   ahora.toLocaleDateString(
     "es-MX",
     {
       month:"long",
       year:"numeric"
     }
-  );
-
-month.textContent =
-  nombreMes;
+  ).toUpperCase();
 
 
-/* =========================
-   SEMANA ACTUAL
-   LUNES - DOMINGO
-========================= */
+/* =====================================================
+   INICIO DE SEMANA
+   LUNES = PRIMER DÍA
+===================================================== */
 
-function obtenerInicioSemana(){
+function inicioSemana(){
 
   const fecha =
     new Date();
-
-  fecha.setHours(
-    0,0,0,0
-  );
 
   const dia =
     fecha.getDay();
@@ -987,506 +1567,180 @@ function obtenerInicioSemana(){
     diferencia
   );
 
+  fecha.setHours(
+    0,0,0,0
+  );
+
   return fecha;
 
 }
 
 
-function obtenerFinSemana(){
+/* =====================================================
+   MOSTRAR ERROR
+===================================================== */
 
-  const inicio =
-    obtenerInicioSemana();
+function mostrarError(texto){
 
-  const fin =
-    new Date(inicio);
+  errorBox.textContent =
+    texto;
 
-  fin.setDate(
-    fin.getDate() + 7
-  );
-
-  return fin;
+  errorBox.style.display =
+    "block";
 
 }
 
 
-/* =========================
-   VERIFICAR ACCESO
-========================= */
+/* =====================================================
+   MOSTRAR APP
+===================================================== */
+
+function mostrarApp(){
+
+  loading.classList.add(
+    "hidden"
+  );
+
+  profileCard.classList.remove(
+    "hidden"
+  );
+
+  sellerCard.classList.remove(
+    "hidden"
+  );
+
+  mainContent.classList.remove(
+    "hidden"
+  );
+
+  personalCard.classList.remove(
+    "hidden"
+  );
+
+  rhythmCard.classList.remove(
+    "hidden"
+  );
+
+  winnerCard.classList.remove(
+    "hidden"
+  );
+
+  rankingCard.classList.remove(
+    "hidden"
+  );
+
+  registerCard.classList.remove(
+    "hidden"
+  );
+
+  teamCard.classList.remove(
+    "hidden"
+  );
+
+  refreshCard.classList.remove(
+    "hidden"
+  );
+
+  logoutCard.classList.remove(
+    "hidden"
+  );
+
+}
+
+
+/* =====================================================
+   VERIFICAR SESIÓN
+===================================================== */
 
 async function verificarAcceso(){
 
-  const {
-    data:{
-      session
-    }
-  } =
-    await db.auth.getSession();
-
-
-  if(!session){
-
-    window.location.href =
-      "login.html";
-
-    return false;
-
-  }
-
-
-  const resultado =
-    await db
-      .from("profiles")
-      .select(
-        "id,nombre,rol,sucursal,activo,vendedor_id"
-      )
-      .eq(
-        "id",
-        session.user.id
-      )
-      .single();
-
-
-  if(
-    resultado.error ||
-    !resultado.data ||
-    !resultado.data.activo
-  ){
-
-    await db.auth.signOut();
-
-    window.location.href =
-      "login.html";
-
-    return false;
-
-  }
-
-
-  UVAN_PERFIL =
-    resultado.data;
-
-
-  greeting.textContent =
-    "Hola, " +
-    UVAN_PERFIL.nombre +
-    " 🔋";
-
-
-  if(
-    UVAN_PERFIL.rol ===
-    "supervisor"
-  ){
-
-    profileBox.textContent =
-      UVAN_PERFIL.nombre +
-      " · SUPERVISOR";
-
-    historyCard.classList.remove(
-      "hidden"
-    );
-
-  }else{
-
-    profileBox.textContent =
-      UVAN_PERFIL.nombre +
-      " · VENDEDOR";
-
-  }
-
-
-  return true;
-
-}
-
-
-/* =========================
-   CARGAR DATOS
-========================= */
-
-async function cargarDatos(){
-
-  message.textContent =
-    "Cargando datos...";
-
-
   try{
 
-    /*
-     * SUCURSALES
-     */
-
-    const resultadoSucursales =
-      await db
-        .from("sucursales")
-        .select("*")
-        .eq(
-          "activa",
-          true
-        )
-        .order(
-          "nombre"
-        );
+    loading.textContent =
+      "Verificando sesión...";
 
 
-    if(
-      resultadoSucursales.error
-    )
-      throw resultadoSucursales.error;
-
-
-    sucursales =
-      resultadoSucursales.data ||
-      [];
-
-
-    /*
-     * VENDEDORES
-     */
-
-    const resultadoVendedores =
-      await db
-        .from("vendedores")
-        .select("*")
-        .eq(
-          "activo",
-          true
-        )
-        .order(
-          "nombre"
-        );
-
-
-    if(
-      resultadoVendedores.error
-    )
-      throw resultadoVendedores.error;
-
-
-    const vendedoresDB =
-      resultadoVendedores.data ||
-      [];
-
-
-    /*
-     * VENTAS DEL MES
-     */
-
-    const resultadoVentas =
-      await db
-        .from("ventas")
-        .select("*")
-        .gte(
-          "fecha",
-          inicioMes.toISOString()
-        )
-        .lt(
-          "fecha",
-          inicioSiguienteMes.toISOString()
-        )
-        .order(
-          "fecha",
-          {
-            ascending:false
-          }
-        );
-
-
-    if(
-      resultadoVentas.error
-    )
-      throw resultadoVentas.error;
-
-
-    ventas =
-      resultadoVentas.data ||
-      [];
-
-
-    /*
-     * CONSTRUIR VENDEDORES
-     */
-
-    sellers =
-      vendedoresDB.map(
-        vendedor => {
-
-          const sucursal =
-            sucursales.find(
-              s =>
-                Number(s.id) ===
-                Number(
-                  vendedor.sucursal_id
-                )
-            );
-
-
-          return {
-
-            id:
-              vendedor.id,
-
-            nombre:
-              vendedor.nombre,
-
-            sucursalId:
-              vendedor.sucursal_id,
-
-            sucursal:
-              sucursal
-                ? sucursal.nombre
-                : "Sin sucursal",
-
-            metaSucursal:
-              sucursal
-                ? sucursal.meta_mensual
-                : null
-
-          };
-
-        }
-      );
-
-
-    /*
-     * SELECTOR
-     */
-
-    llenarSelector();
-
-
-    /*
-     * SELECCIONAR VENDEDOR
-     */
-
-    establecerVendedorInicial();
-
-
-    /*
-     * RENDER PRINCIPAL
-     */
-
-    render();
-
-
-    /*
-     * RANKING
-     */
-
-    renderRanking();
-
-
-    /*
-     * HISTORIAL
-     */
-
-    if(
-      UVAN_PERFIL &&
-      UVAN_PERFIL.rol ===
-      "supervisor"
-    ){
-
-      renderHistorial();
-
-    }
-
-
-    message.textContent =
-      "";
-
-  }catch(error){
-
-    console.error(
+    const {
+      data,
       error
-    );
-
-    message.textContent =
-      "No se pudieron cargar los datos.";
-
-    alert(
-      "Error conectando con Supabase:\n\n" +
-      error.message
-    );
-
-  }
-
-}
+    } =
+      await db.auth.getSession();
 
 
-/* =========================
-   LLENAR SELECTOR
-========================= */
-
-function llenarSelector(){
-
-  sellerSelect.innerHTML =
-    "";
-
-  let vendedoresMostrar =
-    sellers;
+    if(error)
+      throw error;
 
 
-  /*
-   * VENDEDOR NORMAL:
-   * solamente puede seleccionar
-   * su propio perfil.
-   */
+    const session =
+      data?.session;
 
-  if(
-    UVAN_PERFIL &&
-    UVAN_PERFIL.rol !==
-    "supervisor"
-  ){
 
-    vendedoresMostrar =
-      sellers.filter(
-        vendedor =>
-          Number(
-            vendedor.id
-          ) ===
-          Number(
-            UVAN_PERFIL.vendedor_id
-          )
+    /*
+     * NO HAY SESIÓN
+     */
+
+    if(!session){
+
+      window.location.replace(
+        "login.html"
       );
 
-  }
-
-
-  vendedoresMostrar.forEach(
-    vendedor => {
-
-      const index =
-        sellers.indexOf(
-          vendedor
-        );
-
-
-      const option =
-        document.createElement(
-          "option"
-        );
-
-
-      option.value =
-        index;
-
-
-      option.textContent =
-        vendedor.nombre +
-        " · " +
-        vendedor.sucursal;
-
-
-      sellerSelect.appendChild(
-        option
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================
-   VENDEDOR INICIAL
-========================= */
-
-function establecerVendedorInicial(){
-
-  if(
-    UVAN_PERFIL &&
-    UVAN_PERFIL.rol !==
-    "supervisor"
-  ){
-
-    const index =
-      sellers.findIndex(
-        vendedor =>
-          Number(
-            vendedor.id
-          ) ===
-          Number(
-            UVAN_PERFIL.vendedor_id
-          )
-      );
-
-
-    if(index >= 0){
-
-      currentSeller =
-        index;
-
-      sellerSelect.value =
-        index;
+      return false;
 
     }
 
-  }else{
 
-    currentSeller =
-      0;
+    /*
+     * BUSCAR PERFIL
+     */
 
-    sellerSelect.value =
-      0;
-
-  }
-
-}
+    loading.textContent =
+      "Cargando usuario...";
 
 
-/* =========================
-   SUCURSAL
-========================= */
-
-function getSucursal(
-  vendedor
-){
-
-  return sucursales.find(
-    sucursal =>
-      Number(
-        sucursal.id
-      ) ===
-      Number(
-        vendedor.sucursalId
-      )
-  );
-
-}
+    const {
+      data: perfil,
+      error: perfilError
+    } =
+      await db
+        .from("profiles")
+        .select(
+          "id,nombre,rol,sucursal,activo,vendedor_id"
+        )
+        .eq(
+          "id",
+          session.user.id
+        )
+        .maybeSingle();
 
 
-/* =========================
-   VENTAS SUCURSAL
-========================= */
-
-function ventasSucursal(
-  sucursalId
-){
-
-  return ventas
-    .filter(
-      venta => {
-
-        const vendedor =
-          sellers.find(
-            v =>
-              Number(v.id) ===
-              Number(
-                venta.vendedor_id
-              )
-          );
+    if(perfilError)
+      throw perfilError;
 
 
-        return vendedor &&
-          Number(
-            vendedor.sucursalId
-          ) ===
-          Number(
-            sucursalId
-          );
+    /*
+     * PERFIL NO EXISTE
+     */
 
-      }
-    )
-    .reduce(
-      (
-        total,
-        venta
+    if(!perfil){
+
+      await db.auth.signOut();
+
+      alert(
+        "Tu cuenta existe, pero no tiene un perfil creado en la tabla profiles."
+      );
+
+      window.location.replace(
+        "login.html"
+      );
+
+      return false;
+
+    }
+
+
+    /*
+     * USUARIO INACTIVO
+     */
+
+    if(perfil.activo === false){
