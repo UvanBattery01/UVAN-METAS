@@ -1,13 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
 <title>UVAN METAS</title>
-<meta name="theme-color" content="#111111">
+
+<meta
+  name="theme-color"
+  content="#111111"
+>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+
+/* =========================
+   GENERAL
+========================= */
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 body{
   font-family:Arial,Helvetica,sans-serif;
@@ -21,6 +41,11 @@ body{
   min-height:100vh;
   background:#f7f7f7;
 }
+
+
+/* =========================
+   HEADER
+========================= */
 
 .header{
   background:#111;
@@ -61,6 +86,11 @@ body{
   margin-top:5px;
 }
 
+
+/* =========================
+   CONTENIDO
+========================= */
+
 .content{
   padding:18px;
 }
@@ -80,6 +110,11 @@ body{
   margin-bottom:12px;
 }
 
+
+/* =========================
+   SELECT
+========================= */
+
 select{
   width:100%;
   padding:14px;
@@ -88,6 +123,11 @@ select{
   background:white;
   font-size:16px;
 }
+
+
+/* =========================
+   META
+========================= */
 
 .goal{
   display:flex;
@@ -149,6 +189,11 @@ select{
   font-weight:700;
 }
 
+
+/* =========================
+   PROGRESO
+========================= */
+
 .progress{
   margin-top:18px;
 }
@@ -176,29 +221,10 @@ select{
   transition:.3s;
 }
 
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
 
-.stat{
-  background:white;
-  padding:15px 10px;
-  border-radius:15px;
-  box-shadow:0 3px 12px rgba(0,0,0,.05);
-}
-
-.stat-label{
-  font-size:10px;
-  color:#888;
-  margin-bottom:7px;
-}
-
-.stat-value{
-  font-size:21px;
-  font-weight:800;
-}
+/* =========================
+   RITMO
+========================= */
 
 .daily{
   display:flex;
@@ -218,6 +244,11 @@ select{
   max-width:210px;
 }
 
+
+/* =========================
+   BOTONES
+========================= */
+
 button{
   width:100%;
   padding:17px;
@@ -227,6 +258,11 @@ button{
   color:white;
   font-size:16px;
   font-weight:800;
+  cursor:pointer;
+}
+
+button:disabled{
+  opacity:.6;
 }
 
 .message{
@@ -234,7 +270,13 @@ button{
   color:#777;
   font-size:12px;
   margin-top:10px;
+  min-height:16px;
 }
+
+
+/* =========================
+   EQUIPO
+========================= */
 
 .team{
   display:flex;
@@ -272,6 +314,11 @@ button{
   font-weight:800;
 }
 
+
+/* =========================
+   FOOTER
+========================= */
+
 footer{
   text-align:center;
   padding:20px;
@@ -279,7 +326,10 @@ footer{
   font-size:11px;
 }
 
-/* MODAL */
+
+/* =========================
+   MODAL
+========================= */
 
 .modal{
   display:none;
@@ -322,363 +372,561 @@ footer{
   color:#111;
 }
 
+
+/* =========================
+   CERRAR SESIÓN
+========================= */
+
+.logout{
+  margin-top:10px;
+  background:#e9e9e9;
+  color:#111;
+  font-size:13px;
+  padding:13px;
+}
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="app">
+
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <header class="header">
 
-<div class="brand">
-<div class="brand-name">UVAN <span>METAS</span></div>
-<div class="month" id="month"></div>
-</div>
+  <div class="brand">
 
-<div class="greeting">UVAN METAS 🔋</div>
+    <div class="brand-name">
+      UVAN <span>METAS</span>
+    </div>
 
-<div class="subtitle">
-Control de metas y ventas
-</div>
+    <div
+      class="month"
+      id="month"
+    ></div>
+
+  </div>
+
+
+  <div
+    class="greeting"
+    id="greeting"
+  >
+    UVAN METAS 🔋
+  </div>
+
+
+  <div
+    class="subtitle"
+    id="subtitle"
+  >
+    Control de metas y ventas
+  </div>
 
 </header>
 
+
+
 <main class="content">
 
-<!-- VENDEDOR -->
+
+<!-- =========================
+     VENDEDOR
+========================= -->
 
 <section class="card">
 
-<div class="title">VENDEDOR</div>
+  <div class="title">
+    VENDEDOR
+  </div>
 
-<select id="sellerSelect"></select>
+  <select
+    id="sellerSelect"
+  ></select>
 
 </section>
 
 
-<!-- META DE SUCURSAL -->
+
+<!-- =========================
+     META DE SUCURSAL
+========================= -->
 
 <section class="card">
 
-<div class="title">META DE SUCURSAL</div>
-
-<div class="goal">
-
-<div class="circle" id="circle">
-
-<div class="circle-inner">
-
-<div class="percent" id="percent">
-0%
-</div>
-
-<div class="small">
-cumplido
-</div>
-
-</div>
-
-</div>
+  <div class="title">
+    META DE SUCURSAL
+  </div>
 
 
-<div>
-
-<div class="numbers">
-
-<span id="branchSales">
-0
-</span>
-
-<small>
-/
-<span id="branchGoal">—</span>
-</small>
-
-</div>
-
-<div class="branch" id="branch">
-Sucursal
-</div>
-
-<div class="remaining" id="remaining">
-Meta pendiente
-</div>
-
-</div>
-
-</div>
+  <div class="goal">
 
 
-<div class="progress">
+    <div
+      class="circle"
+      id="circle"
+    >
 
-<div class="progress-head">
+      <div class="circle-inner">
 
-<span>
-Avance de la sucursal
-</span>
+        <div
+          class="percent"
+          id="percent"
+        >
+          0%
+        </div>
 
-<span id="progressText">
-—
-</span>
+        <div class="small">
+          cumplido
+        </div>
 
-</div>
+      </div>
 
-<div class="bar">
+    </div>
 
-<div class="fill" id="fill"></div>
 
-</div>
 
-</div>
+    <div>
+
+      <div class="numbers">
+
+        <span
+          id="branchSales"
+        >
+          0
+        </span>
+
+        <small>
+          /
+          <span
+            id="branchGoal"
+          >
+            —
+          </span>
+        </small>
+
+      </div>
+
+
+      <div
+        class="branch"
+        id="branch"
+      >
+        Sucursal
+      </div>
+
+
+      <div
+        class="remaining"
+        id="remaining"
+      >
+        Meta pendiente
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="progress">
+
+    <div class="progress-head">
+
+      <span>
+        Avance de la sucursal
+      </span>
+
+      <span
+        id="progressText"
+      >
+        —
+      </span>
+
+    </div>
+
+
+    <div class="bar">
+
+      <div
+        class="fill"
+        id="fill"
+      ></div>
+
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- MIS VENTAS -->
+
+<!-- =========================
+     MIS VENTAS
+========================= -->
 
 <section class="card">
 
-<div class="title">
-MIS VENTAS
-</div>
+  <div class="title">
+    MIS VENTAS
+  </div>
 
-<div class="numbers">
-<span id="personalSales">0</span>
-</div>
+  <div
+    class="numbers"
+    id="personalSales"
+  >
+    0
+  </div>
 
-<div class="branch">
-Baterías vendidas por este vendedor
-</div>
+  <div class="branch">
+    Baterías vendidas por este vendedor
+  </div>
 
 </section>
 
 
-<!-- RITMO -->
+
+<!-- =========================
+     RITMO
+========================= -->
 
 <section class="card">
 
-<div class="title">
-RITMO DE LA SUCURSAL
-</div>
+  <div class="title">
+    RITMO DE LA SUCURSAL
+  </div>
 
-<div class="daily">
 
-<div class="daily-number" id="daily">
-—
-</div>
+  <div class="daily">
 
-<div class="daily-text">
-baterías por día necesita vender la sucursal para alcanzar su meta.
-</div>
+    <div
+      class="daily-number"
+      id="daily"
+    >
+      —
+    </div>
 
-</div>
+
+    <div class="daily-text">
+      baterías por día necesita vender la sucursal para alcanzar su meta.
+    </div>
+
+  </div>
 
 </section>
 
 
-<!-- REGISTRAR -->
+
+<!-- =========================
+     REGISTRAR VENTA
+========================= -->
 
 <section class="card">
 
-<div class="title">
-REGISTRAR VENTA
-</div>
+  <div class="title">
+    REGISTRAR VENTA
+  </div>
 
-<button id="saleButton">
-+ REGISTRAR BATERÍA
-</button>
 
-<div class="message" id="message"></div>
+  <button
+    id="saleButton"
+  >
+    + REGISTRAR BATERÍA
+  </button>
+
+
+  <div
+    class="message"
+    id="message"
+  ></div>
 
 </section>
 
 
-<!-- EQUIPO -->
+
+<!-- =========================
+     EQUIPO
+========================= -->
 
 <section class="card">
 
-<div class="title">
-VENTAS DEL EQUIPO
-</div>
+  <div class="title">
+    VENTAS DEL EQUIPO
+  </div>
 
-<div class="team" id="team"></div>
+
+  <div
+    class="team"
+    id="team"
+  ></div>
 
 </section>
+
+
+<!-- =========================
+     CERRAR SESIÓN
+========================= -->
+
+<section class="card">
+
+  <button
+    class="logout"
+    id="logoutButton"
+  >
+    CERRAR SESIÓN
+  </button>
+
+</section>
+
 
 </main>
 
+
 <footer>
-UVAN BATTERY · Expertos en baterías
+  UVAN BATTERY · Expertos en baterías
 </footer>
 
-</div>
-
-
-<!-- MODAL -->
-
-<div class="modal" id="modal">
-
-<div class="modal-box">
-
-<div class="modal-title">
-Registrar venta 🔋
-</div>
-
-<div class="modal-subtitle">
-Confirma el vendedor que realizó la venta.
-</div>
-
-<select id="modalSeller"></select>
-
-<div class="modal-actions">
-
-<button class="cancel" id="cancelButton">
-Cancelar
-</button>
-
-<button id="confirmButton">
-Registrar
-</button>
 
 </div>
 
-</div>
+
+
+<!-- =========================
+     MODAL
+========================= -->
+
+<div
+  class="modal"
+  id="modal"
+>
+
+  <div class="modal-box">
+
+
+    <div class="modal-title">
+      Registrar venta 🔋
+    </div>
+
+
+    <div class="modal-subtitle">
+      Confirma el vendedor que realizó la venta.
+    </div>
+
+
+    <select
+      id="modalSeller"
+    ></select>
+
+
+    <div class="modal-actions">
+
+      <button
+        class="cancel"
+        id="cancelButton"
+      >
+        Cancelar
+      </button>
+
+
+      <button
+        id="confirmButton"
+      >
+        Registrar
+      </button>
+
+    </div>
+
+
+  </div>
 
 </div>
+
+
+
+<!-- =========================
+     SUPABASE
+========================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="supabase-config.js"></script>
 
-<script>
-const { createClient } = supabase;
 
-const db = createClient(
-  SUPABASE_URL,
-  SUPABASE_ANON_KEY
-);
-
-let UVAN_PERFIL = null;
-
-async function verificarAcceso() {
-
-  const {
-    data: { session }
-  } = await db.auth.getSession();
-
-  if (!session) {
-    window.location.href = "login.html";
-    return false;
-  }
-
-  const { data: perfil, error } = await db
-    .from("profiles")
-    .select("id,nombre,rol,sucursal,activo,vendedor_id")
-    .eq("id", session.user.id)
-    .single();
-
-  if (error || !perfil || !perfil.activo) {
-
-    await db.auth.signOut();
-
-    window.location.href = "login.html";
-
-    return false;
-  }
-
-  UVAN_PERFIL = perfil;
-
-  return true;
-}
-</script>
-
-<!-- SUPABASE -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-const SUPABASE_URL =
-  "https://rbucdijidzxvkxbrimwh.supabase.co";
+/* =========================
+   SUPABASE
+========================= */
 
-const SUPABASE_KEY =
-  "sb_publishable_SfsU0-sUu19pjQRoeWD2Yw_O0UQdn_M";
+const {
+  createClient
+} = supabase;
 
-const { createClient } =
-  supabase;
 
 const db =
   createClient(
     SUPABASE_URL,
-    SUPABASE_KEY
+    SUPABASE_ANON_KEY
   );
 
 
-/* ELEMENTOS */
+
+/* =========================
+   ELEMENTOS
+========================= */
 
 const sellerSelect =
-  document.getElementById("sellerSelect");
+  document.getElementById(
+    "sellerSelect"
+  );
+
 
 const modalSeller =
-  document.getElementById("modalSeller");
+  document.getElementById(
+    "modalSeller"
+  );
+
 
 const month =
-  document.getElementById("month");
+  document.getElementById(
+    "month"
+  );
+
+
+const greeting =
+  document.getElementById(
+    "greeting"
+  );
+
+
+const subtitle =
+  document.getElementById(
+    "subtitle"
+  );
+
 
 const branch =
-  document.getElementById("branch");
+  document.getElementById(
+    "branch"
+  );
+
 
 const branchSales =
-  document.getElementById("branchSales");
+  document.getElementById(
+    "branchSales"
+  );
+
 
 const branchGoal =
-  document.getElementById("branchGoal");
+  document.getElementById(
+    "branchGoal"
+  );
+
 
 const personalSales =
-  document.getElementById("personalSales");
+  document.getElementById(
+    "personalSales"
+  );
+
 
 const remaining =
-  document.getElementById("remaining");
+  document.getElementById(
+    "remaining"
+  );
+
 
 const percent =
-  document.getElementById("percent");
+  document.getElementById(
+    "percent"
+  );
+
 
 const progressText =
-  document.getElementById("progressText");
+  document.getElementById(
+    "progressText"
+  );
+
 
 const fill =
-  document.getElementById("fill");
+  document.getElementById(
+    "fill"
+  );
+
 
 const circle =
-  document.getElementById("circle");
+  document.getElementById(
+    "circle"
+  );
+
 
 const daily =
-  document.getElementById("daily");
+  document.getElementById(
+    "daily"
+  );
+
 
 const team =
-  document.getElementById("team");
+  document.getElementById(
+    "team"
+  );
+
 
 const modal =
-  document.getElementById("modal");
+  document.getElementById(
+    "modal"
+  );
+
 
 const message =
-  document.getElementById("message");
+  document.getElementById(
+    "message"
+  );
 
 
-/* VARIABLES */
+const saleButton =
+  document.getElementById(
+    "saleButton"
+  );
+
+
+const logoutButton =
+  document.getElementById(
+    "logoutButton"
+  );
+
+
+/* =========================
+   VARIABLES
+========================= */
 
 let sellers = [];
-
-let currentSeller = 0;
 
 let sucursales = [];
 
 let ventas = [];
 
+let currentSeller = 0;
 
-/* MES */
+let UVAN_PERFIL = null;
+
+
+
+/* =========================
+   FECHAS
+========================= */
 
 const ahora =
   new Date();
+
 
 const inicioMes =
   new Date(
@@ -687,6 +935,7 @@ const inicioMes =
     1
   );
 
+
 const inicioSiguienteMes =
   new Date(
     ahora.getFullYear(),
@@ -694,85 +943,340 @@ const inicioSiguienteMes =
     1
   );
 
-const nombreMes =
+
+month.textContent =
   ahora.toLocaleDateString(
     "es-MX",
     {
-      month: "long",
-      year: "numeric"
+      month:"long",
+      year:"numeric"
     }
   );
 
-month.textContent =
-  nombreMes;
 
 
-/* CARGAR DATOS */
+/* =========================
+   VERIFICAR ACCESO
+========================= */
+
+async function verificarAcceso(){
+
+  const {
+    data,
+    error
+  } =
+    await db.auth.getSession();
+
+
+  if(
+    error ||
+    !data.session
+  ){
+
+    window.location.replace(
+      "login.html"
+    );
+
+    return false;
+
+  }
+
+
+  const {
+    data: perfil,
+    error: perfilError
+  } =
+    await db
+      .from("profiles")
+      .select(
+        "id,nombre,rol,sucursal,activo,vendedor_id"
+      )
+      .eq(
+        "id",
+        data.session.user.id
+      )
+      .single();
+
+
+  if(
+    perfilError ||
+    !perfil ||
+    !perfil.activo
+  ){
+
+    await db.auth.signOut();
+
+    window.location.replace(
+      "login.html"
+    );
+
+    return false;
+
+  }
+
+
+  UVAN_PERFIL =
+    perfil;
+
+
+  greeting.textContent =
+    "Hola, " +
+    perfil.nombre +
+    " 🔋";
+
+
+  if(
+    String(
+      perfil.rol
+    ).toLowerCase() ===
+    "vendedor"
+  ){
+
+    subtitle.textContent =
+      "Tu avance de ventas";
+
+  }else{
+
+    subtitle.textContent =
+      "Control de metas y ventas";
+
+  }
+
+
+  return true;
+
+}
+
+
+
+/* =========================
+   PERMITIR VENDEDOR
+========================= */
+
+function vendedorPermitido(
+  vendedor
+){
+
+  const rol =
+    String(
+      UVAN_PERFIL?.rol || ""
+    ).toLowerCase();
+
+
+  /*
+   * SUPERVISOR
+   */
+
+  if(
+    rol ===
+    "supervisor"
+  ){
+
+    return true;
+
+  }
+
+
+  /*
+   * VENDEDORES
+   */
+
+  return String(
+    vendedor.id
+  ) ===
+  String(
+    UVAN_PERFIL?.vendedor_id
+  );
+
+}
+
+
+
+/* =========================
+   BUSCAR SUCURSAL
+========================= */
+
+function getSucursal(
+  vendedor
+){
+
+  return sucursales.find(
+    sucursal =>
+      Number(
+        sucursal.id
+      ) ===
+      Number(
+        vendedor.sucursalId
+      )
+  );
+
+}
+
+
+
+/* =========================
+   VENTAS VENDEDOR
+========================= */
+
+function ventasVendedor(
+  vendedorId
+){
+
+  return ventas
+    .filter(
+      venta =>
+        Number(
+          venta.vendedor_id
+        ) ===
+        Number(
+          vendedorId
+        )
+    )
+    .reduce(
+      (
+        total,
+        venta
+      ) =>
+        total +
+        Number(
+          venta.cantidad || 0
+        ),
+      0
+    );
+
+}
+
+
+
+/* =========================
+   VENTAS SUCURSAL
+========================= */
+
+function ventasSucursal(
+  sucursalId
+){
+
+  return sellers
+    .filter(
+      vendedor =>
+        Number(
+          vendedor.sucursalId
+        ) ===
+        Number(
+          sucursalId
+        )
+    )
+    .reduce(
+      (
+        total,
+        vendedor
+      ) =>
+        total +
+        ventasVendedor(
+          vendedor.id
+        ),
+      0
+    );
+
+}
+
+
+
+/* =========================
+   CARGAR DATOS
+========================= */
 
 async function cargarDatos(){
 
   message.textContent =
     "Cargando datos...";
 
+
   try{
 
-    /*
-     * SUCURSALES
-     */
 
-    const resultadoSucursales =
-      await db
-        .from("sucursales")
-        .select("*")
-        .eq("activa", true)
-        .order("nombre");
+    const [
+      resultadoSucursales,
+      resultadoVendedores,
+      resultadoVentas
+    ] =
+      await Promise.all([
 
-    if(resultadoSucursales.error)
+
+        db
+          .from(
+            "sucursales"
+          )
+          .select("*")
+          .eq(
+            "activa",
+            true
+          )
+          .order(
+            "nombre"
+          ),
+
+
+        db
+          .from(
+            "vendedores"
+          )
+          .select("*")
+          .eq(
+            "activo",
+            true
+          )
+          .order(
+            "nombre"
+          ),
+
+
+        db
+          .from(
+            "ventas"
+          )
+          .select("*")
+          .gte(
+            "fecha",
+            inicioMes.toISOString()
+          )
+          .lt(
+            "fecha",
+            inicioSiguienteMes.toISOString()
+          )
+
+      ]);
+
+
+    if(
+      resultadoSucursales.error
+    ){
+
       throw resultadoSucursales.error;
+
+    }
+
+
+    if(
+      resultadoVendedores.error
+    ){
+
+      throw resultadoVendedores.error;
+
+    }
+
+
+    if(
+      resultadoVentas.error
+    ){
+
+      throw resultadoVentas.error;
+
+    }
 
 
     sucursales =
       resultadoSucursales.data || [];
-
-
-    /*
-     * VENDEDORES
-     */
-
-    const resultadoVendedores =
-      await db
-        .from("vendedores")
-        .select("*")
-        .eq("activo", true)
-        .order("nombre");
-
-    if(resultadoVendedores.error)
-      throw resultadoVendedores.error;
-
-
-    const vendedoresDB =
-      resultadoVendedores.data || [];
-
-
-    /*
-     * VENTAS DEL MES
-     */
-
-    const resultadoVentas =
-      await db
-        .from("ventas")
-        .select("*")
-        .gte(
-          "fecha",
-          inicioMes.toISOString()
-        )
-        .lt(
-          "fecha",
-          inicioSiguienteMes.toISOString()
-        );
-
-    if(resultadoVentas.error)
-      throw resultadoVentas.error;
 
 
     ventas =
@@ -784,82 +1288,96 @@ async function cargarDatos(){
      */
 
     sellers =
-      vendedoresDB.map(vendedor => {
-
-        const sucursal =
-          sucursales.find(
-            s =>
-              s.id ===
-              vendedor.sucursal_id
-          );
+      (
+        resultadoVendedores.data || []
+      )
+      .map(
+        vendedor => {
 
 
-        const ventasVendedor =
-          ventas
-            .filter(
-              venta =>
-                Number(venta.vendedor_id) ===
-                Number(vendedor.id)
-            )
-            .reduce(
-              (total, venta) =>
-                total +
-                Number(venta.cantidad || 0),
-              0
+          const sucursal =
+            sucursales.find(
+              s =>
+                Number(s.id) ===
+                Number(
+                  vendedor.sucursal_id
+                )
             );
 
 
-        return {
+          return {
 
-          id:
-            vendedor.id,
+            id:
+              vendedor.id,
 
-          nombre:
-            vendedor.nombre,
+            nombre:
+              vendedor.nombre,
 
-          sucursalId:
-            vendedor.sucursal_id,
+            sucursalId:
+              vendedor.sucursal_id,
 
-          sucursal:
-            sucursal
-              ? sucursal.nombre
-              : "Sin sucursal",
+            sucursal:
+              sucursal
+                ? sucursal.nombre
+                : "Sin sucursal"
 
-          metaSucursal:
-            sucursal
-              ? sucursal.meta_mensual
-              : null,
+          };
 
-          ventas:
-            ventasVendedor
-
-        };
-
-      });
+        }
+      )
+      .filter(
+        vendedor =>
+          vendedorPermitido(
+            vendedor
+          )
+      );
 
 
     /*
-     * LLENAR SELECTOR
+     * SIN VENDEDOR
+     */
+
+    if(
+      !sellers.length
+    ){
+
+      throw new Error(
+        "Tu usuario no tiene un vendedor vinculado."
+      );
+
+    }
+
+
+    /*
+     * SELECTOR
      */
 
     sellerSelect.innerHTML =
       "";
 
+
     sellers.forEach(
-      (vendedor,index) => {
+      (
+        vendedor,
+        index
+      ) => {
+
 
         const option =
           document.createElement(
             "option"
           );
 
+
         option.value =
           index;
+
 
         option.textContent =
           vendedor.nombre +
           " · " +
           vendedor.sucursal;
+
 
         sellerSelect.appendChild(
           option
@@ -869,21 +1387,81 @@ async function cargarDatos(){
     );
 
 
+    /*
+     * SI ES VENDEDOR
+     * SOLO TIENE UNO
+     */
+
+    if(
+      String(
+        UVAN_PERFIL.rol
+      ).toLowerCase() ===
+      "vendedor"
+    ){
+
+      sellerSelect.disabled =
+        true;
+
+      sellerSelect.style.display =
+        "none";
+
+      sellerSelect.parentElement
+        .querySelector(
+          ".title"
+        )
+        .textContent =
+        "MI CUENTA";
+
+    }
+
+
+    /*
+     * SUPERVISOR
+     */
+
+    if(
+      String(
+        UVAN_PERFIL.rol
+      ).toLowerCase() ===
+      "supervisor"
+    ){
+
+      sellerSelect.disabled =
+        false;
+
+      sellerSelect.style.display =
+        "block";
+
+    }
+
+
+    currentSeller =
+      0;
+
+
+    sellerSelect.value =
+      "0";
+
+
     message.textContent =
       "";
 
 
     render();
 
+
   }catch(error){
+
 
     console.error(
       "Error cargando Supabase:",
       error
     );
 
+
     message.textContent =
       "No se pudieron cargar los datos.";
+
 
     alert(
       "Error conectando con Supabase:\n\n" +
@@ -895,71 +1473,41 @@ async function cargarDatos(){
 }
 
 
-/* BUSCAR SUCURSAL */
 
-function getSucursal(vendedor){
-
-  return sucursales.find(
-    sucursal =>
-      Number(sucursal.id) ===
-      Number(vendedor.sucursalId)
-  );
-
-}
-
-
-/* VENTAS DE UNA SUCURSAL */
-
-function ventasSucursal(
-  sucursalId
-){
-
-  return ventas
-    .filter(
-      venta =>
-        Number(
-          sellers.find(
-            vendedor =>
-              Number(vendedor.id) ===
-              Number(venta.vendedor_id)
-          )?.sucursalId
-        ) ===
-        Number(sucursalId)
-    )
-    .reduce(
-      (total, venta) =>
-        total +
-        Number(venta.cantidad || 0),
-      0
-    );
-
-}
-
-
-/* RENDER */
+/* =========================
+   RENDER
+========================= */
 
 function render(){
 
   const vendedor =
-    sellers[currentSeller];
+    sellers[
+      currentSeller
+    ];
 
-  if(!vendedor)
+
+  if(
+    !vendedor
+  ){
+
     return;
+
+  }
 
 
   const sucursal =
-    getSucursal(vendedor);
+    getSucursal(
+      vendedor
+    );
 
 
   const meta =
     sucursal
-      ? sucursal.meta_mensual
-      : null;
+      ? Number(
+          sucursal.meta_mensual || 0
+        )
+      : 0;
 
-
-  /*
-   * VENTAS DE LA SUCURSAL
-   */
 
   const ventasEquipo =
     sucursal
@@ -969,28 +1517,15 @@ function render(){
       : 0;
 
 
-  /*
-   * VENTAS PERSONALES
-   */
-
   const ventasPersonales =
-    ventas
-      .filter(
-        venta =>
-          Number(venta.vendedor_id) ===
-          Number(vendedor.id)
-      )
-      .reduce(
-        (total, venta) =>
-          total +
-          Number(venta.cantidad || 0),
-        0
-      );
+    ventasVendedor(
+      vendedor.id
+    );
 
 
-  vendedor.ventas =
-    ventasPersonales;
-
+  /*
+   * DATOS PRINCIPALES
+   */
 
   personalSales.textContent =
     ventasPersonales;
@@ -1008,7 +1543,10 @@ function render(){
    * META
    */
 
-  if(meta){
+  if(
+    meta > 0
+  ){
+
 
     branchGoal.textContent =
       meta;
@@ -1017,7 +1555,10 @@ function render(){
     const porcentaje =
       Math.min(
         Math.round(
-          (ventasEquipo / meta) *
+          (
+            ventasEquipo /
+            meta
+          ) *
           100
         ),
         100
@@ -1033,17 +1574,30 @@ function render(){
 
 
     const grados =
-      porcentaje * 3.6;
+      porcentaje *
+      3.6;
 
 
     percent.textContent =
-      porcentaje + "%";
+      porcentaje +
+      "%";
 
 
-    remaining.innerHTML =
-      "Faltan " +
-      faltan +
-      " 🔋";
+    if(
+      faltan === 0
+    ){
+
+      remaining.textContent =
+        "¡Meta cumplida! 🎉";
+
+    }else{
+
+      remaining.textContent =
+        "Faltan " +
+        faltan +
+        " 🔋";
+
+    }
 
 
     progressText.textContent =
@@ -1053,7 +1607,8 @@ function render(){
 
 
     fill.style.width =
-      porcentaje + "%";
+      porcentaje +
+      "%";
 
 
     circle.style.background =
@@ -1070,14 +1625,10 @@ function render(){
      * RITMO
      */
 
-    const hoy =
-      new Date();
-
-
     const ultimoDia =
       new Date(
-        hoy.getFullYear(),
-        hoy.getMonth() + 1,
+        ahora.getFullYear(),
+        ahora.getMonth() + 1,
         0
       ).getDate();
 
@@ -1085,7 +1636,7 @@ function render(){
     const diasRestantes =
       Math.max(
         ultimoDia -
-        hoy.getDate() +
+        ahora.getDate() +
         1,
         1
       );
@@ -1097,348 +1648,16 @@ function render(){
         diasRestantes
       ).toFixed(1);
 
+
   }else{
+
 
     branchGoal.textContent =
       "—";
 
+
     percent.textContent =
       "—";
 
-    remaining.textContent =
-      "Meta pendiente";
 
-    progressText.textContent =
-      "Meta pendiente";
-
-    fill.style.width =
-      "0%";
-
-    circle.style.background =
-      "#e5e5e5";
-
-    daily.textContent =
-      "—";
-
-  }
-
-
-  /*
-   * EQUIPO
-   */
-
-  team.innerHTML =
-    "";
-
-
-  const equipo =
-    sellers.filter(
-      vendedorEquipo =>
-        Number(
-          vendedorEquipo.sucursalId
-        ) ===
-        Number(
-          vendedor.sucursalId
-        )
-    );
-
-
-  equipo.forEach(
-    vendedorEquipo => {
-
-      const ventasVendedor =
-        ventas
-          .filter(
-            venta =>
-              Number(
-                venta.vendedor_id
-              ) ===
-              Number(
-                vendedorEquipo.id
-              )
-          )
-          .reduce(
-            (total, venta) =>
-              total +
-              Number(
-                venta.cantidad || 0
-              ),
-            0
-          );
-
-
-      const row =
-        document.createElement(
-          "div"
-        );
-
-
-      row.className =
-        "team-row";
-
-
-      row.innerHTML = `
-
-        <div class="avatar">
-          ${vendedorEquipo.nombre
-            .substring(0,2)
-            .toUpperCase()}
-        </div>
-
-        <div class="team-name">
-          ${vendedorEquipo.nombre}
-        </div>
-
-        <div class="team-sales">
-          ${ventasVendedor} 🔋
-        </div>
-
-      `;
-
-
-      team.appendChild(
-        row
-      );
-
-    }
-  );
-
-}
-
-
-/* CAMBIAR VENDEDOR */
-
-sellerSelect.addEventListener(
-  "change",
-  function(){
-
-    currentSeller =
-      Number(this.value);
-
-    message.textContent =
-      "";
-
-    render();
-
-  }
-);
-
-
-/* ABRIR MODAL */
-
-document
-  .getElementById("saleButton")
-  .addEventListener(
-    "click",
-    function(){
-
-      modalSeller.innerHTML =
-        "";
-
-
-      sellers.forEach(
-        (vendedor,index) => {
-
-          const option =
-            document.createElement(
-              "option"
-            );
-
-
-          option.value =
-            index;
-
-
-          option.textContent =
-            vendedor.nombre +
-            " · " +
-            vendedor.sucursal;
-
-
-          modalSeller.appendChild(
-            option
-          );
-
-        }
-      );
-
-
-      modalSeller.value =
-        currentSeller;
-
-
-      modal.style.display =
-        "flex";
-
-    }
-  );
-
-
-/* CANCELAR */
-
-document
-  .getElementById("cancelButton")
-  .addEventListener(
-    "click",
-    function(){
-
-      modal.style.display =
-        "none";
-
-    }
-  );
-
-
-/* CONFIRMAR VENTA */
-
-document
-  .getElementById("confirmButton")
-  .addEventListener(
-    "click",
-    async function(){
-
-      const index =
-        Number(
-          modalSeller.value
-        );
-
-
-      const vendedor =
-        sellers[index];
-
-
-      if(!vendedor){
-
-        alert(
-          "Vendedor no encontrado."
-        );
-
-        return;
-
-      }
-
-
-      const boton =
-        document.getElementById(
-          "confirmButton"
-        );
-
-
-      boton.disabled =
-        true;
-
-      boton.textContent =
-        "Guardando...";
-
-
-      try{
-
-        /*
-         * INSERTAR VENTA
-         */
-
-        const resultado =
-          await db
-            .from("ventas")
-            .insert({
-
-              vendedor_id:
-                vendedor.id,
-
-              cantidad:
-                1,
-
-              fecha:
-                new Date().toISOString()
-
-            })
-            .select()
-            .single();
-
-
-        if(resultado.error)
-          throw resultado.error;
-
-
-        /*
-         * AGREGAR LA NUEVA VENTA
-         * A LA INFORMACIÓN LOCAL
-         */
-
-        ventas.push(
-          resultado.data
-        );
-
-
-        /*
-         * CAMBIAR VENDEDOR ACTUAL
-         */
-
-        currentSeller =
-          index;
-
-
-        sellerSelect.value =
-          index;
-
-
-        /*
-         * CERRAR MODAL
-         */
-
-        modal.style.display =
-          "none";
-
-
-        /*
-         * MENSAJE
-         */
-
-        message.textContent =
-          "¡Venta registrada! 🔋";
-
-
-        /*
-         * ACTUALIZAR TODO
-         */
-
-        render();
-
-
-      }catch(error){
-
-        console.error(
-          "Error registrando venta:",
-          error
-        );
-
-
-        alert(
-          "No se pudo registrar la venta:\n\n" +
-          error.message
-        );
-
-      }finally{
-
-        boton.disabled =
-          false;
-
-        boton.textContent =
-          "Registrar";
-
-      }
-
-    }
-  );
-
-
-/*
- * INICIAR
- */
-
-cargarDatos();
-
-</script>
-
-</body>
-</html>
+    remain
