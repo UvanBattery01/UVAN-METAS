@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>UVAN METAS · Iniciar sesión</title>
+
+<meta name="theme-color" content="#111111">
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  min-height:100vh;
+  background:#f4f4f4;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#151515;
+}
+
+.login{
+  width:100%;
+  max-width:420px;
+  padding:20px;
+}
+
+.logo{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.logo-main{
+  font-size:30px;
+  font-weight:900;
+  letter-spacing:-1px;
+}
+
+.logo-main span{
+  color:#888;
+  font-weight:500;
+}
+
+.logo-sub{
+  color:#777;
+  font-size:13px;
+  margin-top:6px;
+}
+
+.card{
+  background:white;
+  border-radius:24px;
+  padding:28px;
+  box-shadow:0 8px 30px rgba(0,0,0,.08);
+}
+
+.title{
+  font-size:24px;
+  font-weight:800;
+  margin-bottom:7px;
+}
+
+.subtitle{
+  color:#777;
+  font-size:14px;
+  margin-bottom:25px;
+}
+
+label{
+  display:block;
+  font-size:12px;
+  font-weight:800;
+  color:#555;
+  margin-bottom:7px;
+}
+
+.field{
+  margin-bottom:18px;
+}
+
+input{
+  width:100%;
+  padding:15px;
+  border:1px solid #ddd;
+  border-radius:13px;
+  font-size:16px;
+  outline:none;
+}
+
+input:focus{
+  border-color:#111;
+}
+
+button{
+  width:100%;
+  padding:16px;
+  border:0;
+  border-radius:14px;
+  background:#111;
+  color:white;
+  font-size:16px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+button:disabled{
+  opacity:.6;
+}
+
+.message{
+  min-height:20px;
+  text-align:center;
+  margin-top:15px;
+  font-size:13px;
+  color:#777;
+}
+
+.footer{
+  text-align:center;
+  margin-top:20px;
+  color:#aaa;
+  font-size:11px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="login">
+
+  <div class="logo">
+
+    <div class="logo-main">
+      UVAN <span>METAS</span> 🔋
+    </div>
+
+    <div class="logo-sub">
+      UVAN BATTERY · Expertos en baterías
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="title">
+      Bienvenido
+    </div>
+
+    <div class="subtitle">
+      Inicia sesión para continuar
+    </div>
+
+
+    <div class="field">
+
+      <label for="email">
+        CORREO
+      </label>
+
+      <input
+        id="email"
+        type="email"
+        placeholder="usuario@uvanbattery.com"
+        autocomplete="username"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label for="password">
+        CONTRASEÑA
+      </label>
+
+      <input
+        id="password"
+        type="password"
+        placeholder="••••••••"
+        autocomplete="current-password"
+      >
+
+    </div>
+
+
+    <button id="loginButton">
+      INICIAR SESIÓN
+    </button>
+
+    <div
+      class="message"
+      id="message"
+    ></div>
+
+  </div>
+
+
+  <div class="footer">
+    UVAN METAS · Control de ventas y metas
+  </div>
+
+</div>
+
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase-config.js"></script>
+
+
+<script>
+
+const {
+  createClient
+} = supabase;
+
+
+const db =
+  createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
+
+
+const emailInput =
+  document.getElementById("email");
+
+
+const passwordInput =
+  document.getElementById("password");
+
+
+const loginButton =
+  document.getElementById("loginButton");
+
+
+const message =
+  document.getElementById("message");
+
+
+/*
+ * COMPROBAR SI YA HAY UNA SESIÓN
+ */
+
+async function comprobarSesion(){
+
+  const {
+    data,
+    error
+  } = await db.auth.getSession();
+
+
+  if(error){
+
+    console.error(error);
+
+    return;
+
+  }
+
+
+  if(data.session){
+
+    window.location.href =
+      "index.html";
+
+  }
+
+}
+
+
+/*
+ * INICIAR SESIÓN
+ */
+
+async function iniciarSesion(){
+
+  const email =
+    emailInput.value.trim();
+
+  const password =
+    passwordInput.value;
+
+
+  if(!email || !password){
+
+    message.textContent =
+      "Escribe tu correo y contraseña.";
+
+    return;
+
+  }
+
+
+  loginButton.disabled =
+    true;
+
+  loginButton.textContent =
+    "ENTRANDO...";
+
+  message.textContent =
+    "";
+
+
+  try{
+
+    const {
+      data,
+      error
+    } = await db.auth.signInWithPassword({
+
+      email:
+        email,
+
+      password:
+        password
+
+    });
+
+
+    if(error){
+
+      throw error;
+
+    }
+
+
+    /*
+     * Verificar que tenga perfil
+     */
+
+    const {
+      data: perfil,
+      error: perfilError
+    } = await db
+      .from("profiles")
+      .select("id,nombre,rol,sucursal,activo,vendedor_id")
+      .eq("id", data.user.id)
+      .single();
+
+
+    if(perfilError){
+
+      await db.auth.signOut();
+
+      throw new Error(
+        "El usuario no tiene un perfil configurado."
+      );
+
+    }
+
+
+    if(!perfil.activo){
+
+      await db.auth.signOut();
+
+      throw new Error(
+        "Este usuario está desactivado."
+      );
+
+    }
+
+
+    /*
+     * Todo correcto
+     */
+
+    message.textContent =
+      "Bienvenido, " +
+      perfil.nombre +
+      " 🔋";
+
+
+    setTimeout(
+      function(){
+
+        window.location.href =
+          "index.html";
+
+      },
+      500
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    message.textContent =
+      error.message ||
+      "No se pudo iniciar sesión.";
+
+
+    loginButton.disabled =
+      false;
+
+    loginButton.textContent =
+      "INICIAR SESIÓN";
+
+  }
+
+}
+
+
+/*
+ * BOTÓN
+ */
+
+loginButton.addEventListener(
+  "click",
+  iniciarSesion
+);
+
+
+/*
+ * ENTER
+ */
+
+passwordInput.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Enter"){
+
+      iniciarSesion();
+
+    }
+
+  }
+);
+
+
+/*
+ * INICIO
+ */
+
+comprobarSesion();
+
+</script>
+
+</body>
+</html>
