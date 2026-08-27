@@ -548,126 +548,359 @@ Registrar
 </div>
 
 
-<!-- DATOS -->
-
-<script src="data.js"></script>
-
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-const data = window.UVAN_DATA;
+const SUPABASE_URL =
+  "https://rbucdijidzxvkxbrimwh.supabase.co";
 
-const sellers = [];
+const SUPABASE_KEY =
+  "sb_publishable_SfsU0-sUu19pjQRoeWD2Yw_O0UQdn_M";
 
-data.sucursales.forEach(sucursal => {
+const { createClient } =
+  supabase;
 
-  sucursal.vendedores.forEach(vendedor => {
+const db =
+  createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
-    sellers.push({
 
-      nombre: vendedor.nombre,
-
-      ventas: Number(vendedor.ventas || 0),
-
-      sucursal: sucursal.nombre,
-
-      metaSucursal: sucursal.meta
-
-    });
-
-  });
-
-});
-
+/* ELEMENTOS */
 
 const sellerSelect =
-document.getElementById("sellerSelect");
+  document.getElementById("sellerSelect");
 
 const modalSeller =
-document.getElementById("modalSeller");
+  document.getElementById("modalSeller");
 
 const month =
-document.getElementById("month");
+  document.getElementById("month");
 
 const branch =
-document.getElementById("branch");
+  document.getElementById("branch");
 
 const branchSales =
-document.getElementById("branchSales");
+  document.getElementById("branchSales");
 
 const branchGoal =
-document.getElementById("branchGoal");
+  document.getElementById("branchGoal");
 
 const personalSales =
-document.getElementById("personalSales");
+  document.getElementById("personalSales");
 
 const remaining =
-document.getElementById("remaining");
+  document.getElementById("remaining");
 
 const percent =
-document.getElementById("percent");
+  document.getElementById("percent");
 
 const progressText =
-document.getElementById("progressText");
+  document.getElementById("progressText");
 
 const fill =
-document.getElementById("fill");
+  document.getElementById("fill");
 
 const circle =
-document.getElementById("circle");
+  document.getElementById("circle");
 
 const daily =
-document.getElementById("daily");
+  document.getElementById("daily");
 
 const team =
-document.getElementById("team");
+  document.getElementById("team");
 
 const modal =
-document.getElementById("modal");
+  document.getElementById("modal");
 
 const message =
-document.getElementById("message");
+  document.getElementById("message");
 
 
-month.textContent =
-data.mes;
+/* VARIABLES */
 
-
-sellers.forEach((vendedor,index) => {
-
-  const option =
-  document.createElement("option");
-
-  option.value = index;
-
-  option.textContent =
-    vendedor.nombre +
-    " · " +
-    vendedor.sucursal;
-
-  sellerSelect.appendChild(option);
-
-});
-
+let sellers = [];
 
 let currentSeller = 0;
 
+let sucursales = [];
+
+let ventas = [];
+
+
+/* MES */
+
+const ahora =
+  new Date();
+
+const inicioMes =
+  new Date(
+    ahora.getFullYear(),
+    ahora.getMonth(),
+    1
+  );
+
+const inicioSiguienteMes =
+  new Date(
+    ahora.getFullYear(),
+    ahora.getMonth() + 1,
+    1
+  );
+
+const nombreMes =
+  ahora.toLocaleDateString(
+    "es-MX",
+    {
+      month: "long",
+      year: "numeric"
+    }
+  );
+
+month.textContent =
+  nombreMes;
+
+
+/* CARGAR DATOS */
+
+async function cargarDatos(){
+
+  message.textContent =
+    "Cargando datos...";
+
+  try{
+
+    /*
+     * SUCURSALES
+     */
+
+    const resultadoSucursales =
+      await db
+        .from("sucursales")
+        .select("*")
+        .eq("activa", true)
+        .order("nombre");
+
+    if(resultadoSucursales.error)
+      throw resultadoSucursales.error;
+
+
+    sucursales =
+      resultadoSucursales.data || [];
+
+
+    /*
+     * VENDEDORES
+     */
+
+    const resultadoVendedores =
+      await db
+        .from("vendedores")
+        .select("*")
+        .eq("activo", true)
+        .order("nombre");
+
+    if(resultadoVendedores.error)
+      throw resultadoVendedores.error;
+
+
+    const vendedoresDB =
+      resultadoVendedores.data || [];
+
+
+    /*
+     * VENTAS DEL MES
+     */
+
+    const resultadoVentas =
+      await db
+        .from("ventas")
+        .select("*")
+        .gte(
+          "fecha",
+          inicioMes.toISOString()
+        )
+        .lt(
+          "fecha",
+          inicioSiguienteMes.toISOString()
+        );
+
+    if(resultadoVentas.error)
+      throw resultadoVentas.error;
+
+
+    ventas =
+      resultadoVentas.data || [];
+
+
+    /*
+     * CONSTRUIR VENDEDORES
+     */
+
+    sellers =
+      vendedoresDB.map(vendedor => {
+
+        const sucursal =
+          sucursales.find(
+            s =>
+              s.id ===
+              vendedor.sucursal_id
+          );
+
+
+        const ventasVendedor =
+          ventas
+            .filter(
+              venta =>
+                Number(venta.vendedor_id) ===
+                Number(vendedor.id)
+            )
+            .reduce(
+              (total, venta) =>
+                total +
+                Number(venta.cantidad || 0),
+              0
+            );
+
+
+        return {
+
+          id:
+            vendedor.id,
+
+          nombre:
+            vendedor.nombre,
+
+          sucursalId:
+            vendedor.sucursal_id,
+
+          sucursal:
+            sucursal
+              ? sucursal.nombre
+              : "Sin sucursal",
+
+          metaSucursal:
+            sucursal
+              ? sucursal.meta_mensual
+              : null,
+
+          ventas:
+            ventasVendedor
+
+        };
+
+      });
+
+
+    /*
+     * LLENAR SELECTOR
+     */
+
+    sellerSelect.innerHTML =
+      "";
+
+    sellers.forEach(
+      (vendedor,index) => {
+
+        const option =
+          document.createElement(
+            "option"
+          );
+
+        option.value =
+          index;
+
+        option.textContent =
+          vendedor.nombre +
+          " · " +
+          vendedor.sucursal;
+
+        sellerSelect.appendChild(
+          option
+        );
+
+      }
+    );
+
+
+    message.textContent =
+      "";
+
+
+    render();
+
+  }catch(error){
+
+    console.error(
+      "Error cargando Supabase:",
+      error
+    );
+
+    message.textContent =
+      "No se pudieron cargar los datos.";
+
+    alert(
+      "Error conectando con Supabase:\n\n" +
+      error.message
+    );
+
+  }
+
+}
+
+
+/* BUSCAR SUCURSAL */
 
 function getSucursal(vendedor){
 
-  return data.sucursales.find(
-    s => s.nombre === vendedor.sucursal
+  return sucursales.find(
+    sucursal =>
+      Number(sucursal.id) ===
+      Number(vendedor.sucursalId)
   );
 
 }
 
+
+/* VENTAS DE UNA SUCURSAL */
+
+function ventasSucursal(
+  sucursalId
+){
+
+  return ventas
+    .filter(
+      venta =>
+        Number(
+          sellers.find(
+            vendedor =>
+              Number(vendedor.id) ===
+              Number(venta.vendedor_id)
+          )?.sucursalId
+        ) ===
+        Number(sucursalId)
+    )
+    .reduce(
+      (total, venta) =>
+        total +
+        Number(venta.cantidad || 0),
+      0
+    );
+
+}
+
+
+/* RENDER */
 
 function render(){
 
   const vendedor =
     sellers[currentSeller];
 
-  if(!vendedor) return;
+  if(!vendedor)
+    return;
 
 
   const sucursal =
@@ -675,21 +908,48 @@ function render(){
 
 
   const meta =
-    sucursal?.meta;
+    sucursal
+      ? sucursal.meta_mensual
+      : null;
 
+
+  /*
+   * VENTAS DE LA SUCURSAL
+   */
 
   const ventasEquipo =
     sucursal
-    ? sucursal.vendedores.reduce(
-        (total,v) =>
-          total + Number(v.ventas || 0),
-        0
+      ? ventasSucursal(
+          sucursal.id
+        )
+      : 0;
+
+
+  /*
+   * VENTAS PERSONALES
+   */
+
+  const ventasPersonales =
+    ventas
+      .filter(
+        venta =>
+          Number(venta.vendedor_id) ===
+          Number(vendedor.id)
       )
-    : 0;
+      .reduce(
+        (total, venta) =>
+          total +
+          Number(venta.cantidad || 0),
+        0
+      );
+
+
+  vendedor.ventas =
+    ventasPersonales;
 
 
   personalSales.textContent =
-    vendedor.ventas;
+    ventasPersonales;
 
 
   branch.textContent =
@@ -700,24 +960,33 @@ function render(){
     ventasEquipo;
 
 
+  /*
+   * META
+   */
+
   if(meta){
 
     branchGoal.textContent =
       meta;
 
+
     const porcentaje =
       Math.min(
         Math.round(
-          (ventasEquipo / meta) * 100
+          (ventasEquipo / meta) *
+          100
         ),
         100
       );
 
+
     const faltan =
       Math.max(
-        meta - ventasEquipo,
+        meta -
+        ventasEquipo,
         0
       );
+
 
     const grados =
       porcentaje * 3.6;
@@ -753,27 +1022,36 @@ function render(){
       "deg 360deg)";
 
 
+    /*
+     * RITMO
+     */
+
     const hoy =
       new Date();
+
 
     const ultimoDia =
       new Date(
         hoy.getFullYear(),
-        hoy.getMonth()+1,
+        hoy.getMonth() + 1,
         0
       ).getDate();
 
 
     const diasRestantes =
       Math.max(
-        ultimoDia - hoy.getDate() + 1,
+        ultimoDia -
+        hoy.getDate() +
+        1,
         1
       );
 
 
     daily.textContent =
-      (faltan / diasRestantes)
-      .toFixed(1);
+      (
+        faltan /
+        diasRestantes
+      ).toFixed(1);
 
   }else{
 
@@ -801,17 +1079,55 @@ function render(){
   }
 
 
-  /* VENTAS DEL EQUIPO */
+  /*
+   * EQUIPO
+   */
 
-  team.innerHTML = "";
+  team.innerHTML =
+    "";
 
 
-  if(sucursal){
+  const equipo =
+    sellers.filter(
+      vendedorEquipo =>
+        Number(
+          vendedorEquipo.sucursalId
+        ) ===
+        Number(
+          vendedor.sucursalId
+        )
+    );
 
-    sucursal.vendedores.forEach(v => {
+
+  equipo.forEach(
+    vendedorEquipo => {
+
+      const ventasVendedor =
+        ventas
+          .filter(
+            venta =>
+              Number(
+                venta.vendedor_id
+              ) ===
+              Number(
+                vendedorEquipo.id
+              )
+          )
+          .reduce(
+            (total, venta) =>
+              total +
+              Number(
+                venta.cantidad || 0
+              ),
+            0
+          );
+
 
       const row =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
+
 
       row.className =
         "team-row";
@@ -820,160 +1136,263 @@ function render(){
       row.innerHTML = `
 
         <div class="avatar">
-          ${v.nombre
+          ${vendedorEquipo.nombre
             .substring(0,2)
             .toUpperCase()}
         </div>
 
         <div class="team-name">
-          ${v.nombre}
+          ${vendedorEquipo.nombre}
         </div>
 
         <div class="team-sales">
-          ${v.ventas} 🔋
+          ${ventasVendedor} 🔋
         </div>
 
       `;
 
 
-      team.appendChild(row);
+      team.appendChild(
+        row
+      );
 
-    });
-
-  }
+    }
+  );
 
 }
 
 
-/* SELECTOR */
+/* CAMBIAR VENDEDOR */
 
 sellerSelect.addEventListener(
-"change",
-function(){
+  "change",
+  function(){
 
-  currentSeller =
-    Number(this.value);
+    currentSeller =
+      Number(this.value);
 
-  message.textContent = "";
+    message.textContent =
+      "";
 
-  render();
+    render();
 
-});
+  }
+);
 
 
 /* ABRIR MODAL */
 
 document
-.getElementById("saleButton")
-.addEventListener(
-"click",
-function(){
+  .getElementById("saleButton")
+  .addEventListener(
+    "click",
+    function(){
 
-  modalSeller.innerHTML = "";
+      modalSeller.innerHTML =
+        "";
 
-  sellers.forEach(
-    (vendedor,index) => {
 
-      const option =
-        document.createElement("option");
+      sellers.forEach(
+        (vendedor,index) => {
 
-      option.value =
-        index;
+          const option =
+            document.createElement(
+              "option"
+            );
 
-      option.textContent =
-        vendedor.nombre +
-        " · " +
-        vendedor.sucursal;
 
-      modalSeller.appendChild(option);
+          option.value =
+            index;
+
+
+          option.textContent =
+            vendedor.nombre +
+            " · " +
+            vendedor.sucursal;
+
+
+          modalSeller.appendChild(
+            option
+          );
+
+        }
+      );
+
+
+      modalSeller.value =
+        currentSeller;
+
+
+      modal.style.display =
+        "flex";
 
     }
   );
 
 
-  modalSeller.value =
-    currentSeller;
-
-
-  modal.style.display =
-    "flex";
-
-});
-
-
 /* CANCELAR */
 
 document
-.getElementById("cancelButton")
-.addEventListener(
-"click",
-function(){
+  .getElementById("cancelButton")
+  .addEventListener(
+    "click",
+    function(){
 
-  modal.style.display =
-    "none";
+      modal.style.display =
+        "none";
 
-});
+    }
+  );
 
 
 /* CONFIRMAR VENTA */
 
 document
-.getElementById("confirmButton")
-.addEventListener(
-"click",
-function(){
+  .getElementById("confirmButton")
+  .addEventListener(
+    "click",
+    async function(){
 
-  const index =
-    Number(modalSeller.value);
-
-  const vendedor =
-    sellers[index];
-
-  const sucursal =
-    getSucursal(vendedor);
+      const index =
+        Number(
+          modalSeller.value
+        );
 
 
-  vendedor.ventas++;
+      const vendedor =
+        sellers[index];
 
 
-  if(sucursal){
+      if(!vendedor){
 
-    const original =
-      sucursal.vendedores.find(
-        v => v.nombre === vendedor.nombre
-      );
+        alert(
+          "Vendedor no encontrado."
+        );
 
-    if(original){
+        return;
 
-      original.ventas =
-        vendedor.ventas;
+      }
+
+
+      const boton =
+        document.getElementById(
+          "confirmButton"
+        );
+
+
+      boton.disabled =
+        true;
+
+      boton.textContent =
+        "Guardando...";
+
+
+      try{
+
+        /*
+         * INSERTAR VENTA
+         */
+
+        const resultado =
+          await db
+            .from("ventas")
+            .insert({
+
+              vendedor_id:
+                vendedor.id,
+
+              cantidad:
+                1,
+
+              fecha:
+                new Date().toISOString()
+
+            })
+            .select()
+            .single();
+
+
+        if(resultado.error)
+          throw resultado.error;
+
+
+        /*
+         * AGREGAR LA NUEVA VENTA
+         * A LA INFORMACIÓN LOCAL
+         */
+
+        ventas.push(
+          resultado.data
+        );
+
+
+        /*
+         * CAMBIAR VENDEDOR ACTUAL
+         */
+
+        currentSeller =
+          index;
+
+
+        sellerSelect.value =
+          index;
+
+
+        /*
+         * CERRAR MODAL
+         */
+
+        modal.style.display =
+          "none";
+
+
+        /*
+         * MENSAJE
+         */
+
+        message.textContent =
+          "¡Venta registrada! 🔋";
+
+
+        /*
+         * ACTUALIZAR TODO
+         */
+
+        render();
+
+
+      }catch(error){
+
+        console.error(
+          "Error registrando venta:",
+          error
+        );
+
+
+        alert(
+          "No se pudo registrar la venta:\n\n" +
+          error.message
+        );
+
+      }finally{
+
+        boton.disabled =
+          false;
+
+        boton.textContent =
+          "Registrar";
+
+      }
 
     }
-
-  }
-
-
-  currentSeller =
-    index;
-
-  sellerSelect.value =
-    index;
+  );
 
 
-  modal.style.display =
-    "none";
+/*
+ * INICIAR
+ */
 
-
-  message.textContent =
-    "¡Venta registrada! 🔋";
-
-
-  render();
-
-});
-
-
-render();
+cargarDatos();
 
 </script>
 
