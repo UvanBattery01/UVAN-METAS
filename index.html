@@ -5,23 +5,14 @@
 
 <meta charset="UTF-8">
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>UVAN METAS</title>
 
-<meta
-  name="theme-color"
-  content="#111111"
->
+<meta name="theme-color" content="#111111">
 
 <style>
-
-/* =========================
-   GENERAL
-========================= */
 
 *{
   box-sizing:border-box;
@@ -41,11 +32,6 @@ body{
   min-height:100vh;
   background:#f7f7f7;
 }
-
-
-/* =========================
-   HEADER
-========================= */
 
 .header{
   background:#111;
@@ -86,11 +72,6 @@ body{
   margin-top:5px;
 }
 
-
-/* =========================
-   CONTENIDO
-========================= */
-
 .content{
   padding:18px;
 }
@@ -110,11 +91,6 @@ body{
   margin-bottom:12px;
 }
 
-
-/* =========================
-   SELECT
-========================= */
-
 select{
   width:100%;
   padding:14px;
@@ -124,10 +100,10 @@ select{
   font-size:16px;
 }
 
-
-/* =========================
-   META
-========================= */
+select:disabled{
+  background:#f2f2f2;
+  color:#555;
+}
 
 .goal{
   display:flex;
@@ -189,11 +165,6 @@ select{
   font-weight:700;
 }
 
-
-/* =========================
-   PROGRESO
-========================= */
-
 .progress{
   margin-top:18px;
 }
@@ -221,11 +192,6 @@ select{
   transition:.3s;
 }
 
-
-/* =========================
-   RITMO
-========================= */
-
 .daily{
   display:flex;
   justify-content:space-between;
@@ -243,11 +209,6 @@ select{
   text-align:right;
   max-width:210px;
 }
-
-
-/* =========================
-   BOTONES
-========================= */
 
 button{
   width:100%;
@@ -270,13 +231,7 @@ button:disabled{
   color:#777;
   font-size:12px;
   margin-top:10px;
-  min-height:16px;
 }
-
-
-/* =========================
-   EQUIPO
-========================= */
 
 .team{
   display:flex;
@@ -314,10 +269,31 @@ button:disabled{
   font-weight:800;
 }
 
+.user-info{
+  background:#111;
+  color:white;
+  border-radius:15px;
+  padding:14px;
+  margin-bottom:14px;
+}
 
-/* =========================
-   FOOTER
-========================= */
+.user-info-name{
+  font-size:17px;
+  font-weight:800;
+}
+
+.user-info-role{
+  color:#aaa;
+  font-size:12px;
+  margin-top:4px;
+  text-transform:uppercase;
+}
+
+.logout{
+  background:#e9e9e9;
+  color:#111;
+  margin-top:10px;
+}
 
 footer{
   text-align:center;
@@ -326,10 +302,7 @@ footer{
   font-size:11px;
 }
 
-
-/* =========================
-   MODAL
-========================= */
+/* MODAL */
 
 .modal{
   display:none;
@@ -367,38 +340,34 @@ footer{
   margin-top:15px;
 }
 
+.modal-actions button{
+  flex:1;
+}
+
 .cancel{
   background:#e9e9e9;
   color:#111;
 }
 
+.loading{
+  text-align:center;
+  padding:40px 20px;
+  color:#777;
+}
 
-/* =========================
-   CERRAR SESIÓN
-========================= */
-
-.logout{
-  margin-top:10px;
-  background:#e9e9e9;
-  color:#111;
-  font-size:13px;
-  padding:13px;
+.error{
+  text-align:center;
+  padding:30px 20px;
+  color:#777;
 }
 
 </style>
 
 </head>
 
-
 <body>
 
-
 <div class="app">
-
-
-<!-- =========================
-     HEADER
-========================= -->
 
 <header class="header">
 
@@ -408,39 +377,44 @@ footer{
       UVAN <span>METAS</span>
     </div>
 
-    <div
-      class="month"
-      id="month"
-    ></div>
+    <div class="month" id="month">
+      —
+    </div>
 
   </div>
 
-
-  <div
-    class="greeting"
-    id="greeting"
-  >
+  <div class="greeting" id="greeting">
     UVAN METAS 🔋
   </div>
 
-
-  <div
-    class="subtitle"
-    id="subtitle"
-  >
+  <div class="subtitle">
     Control de metas y ventas
   </div>
 
 </header>
 
 
-
 <main class="content">
 
 
-<!-- =========================
-     VENDEDOR
-========================= -->
+<!-- USUARIO -->
+
+<section class="user-info">
+
+  <div class="user-info-name"
+       id="userName">
+    Cargando...
+  </div>
+
+  <div class="user-info-role"
+       id="userRole">
+    —
+  </div>
+
+</section>
+
+
+<!-- VENDEDOR -->
 
 <section class="card">
 
@@ -448,17 +422,13 @@ footer{
     VENDEDOR
   </div>
 
-  <select
-    id="sellerSelect"
-  ></select>
+  <select id="sellerSelect">
+  </select>
 
 </section>
 
 
-
-<!-- =========================
-     META DE SUCURSAL
-========================= -->
+<!-- META DE SUCURSAL -->
 
 <section class="card">
 
@@ -466,21 +436,15 @@ footer{
     META DE SUCURSAL
   </div>
 
-
   <div class="goal">
 
-
-    <div
-      class="circle"
-      id="circle"
-    >
+    <div class="circle"
+         id="circle">
 
       <div class="circle-inner">
 
-        <div
-          class="percent"
-          id="percent"
-        >
+        <div class="percent"
+             id="percent">
           0%
         </div>
 
@@ -493,48 +457,36 @@ footer{
     </div>
 
 
-
     <div>
 
       <div class="numbers">
 
-        <span
-          id="branchSales"
-        >
+        <span id="branchSales">
           0
         </span>
 
         <small>
           /
-          <span
-            id="branchGoal"
-          >
+          <span id="branchGoal">
             —
           </span>
         </small>
 
       </div>
 
-
-      <div
-        class="branch"
-        id="branch"
-      >
+      <div class="branch"
+           id="branch">
         Sucursal
       </div>
 
-
-      <div
-        class="remaining"
-        id="remaining"
-      >
+      <div class="remaining"
+           id="remaining">
         Meta pendiente
       </div>
 
     </div>
 
   </div>
-
 
 
   <div class="progress">
@@ -545,21 +497,17 @@ footer{
         Avance de la sucursal
       </span>
 
-      <span
-        id="progressText"
-      >
+      <span id="progressText">
         —
       </span>
 
     </div>
 
-
     <div class="bar">
 
-      <div
-        class="fill"
-        id="fill"
-      ></div>
+      <div class="fill"
+           id="fill">
+      </div>
 
     </div>
 
@@ -568,10 +516,7 @@ footer{
 </section>
 
 
-
-<!-- =========================
-     MIS VENTAS
-========================= -->
+<!-- MIS VENTAS -->
 
 <section class="card">
 
@@ -579,11 +524,12 @@ footer{
     MIS VENTAS
   </div>
 
-  <div
-    class="numbers"
-    id="personalSales"
-  >
-    0
+  <div class="numbers">
+
+    <span id="personalSales">
+      0
+    </span>
+
   </div>
 
   <div class="branch">
@@ -593,10 +539,7 @@ footer{
 </section>
 
 
-
-<!-- =========================
-     RITMO
-========================= -->
+<!-- RITMO -->
 
 <section class="card">
 
@@ -604,19 +547,16 @@ footer{
     RITMO DE LA SUCURSAL
   </div>
 
-
   <div class="daily">
 
-    <div
-      class="daily-number"
-      id="daily"
-    >
+    <div class="daily-number"
+         id="daily">
       —
     </div>
 
-
     <div class="daily-text">
-      baterías por día necesita vender la sucursal para alcanzar su meta.
+      baterías por día necesita vender
+      la sucursal para alcanzar su meta.
     </div>
 
   </div>
@@ -624,10 +564,7 @@ footer{
 </section>
 
 
-
-<!-- =========================
-     REGISTRAR VENTA
-========================= -->
+<!-- REGISTRAR -->
 
 <section class="card">
 
@@ -635,26 +572,18 @@ footer{
     REGISTRAR VENTA
   </div>
 
-
-  <button
-    id="saleButton"
-  >
+  <button id="saleButton">
     + REGISTRAR BATERÍA
   </button>
 
-
-  <div
-    class="message"
-    id="message"
-  ></div>
+  <div class="message"
+       id="message">
+  </div>
 
 </section>
 
 
-
-<!-- =========================
-     EQUIPO
-========================= -->
+<!-- EQUIPO -->
 
 <section class="card">
 
@@ -662,25 +591,19 @@ footer{
     VENTAS DEL EQUIPO
   </div>
 
-
-  <div
-    class="team"
-    id="team"
-  ></div>
+  <div class="team"
+       id="team">
+  </div>
 
 </section>
 
 
-<!-- =========================
-     CERRAR SESIÓN
-========================= -->
+<!-- CERRAR SESIÓN -->
 
 <section class="card">
 
-  <button
-    class="logout"
-    id="logoutButton"
-  >
+  <button class="logout"
+          id="logoutButton">
     CERRAR SESIÓN
   </button>
 
@@ -694,219 +617,74 @@ footer{
   UVAN BATTERY · Expertos en baterías
 </footer>
 
-
 </div>
 
 
+<!-- MODAL -->
 
-<!-- =========================
-     MODAL
-========================= -->
-
-<div
-  class="modal"
-  id="modal"
->
+<div class="modal"
+     id="modal">
 
   <div class="modal-box">
-
 
     <div class="modal-title">
       Registrar venta 🔋
     </div>
 
-
     <div class="modal-subtitle">
       Confirma el vendedor que realizó la venta.
     </div>
 
-
-    <select
-      id="modalSeller"
-    ></select>
-
+    <select id="modalSeller">
+    </select>
 
     <div class="modal-actions">
 
-      <button
-        class="cancel"
-        id="cancelButton"
-      >
+      <button class="cancel"
+              id="cancelButton">
         Cancelar
       </button>
 
-
-      <button
-        id="confirmButton"
-      >
+      <button id="confirmButton">
         Registrar
       </button>
 
     </div>
-
 
   </div>
 
 </div>
 
 
-
-<!-- =========================
-     SUPABASE
-========================= -->
+<!-- SUPABASE: SOLO UNA VEZ -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script src="supabase-config.js"></script>
-
 
 
 <script>
 
-/* =========================
+/* =====================================================
    SUPABASE
-========================= */
+===================================================== */
 
-const {
-  createClient
-} = supabase;
+const SUPABASE_URL =
+  "https://rbucdijidzxvkxbrimwh.supabase.co";
 
+const SUPABASE_KEY =
+  "sb_publishable_SfsU0-sUu19pjQRoeWD2Yw_O0UQdn_M";
 
 const db =
-  createClient(
+  supabase.createClient(
     SUPABASE_URL,
-    SUPABASE_ANON_KEY
+    SUPABASE_KEY
   );
 
 
-
-/* =========================
-   ELEMENTOS
-========================= */
-
-const sellerSelect =
-  document.getElementById(
-    "sellerSelect"
-  );
-
-
-const modalSeller =
-  document.getElementById(
-    "modalSeller"
-  );
-
-
-const month =
-  document.getElementById(
-    "month"
-  );
-
-
-const greeting =
-  document.getElementById(
-    "greeting"
-  );
-
-
-const subtitle =
-  document.getElementById(
-    "subtitle"
-  );
-
-
-const branch =
-  document.getElementById(
-    "branch"
-  );
-
-
-const branchSales =
-  document.getElementById(
-    "branchSales"
-  );
-
-
-const branchGoal =
-  document.getElementById(
-    "branchGoal"
-  );
-
-
-const personalSales =
-  document.getElementById(
-    "personalSales"
-  );
-
-
-const remaining =
-  document.getElementById(
-    "remaining"
-  );
-
-
-const percent =
-  document.getElementById(
-    "percent"
-  );
-
-
-const progressText =
-  document.getElementById(
-    "progressText"
-  );
-
-
-const fill =
-  document.getElementById(
-    "fill"
-  );
-
-
-const circle =
-  document.getElementById(
-    "circle"
-  );
-
-
-const daily =
-  document.getElementById(
-    "daily"
-  );
-
-
-const team =
-  document.getElementById(
-    "team"
-  );
-
-
-const modal =
-  document.getElementById(
-    "modal"
-  );
-
-
-const message =
-  document.getElementById(
-    "message"
-  );
-
-
-const saleButton =
-  document.getElementById(
-    "saleButton"
-  );
-
-
-const logoutButton =
-  document.getElementById(
-    "logoutButton"
-  );
-
-
-/* =========================
+/* =====================================================
    VARIABLES
-========================= */
+===================================================== */
+
+let UVAN_PERFIL = null;
 
 let sellers = [];
 
@@ -916,17 +694,125 @@ let ventas = [];
 
 let currentSeller = 0;
 
-let UVAN_PERFIL = null;
+let esSupervisor = false;
 
 
+/* =====================================================
+   ELEMENTOS
+===================================================== */
 
-/* =========================
+const sellerSelect =
+  document.getElementById(
+    "sellerSelect"
+  );
+
+const modalSeller =
+  document.getElementById(
+    "modalSeller"
+  );
+
+const month =
+  document.getElementById(
+    "month"
+  );
+
+const greeting =
+  document.getElementById(
+    "greeting"
+  );
+
+const userName =
+  document.getElementById(
+    "userName"
+  );
+
+const userRole =
+  document.getElementById(
+    "userRole"
+  );
+
+const branch =
+  document.getElementById(
+    "branch"
+  );
+
+const branchSales =
+  document.getElementById(
+    "branchSales"
+  );
+
+const branchGoal =
+  document.getElementById(
+    "branchGoal"
+  );
+
+const personalSales =
+  document.getElementById(
+    "personalSales"
+  );
+
+const remaining =
+  document.getElementById(
+    "remaining"
+  );
+
+const percent =
+  document.getElementById(
+    "percent"
+  );
+
+const progressText =
+  document.getElementById(
+    "progressText"
+  );
+
+const fill =
+  document.getElementById(
+    "fill"
+  );
+
+const circle =
+  document.getElementById(
+    "circle"
+  );
+
+const daily =
+  document.getElementById(
+    "daily"
+  );
+
+const team =
+  document.getElementById(
+    "team"
+  );
+
+const modal =
+  document.getElementById(
+    "modal"
+  );
+
+const message =
+  document.getElementById(
+    "message"
+  );
+
+const saleButton =
+  document.getElementById(
+    "saleButton"
+  );
+
+const logoutButton =
+  document.getElementById(
+    "logoutButton"
+  );
+
+
+/* =====================================================
    FECHAS
-========================= */
+===================================================== */
 
 const ahora =
   new Date();
-
 
 const inicioMes =
   new Date(
@@ -935,14 +821,12 @@ const inicioMes =
     1
   );
 
-
 const inicioSiguienteMes =
   new Date(
     ahora.getFullYear(),
     ahora.getMonth() + 1,
     1
   );
-
 
 month.textContent =
   ahora.toLocaleDateString(
@@ -954,38 +838,30 @@ month.textContent =
   );
 
 
-
-/* =========================
-   VERIFICAR ACCESO
-========================= */
+/* =====================================================
+   VERIFICAR LOGIN
+===================================================== */
 
 async function verificarAcceso(){
 
-  const {
-    data,
-    error
-  } =
+  const resultado =
     await db.auth.getSession();
 
+  const session =
+    resultado.data.session;
 
-  if(
-    error ||
-    !data.session
-  ){
 
-    window.location.replace(
-      "login.html"
-    );
+  if(!session){
+
+    window.location.href =
+      "login.html";
 
     return false;
 
   }
 
 
-  const {
-    data: perfil,
-    error: perfilError
-  } =
+  const resultadoPerfil =
     await db
       .from("profiles")
       .select(
@@ -993,22 +869,48 @@ async function verificarAcceso(){
       )
       .eq(
         "id",
-        data.session.user.id
+        session.user.id
       )
       .single();
 
 
   if(
-    perfilError ||
-    !perfil ||
-    !perfil.activo
+    resultadoPerfil.error ||
+    !resultadoPerfil.data
   ){
+
+    console.error(
+      resultadoPerfil.error
+    );
 
     await db.auth.signOut();
 
-    window.location.replace(
-      "login.html"
+    alert(
+      "No existe un perfil para este usuario."
     );
+
+    window.location.href =
+      "login.html";
+
+    return false;
+
+  }
+
+
+  const perfil =
+    resultadoPerfil.data;
+
+
+  if(!perfil.activo){
+
+    await db.auth.signOut();
+
+    alert(
+      "Este usuario está desactivado."
+    );
+
+    window.location.href =
+      "login.html";
 
     return false;
 
@@ -1019,28 +921,27 @@ async function verificarAcceso(){
     perfil;
 
 
+  esSupervisor =
+    String(
+      perfil.rol || ""
+    ).toLowerCase() ===
+    "supervisor";
+
+
+  userName.textContent =
+    perfil.nombre;
+
+
+  userRole.textContent =
+    esSupervisor
+      ? "Supervisor"
+      : "Vendedor";
+
+
   greeting.textContent =
     "Hola, " +
     perfil.nombre +
     " 🔋";
-
-
-  if(
-    String(
-      perfil.rol
-    ).toLowerCase() ===
-    "vendedor"
-  ){
-
-    subtitle.textContent =
-      "Tu avance de ventas";
-
-  }else{
-
-    subtitle.textContent =
-      "Control de metas y ventas";
-
-  }
 
 
   return true;
@@ -1048,143 +949,9 @@ async function verificarAcceso(){
 }
 
 
-
-/* =========================
-   PERMITIR VENDEDOR
-========================= */
-
-function vendedorPermitido(
-  vendedor
-){
-
-  const rol =
-    String(
-      UVAN_PERFIL?.rol || ""
-    ).toLowerCase();
-
-
-  /*
-   * SUPERVISOR
-   */
-
-  if(
-    rol ===
-    "supervisor"
-  ){
-
-    return true;
-
-  }
-
-
-  /*
-   * VENDEDORES
-   */
-
-  return String(
-    vendedor.id
-  ) ===
-  String(
-    UVAN_PERFIL?.vendedor_id
-  );
-
-}
-
-
-
-/* =========================
-   BUSCAR SUCURSAL
-========================= */
-
-function getSucursal(
-  vendedor
-){
-
-  return sucursales.find(
-    sucursal =>
-      Number(
-        sucursal.id
-      ) ===
-      Number(
-        vendedor.sucursalId
-      )
-  );
-
-}
-
-
-
-/* =========================
-   VENTAS VENDEDOR
-========================= */
-
-function ventasVendedor(
-  vendedorId
-){
-
-  return ventas
-    .filter(
-      venta =>
-        Number(
-          venta.vendedor_id
-        ) ===
-        Number(
-          vendedorId
-        )
-    )
-    .reduce(
-      (
-        total,
-        venta
-      ) =>
-        total +
-        Number(
-          venta.cantidad || 0
-        ),
-      0
-    );
-
-}
-
-
-
-/* =========================
-   VENTAS SUCURSAL
-========================= */
-
-function ventasSucursal(
-  sucursalId
-){
-
-  return sellers
-    .filter(
-      vendedor =>
-        Number(
-          vendedor.sucursalId
-        ) ===
-        Number(
-          sucursalId
-        )
-    )
-    .reduce(
-      (
-        total,
-        vendedor
-      ) =>
-        total +
-        ventasVendedor(
-          vendedor.id
-        ),
-      0
-    );
-
-}
-
-
-
-/* =========================
+/* =====================================================
    CARGAR DATOS
-========================= */
+===================================================== */
 
 async function cargarDatos(){
 
@@ -1195,57 +962,19 @@ async function cargarDatos(){
   try{
 
 
-    const [
-      resultadoSucursales,
-      resultadoVendedores,
-      resultadoVentas
-    ] =
-      await Promise.all([
+    /* SUCURSALES */
 
-
-        db
-          .from(
-            "sucursales"
-          )
-          .select("*")
-          .eq(
-            "activa",
-            true
-          )
-          .order(
-            "nombre"
-          ),
-
-
-        db
-          .from(
-            "vendedores"
-          )
-          .select("*")
-          .eq(
-            "activo",
-            true
-          )
-          .order(
-            "nombre"
-          ),
-
-
-        db
-          .from(
-            "ventas"
-          )
-          .select("*")
-          .gte(
-            "fecha",
-            inicioMes.toISOString()
-          )
-          .lt(
-            "fecha",
-            inicioSiguienteMes.toISOString()
-          )
-
-      ]);
+    const resultadoSucursales =
+      await db
+        .from("sucursales")
+        .select("*")
+        .eq(
+          "activa",
+          true
+        )
+        .order(
+          "nombre"
+        );
 
 
     if(
@@ -1257,6 +986,25 @@ async function cargarDatos(){
     }
 
 
+    sucursales =
+      resultadoSucursales.data || [];
+
+
+    /* VENDEDORES */
+
+    const resultadoVendedores =
+      await db
+        .from("vendedores")
+        .select("*")
+        .eq(
+          "activo",
+          true
+        )
+        .order(
+          "nombre"
+        );
+
+
     if(
       resultadoVendedores.error
     ){
@@ -1264,6 +1012,52 @@ async function cargarDatos(){
       throw resultadoVendedores.error;
 
     }
+
+
+    let vendedoresDB =
+      resultadoVendedores.data || [];
+
+
+    /*
+     * SI ES VENDEDOR:
+     * SOLO PUEDE VERSE A SÍ MISMO
+     */
+
+    if(
+      !esSupervisor
+    ){
+
+      vendedoresDB =
+        vendedoresDB.filter(
+          vendedor => {
+
+            return String(
+              vendedor.id
+            ) ===
+            String(
+              UVAN_PERFIL.vendedor_id
+            );
+
+          }
+        );
+
+    }
+
+
+    /* VENTAS DEL MES */
+
+    const resultadoVentas =
+      await db
+        .from("ventas")
+        .select("*")
+        .gte(
+          "fecha",
+          inicioMes.toISOString()
+        )
+        .lt(
+          "fecha",
+          inicioSiguienteMes.toISOString()
+        );
 
 
     if(
@@ -1275,34 +1069,48 @@ async function cargarDatos(){
     }
 
 
-    sucursales =
-      resultadoSucursales.data || [];
-
-
     ventas =
       resultadoVentas.data || [];
 
 
-    /*
-     * CONSTRUIR VENDEDORES
-     */
+    /* CONSTRUIR VENDEDORES */
 
     sellers =
-      (
-        resultadoVendedores.data || []
-      )
-      .map(
+      vendedoresDB.map(
         vendedor => {
-
 
           const sucursal =
             sucursales.find(
               s =>
-                Number(s.id) ===
-                Number(
+                String(s.id) ===
+                String(
                   vendedor.sucursal_id
                 )
             );
+
+
+          const ventasVendedor =
+            ventas
+              .filter(
+                venta =>
+                  String(
+                    venta.vendedor_id
+                  ) ===
+                  String(
+                    vendedor.id
+                  )
+              )
+              .reduce(
+                (
+                  total,
+                  venta
+                ) =>
+                  total +
+                  Number(
+                    venta.cantidad || 0
+                  ),
+                0
+              );
 
 
           return {
@@ -1319,38 +1127,41 @@ async function cargarDatos(){
             sucursal:
               sucursal
                 ? sucursal.nombre
-                : "Sin sucursal"
+                : "Sin sucursal",
+
+            metaSucursal:
+              sucursal
+                ? sucursal.meta_mensual
+                : null,
+
+            ventas:
+              ventasVendedor
 
           };
 
         }
-      )
-      .filter(
-        vendedor =>
-          vendedorPermitido(
-            vendedor
-          )
       );
 
-
-    /*
-     * SIN VENDEDOR
-     */
 
     if(
-      !sellers.length
+      sellers.length === 0
     ){
 
-      throw new Error(
-        "Tu usuario no tiene un vendedor vinculado."
-      );
+      message.textContent =
+        "No hay vendedor asignado a este usuario.";
+
+      sellerSelect.innerHTML =
+        "";
+
+      saleButton.disabled =
+        true;
+
+      return;
 
     }
 
 
-    /*
-     * SELECTOR
-     */
+    /* SELECTOR */
 
     sellerSelect.innerHTML =
       "";
@@ -1361,7 +1172,6 @@ async function cargarDatos(){
         vendedor,
         index
       ) => {
-
 
         const option =
           document.createElement(
@@ -1388,59 +1198,33 @@ async function cargarDatos(){
 
 
     /*
-     * SI ES VENDEDOR
-     * SOLO TIENE UNO
+     * VENDEDORES NORMALES:
+     * NO PUEDEN CAMBIAR DE PERSONA
      */
 
     if(
-      String(
-        UVAN_PERFIL.rol
-      ).toLowerCase() ===
-      "vendedor"
+      !esSupervisor
     ){
 
       sellerSelect.disabled =
         true;
 
-      sellerSelect.style.display =
-        "none";
+      currentSeller =
+        0;
 
-      sellerSelect.parentElement
-        .querySelector(
-          ".title"
-        )
-        .textContent =
-        "MI CUENTA";
-
-    }
-
-
-    /*
-     * SUPERVISOR
-     */
-
-    if(
-      String(
-        UVAN_PERFIL.rol
-      ).toLowerCase() ===
-      "supervisor"
-    ){
+    }else{
 
       sellerSelect.disabled =
         false;
 
-      sellerSelect.style.display =
-        "block";
+      currentSeller =
+        0;
 
     }
 
 
-    currentSeller =
-      0;
-
-
     sellerSelect.value =
-      "0";
+      currentSeller;
 
 
     message.textContent =
@@ -1452,9 +1236,8 @@ async function cargarDatos(){
 
   }catch(error){
 
-
     console.error(
-      "Error cargando Supabase:",
+      "Error cargando datos:",
       error
     );
 
@@ -1473,10 +1256,81 @@ async function cargarDatos(){
 }
 
 
+/* =====================================================
+   BUSCAR SUCURSAL
+===================================================== */
 
-/* =========================
+function getSucursal(
+  vendedor
+){
+
+  if(!vendedor)
+    return null;
+
+
+  return sucursales.find(
+    sucursal =>
+      String(
+        sucursal.id
+      ) ===
+      String(
+        vendedor.sucursalId
+      )
+  );
+
+}
+
+
+/* =====================================================
+   VENTAS DE SUCURSAL
+===================================================== */
+
+function ventasSucursal(
+  sucursalId
+){
+
+  return ventas
+    .filter(
+      venta => {
+
+        const vendedor =
+          sellers.find(
+            v =>
+              String(v.id) ===
+              String(
+                venta.vendedor_id
+              )
+          );
+
+
+        return vendedor &&
+          String(
+            vendedor.sucursalId
+          ) ===
+          String(
+            sucursalId
+          );
+
+      }
+    )
+    .reduce(
+      (
+        total,
+        venta
+      ) =>
+        total +
+        Number(
+          venta.cantidad || 0
+        ),
+      0
+    );
+
+}
+
+
+/* =====================================================
    RENDER
-========================= */
+===================================================== */
 
 function render(){
 
@@ -1486,13 +1340,8 @@ function render(){
     ];
 
 
-  if(
-    !vendedor
-  ){
-
+  if(!vendedor)
     return;
-
-  }
 
 
   const sucursal =
@@ -1503,11 +1352,11 @@ function render(){
 
   const meta =
     sucursal
-      ? Number(
-          sucursal.meta_mensual || 0
-        )
-      : 0;
+      ? sucursal.meta_mensual
+      : null;
 
+
+  /* VENTAS EQUIPO */
 
   const ventasEquipo =
     sucursal
@@ -1517,15 +1366,35 @@ function render(){
       : 0;
 
 
+  /* VENTAS PERSONALES */
+
   const ventasPersonales =
-    ventasVendedor(
-      vendedor.id
-    );
+    ventas
+      .filter(
+        venta =>
+          String(
+            venta.vendedor_id
+          ) ===
+          String(
+            vendedor.id
+          )
+      )
+      .reduce(
+        (
+          total,
+          venta
+        ) =>
+          total +
+          Number(
+            venta.cantidad || 0
+          ),
+        0
+      );
 
 
-  /*
-   * DATOS PRINCIPALES
-   */
+  vendedor.ventas =
+    ventasPersonales;
+
 
   personalSales.textContent =
     ventasPersonales;
@@ -1539,14 +1408,12 @@ function render(){
     ventasEquipo;
 
 
-  /*
-   * META
-   */
+  /* META */
 
   if(
-    meta > 0
+    meta !== null &&
+    meta !== undefined
   ){
-
 
     branchGoal.textContent =
       meta;
@@ -1558,8 +1425,7 @@ function render(){
           (
             ventasEquipo /
             meta
-          ) *
-          100
+          ) * 100
         ),
         100
       );
@@ -1583,21 +1449,10 @@ function render(){
       "%";
 
 
-    if(
-      faltan === 0
-    ){
-
-      remaining.textContent =
-        "¡Meta cumplida! 🎉";
-
-    }else{
-
-      remaining.textContent =
-        "Faltan " +
-        faltan +
-        " 🔋";
-
-    }
+    remaining.innerHTML =
+      "Faltan " +
+      faltan +
+      " 🔋";
 
 
     progressText.textContent =
@@ -1621,14 +1476,16 @@ function render(){
       "deg 360deg)";
 
 
-    /*
-     * RITMO
-     */
+    /* RITMO */
+
+    const hoy =
+      new Date();
+
 
     const ultimoDia =
       new Date(
-        ahora.getFullYear(),
-        ahora.getMonth() + 1,
+        hoy.getFullYear(),
+        hoy.getMonth() + 1,
         0
       ).getDate();
 
@@ -1636,7 +1493,7 @@ function render(){
     const diasRestantes =
       Math.max(
         ultimoDia -
-        ahora.getDate() +
+        hoy.getDate() +
         1,
         1
       );
@@ -1644,20 +1501,3 @@ function render(){
 
     daily.textContent =
       (
-        faltan /
-        diasRestantes
-      ).toFixed(1);
-
-
-  }else{
-
-
-    branchGoal.textContent =
-      "—";
-
-
-    percent.textContent =
-      "—";
-
-
-    remain
