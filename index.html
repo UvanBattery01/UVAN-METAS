@@ -1,566 +1,563 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UVAN METAS</title>
+<meta name="theme-color" content="#111111">
 
-  <title>UVAN METAS</title>
-  <meta name="theme-color" content="#111111">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f4f4;
+  color:#151515;
+}
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      color: #151515;
-    }
+.app{
+  max-width:520px;
+  margin:auto;
+  min-height:100vh;
+  background:#f7f7f7;
+}
 
-    .app {
-      max-width: 520px;
-      margin: auto;
-      min-height: 100vh;
-      background: #f7f7f7;
-    }
+.header{
+  background:#111;
+  color:white;
+  padding:22px 20px 28px;
+  border-radius:0 0 25px 25px;
+}
 
-    .header {
-      background: #111;
-      color: white;
-      padding: 22px 20px 28px;
-      border-radius: 0 0 25px 25px;
-    }
+.brand{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:25px;
+}
 
-    .brand {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 25px;
-    }
+.brand-name{
+  font-size:21px;
+  font-weight:800;
+}
 
-    .brand-name {
-      font-size: 21px;
-      font-weight: 800;
-    }
+.brand-name span{
+  color:#999;
+  font-weight:500;
+}
 
-    .brand-name span {
-      color: #999;
-      font-weight: 500;
-    }
+.month{
+  color:#aaa;
+  font-size:12px;
+  text-transform:uppercase;
+}
 
-    .month {
-      color: #aaa;
-      font-size: 12px;
-      text-transform: uppercase;
-    }
+.greeting{
+  font-size:28px;
+  font-weight:800;
+}
 
-    .greeting {
-      font-size: 28px;
-      font-weight: 800;
-    }
+.subtitle{
+  color:#aaa;
+  margin-top:5px;
+}
 
-    .subtitle {
-      color: #aaa;
-      margin-top: 5px;
-    }
+.content{
+  padding:18px;
+}
 
-    .content {
-      padding: 18px;
-    }
+.card{
+  background:white;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:14px;
+  box-shadow:0 3px 15px rgba(0,0,0,.06);
+}
 
-    .card {
-      background: white;
-      border-radius: 18px;
-      padding: 18px;
-      margin-bottom: 14px;
-      box-shadow: 0 3px 15px rgba(0,0,0,.06);
-    }
+.title{
+  font-size:13px;
+  font-weight:800;
+  color:#666;
+  margin-bottom:12px;
+}
 
-    .title {
-      font-size: 13px;
-      font-weight: 800;
-      color: #666;
-      margin-bottom: 12px;
-    }
+select{
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  background:white;
+  font-size:16px;
+}
 
-    select {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      background: white;
-      font-size: 16px;
-    }
+.goal{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
 
-    .goal {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
+.circle{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:#e5e5e5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
 
-    .circle {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: #e5e5e5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
+.circle-inner{
+  width:91px;
+  height:91px;
+  background:white;
+  border-radius:50%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
 
-    .circle-inner {
-      width: 91px;
-      height: 91px;
-      background: white;
-      border-radius: 50%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+.percent{
+  font-size:25px;
+  font-weight:800;
+}
 
-    .percent {
-      font-size: 25px;
-      font-weight: 800;
-    }
+.small{
+  font-size:11px;
+  color:#777;
+}
 
-    .small {
-      font-size: 11px;
-      color: #777;
-    }
+.numbers{
+  font-size:34px;
+  font-weight:800;
+}
 
-    .numbers {
-      font-size: 34px;
-      font-weight: 800;
-    }
+.numbers small{
+  font-size:18px;
+  color:#888;
+}
 
-    .numbers small {
-      font-size: 18px;
-      color: #888;
-    }
+.branch{
+  color:#777;
+  font-size:13px;
+  margin-top:5px;
+}
 
-    .branch {
-      color: #777;
-      font-size: 13px;
-      margin-top: 5px;
-    }
+.remaining{
+  margin-top:13px;
+  font-size:13px;
+  font-weight:700;
+}
 
-    .remaining {
-      margin-top: 13px;
-      font-size: 13px;
-      font-weight: 700;
-    }
+.progress{
+  margin-top:18px;
+}
 
-    .progress {
-      margin-top: 18px;
-    }
+.progress-head{
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
+  color:#666;
+  margin-bottom:7px;
+}
 
-    .progress-head {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      color: #666;
-      margin-bottom: 7px;
-    }
+.bar{
+  height:10px;
+  background:#e5e5e5;
+  border-radius:20px;
+  overflow:hidden;
+}
 
-    .bar {
-      height: 10px;
-      background: #e5e5e5;
-      border-radius: 20px;
-      overflow: hidden;
-    }
+.fill{
+  height:100%;
+  width:0;
+  background:#111;
+  border-radius:20px;
+  transition:.3s;
+}
 
-    .fill {
-      height: 100%;
-      width: 0;
-      background: #111;
-      border-radius: 20px;
-      transition: .3s;
-    }
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
+.stat{
+  background:white;
+  padding:15px 10px;
+  border-radius:15px;
+  box-shadow:0 3px 12px rgba(0,0,0,.05);
+}
 
-    .stat {
-      background: white;
-      padding: 15px 10px;
-      border-radius: 15px;
-      box-shadow: 0 3px 12px rgba(0,0,0,.05);
-    }
+.stat-label{
+  font-size:10px;
+  color:#888;
+  margin-bottom:7px;
+}
 
-    .stat-label {
-      font-size: 10px;
-      color: #888;
-      margin-bottom: 7px;
-    }
+.stat-value{
+  font-size:21px;
+  font-weight:800;
+}
 
-    .stat-value {
-      font-size: 21px;
-      font-weight: 800;
-    }
+.daily{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
-    .daily {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+.daily-number{
+  font-size:38px;
+  font-weight:800;
+}
 
-    .daily-number {
-      font-size: 38px;
-      font-weight: 800;
-    }
+.daily-text{
+  color:#777;
+  font-size:13px;
+  text-align:right;
+  max-width:210px;
+}
 
-    .daily-text {
-      color: #777;
-      font-size: 13px;
-      text-align: right;
-      max-width: 210px;
-    }
+button{
+  width:100%;
+  padding:17px;
+  border:0;
+  border-radius:15px;
+  background:#111;
+  color:white;
+  font-size:16px;
+  font-weight:800;
+}
 
-    button {
-      width: 100%;
-      padding: 17px;
-      border: 0;
-      border-radius: 15px;
-      background: #111;
-      color: white;
-      font-size: 16px;
-      font-weight: 800;
-    }
+.message{
+  text-align:center;
+  color:#777;
+  font-size:12px;
+  margin-top:10px;
+}
 
-    .message {
-      text-align: center;
-      color: #777;
-      font-size: 12px;
-      margin-top: 10px;
-    }
+.team{
+  display:flex;
+  flex-direction:column;
+}
 
-    .ranking {
-      display: flex;
-      flex-direction: column;
-    }
+.team-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+}
 
-    .row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid #eee;
-    }
+.avatar{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#111;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  font-weight:800;
+}
 
-    .position {
-      width: 22px;
-      color: #888;
-      font-weight: 800;
-    }
+.team-name{
+  flex:1;
+  font-weight:700;
+}
 
-    .avatar {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: #111;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 800;
-    }
+.team-sales{
+  font-size:18px;
+  font-weight:800;
+}
 
-    .seller {
-      flex: 1;
-    }
+footer{
+  text-align:center;
+  padding:20px;
+  color:#aaa;
+  font-size:11px;
+}
 
-    .seller-name {
-      font-size: 14px;
-      font-weight: 700;
-    }
+/* MODAL */
 
-    .seller-branch {
-      font-size: 11px;
-      color: #888;
-      margin-top: 3px;
-    }
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  align-items:flex-end;
+  justify-content:center;
+  z-index:100;
+}
 
-    .seller-sales {
-      font-size: 17px;
-      font-weight: 800;
-    }
+.modal-box{
+  width:100%;
+  max-width:520px;
+  background:white;
+  border-radius:25px 25px 0 0;
+  padding:24px;
+}
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #aaa;
-      font-size: 11px;
-    }
-  </style>
+.modal-title{
+  font-size:22px;
+  font-weight:800;
+  margin-bottom:5px;
+}
+
+.modal-subtitle{
+  color:#777;
+  font-size:13px;
+  margin-bottom:20px;
+}
+
+.modal-actions{
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+}
+
+.cancel{
+  background:#e9e9e9;
+  color:#111;
+}
+
+</style>
 </head>
 
 <body>
 
 <div class="app">
 
-  <header class="header">
+<header class="header">
 
-    <div class="brand">
-      <div class="brand-name">
-        UVAN <span>METAS</span>
-      </div>
+<div class="brand">
+<div class="brand-name">UVAN <span>METAS</span></div>
+<div class="month" id="month"></div>
+</div>
 
-      <div class="month" id="month"></div>
-    </div>
+<div class="greeting">UVAN METAS 🔋</div>
 
-    <div class="greeting">
-      UVAN METAS 🔋
-    </div>
+<div class="subtitle">
+Control de metas y ventas
+</div>
 
-    <div class="subtitle">
-      Control de metas y ventas
-    </div>
+</header>
 
-  </header>
+<main class="content">
 
-  <main class="content">
+<!-- VENDEDOR -->
 
-    <!-- VENDEDOR -->
+<section class="card">
 
-    <section class="card">
+<div class="title">VENDEDOR</div>
 
-      <div class="title">
-        VENDEDOR
-      </div>
+<select id="sellerSelect"></select>
 
-      <select id="sellerSelect"></select>
+</section>
 
-    </section>
 
+<!-- META DE SUCURSAL -->
 
-    <!-- META -->
+<section class="card">
 
-    <section class="card">
+<div class="title">META DE SUCURSAL</div>
 
-      <div class="title">
-        META MENSUAL
-      </div>
+<div class="goal">
 
-      <div class="goal">
+<div class="circle" id="circle">
 
-        <div class="circle" id="circle">
+<div class="circle-inner">
 
-          <div class="circle-inner">
+<div class="percent" id="percent">
+0%
+</div>
 
-            <div class="percent" id="percent">
-              0%
-            </div>
+<div class="small">
+cumplido
+</div>
 
-            <div class="small">
-              cumplido
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div>
-
-          <div class="numbers">
-
-            <span id="sales">
-              0
-            </span>
-
-            <small>
-              / <span id="goal">0</span>
-            </small>
-
-          </div>
-
-          <div class="branch" id="branch">
-            Sucursal
-          </div>
-
-          <div class="remaining">
-
-            Faltan
-            <span id="remaining">0</span>
-            🔋
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="progress">
-
-        <div class="progress-head">
-
-          <span>
-            Avance de la meta
-          </span>
-
-          <span id="progressText">
-            0 de 0
-          </span>
-
-        </div>
-
-        <div class="bar">
-
-          <div
-            class="fill"
-            id="fill">
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ESTADÍSTICAS -->
-
-    <section class="stats">
-
-      <div class="stat">
-
-        <div class="stat-label">
-          META SUCURSAL
-        </div>
-
-        <div
-          class="stat-value"
-          id="branchGoal">
-          0
-        </div>
-
-      </div>
-
-
-      <div class="stat">
-
-        <div class="stat-label">
-          VENTAS
-        </div>
-
-        <div
-          class="stat-value"
-          id="branchSales">
-          0
-        </div>
-
-      </div>
-
-
-      <div class="stat">
-
-        <div class="stat-label">
-          POSICIÓN
-        </div>
-
-        <div
-          class="stat-value"
-          id="position">
-          —
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- RITMO -->
-
-    <section class="card">
-
-      <div class="title">
-        TU RITMO
-      </div>
-
-      <div class="daily">
-
-        <div
-          class="daily-number"
-          id="daily">
-          0
-        </div>
-
-        <div class="daily-text">
-          baterías por día para alcanzar tu meta.
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- VENTA -->
-
-    <section class="card">
-
-      <div class="title">
-        REGISTRAR VENTA
-      </div>
-
-      <button id="saleButton">
-        + REGISTRAR BATERÍA
-      </button>
-
-      <div
-        class="message"
-        id="message">
-      </div>
-
-    </section>
-
-
-    <!-- RANKING -->
-
-    <section class="card">
-
-      <div class="title">
-        RANKING DE VENDEDORES
-      </div>
-
-      <div
-        class="ranking"
-        id="ranking">
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <footer>
-    UVAN BATTERY · Expertos en baterías
-  </footer>
+</div>
 
 </div>
 
 
-<!-- DATOS DE UVAN -->
+<div>
+
+<div class="numbers">
+
+<span id="branchSales">
+0
+</span>
+
+<small>
+/
+<span id="branchGoal">—</span>
+</small>
+
+</div>
+
+<div class="branch" id="branch">
+Sucursal
+</div>
+
+<div class="remaining" id="remaining">
+Meta pendiente
+</div>
+
+</div>
+
+</div>
+
+
+<div class="progress">
+
+<div class="progress-head">
+
+<span>
+Avance de la sucursal
+</span>
+
+<span id="progressText">
+—
+</span>
+
+</div>
+
+<div class="bar">
+
+<div class="fill" id="fill"></div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MIS VENTAS -->
+
+<section class="card">
+
+<div class="title">
+MIS VENTAS
+</div>
+
+<div class="numbers">
+<span id="personalSales">0</span>
+</div>
+
+<div class="branch">
+Baterías vendidas por este vendedor
+</div>
+
+</section>
+
+
+<!-- RITMO -->
+
+<section class="card">
+
+<div class="title">
+RITMO DE LA SUCURSAL
+</div>
+
+<div class="daily">
+
+<div class="daily-number" id="daily">
+—
+</div>
+
+<div class="daily-text">
+baterías por día necesita vender la sucursal para alcanzar su meta.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- REGISTRAR -->
+
+<section class="card">
+
+<div class="title">
+REGISTRAR VENTA
+</div>
+
+<button id="saleButton">
++ REGISTRAR BATERÍA
+</button>
+
+<div class="message" id="message"></div>
+
+</section>
+
+
+<!-- EQUIPO -->
+
+<section class="card">
+
+<div class="title">
+VENTAS DEL EQUIPO
+</div>
+
+<div class="team" id="team"></div>
+
+</section>
+
+</main>
+
+<footer>
+UVAN BATTERY · Expertos en baterías
+</footer>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+<div class="modal-box">
+
+<div class="modal-title">
+Registrar venta 🔋
+</div>
+
+<div class="modal-subtitle">
+Confirma el vendedor que realizó la venta.
+</div>
+
+<select id="modalSeller"></select>
+
+<div class="modal-actions">
+
+<button class="cancel" id="cancelButton">
+Cancelar
+</button>
+
+<button id="confirmButton">
+Registrar
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- DATOS -->
 
 <script src="data.js"></script>
 
-
-<!-- FUNCIONAMIENTO -->
 
 <script>
 
 const data = window.UVAN_DATA;
 
 const sellers = [];
-
 
 data.sucursales.forEach(sucursal => {
 
@@ -570,11 +567,11 @@ data.sucursales.forEach(sucursal => {
 
       nombre: vendedor.nombre,
 
-      ventas: vendedor.ventas,
+      ventas: Number(vendedor.ventas || 0),
 
       sucursal: sucursal.nombre,
 
-      meta: sucursal.meta
+      metaSucursal: sucursal.meta
 
     });
 
@@ -583,47 +580,63 @@ data.sucursales.forEach(sucursal => {
 });
 
 
-const select = document.getElementById("sellerSelect");
+const sellerSelect =
+document.getElementById("sellerSelect");
 
-const month = document.getElementById("month");
+const modalSeller =
+document.getElementById("modalSeller");
 
-const sales = document.getElementById("sales");
+const month =
+document.getElementById("month");
 
-const goal = document.getElementById("goal");
+const branch =
+document.getElementById("branch");
 
-const branch = document.getElementById("branch");
+const branchSales =
+document.getElementById("branchSales");
 
-const remaining = document.getElementById("remaining");
+const branchGoal =
+document.getElementById("branchGoal");
 
-const percent = document.getElementById("percent");
+const personalSales =
+document.getElementById("personalSales");
 
-const progressText = document.getElementById("progressText");
+const remaining =
+document.getElementById("remaining");
 
-const fill = document.getElementById("fill");
+const percent =
+document.getElementById("percent");
 
-const circle = document.getElementById("circle");
+const progressText =
+document.getElementById("progressText");
 
-const branchGoal = document.getElementById("branchGoal");
+const fill =
+document.getElementById("fill");
 
-const branchSales = document.getElementById("branchSales");
+const circle =
+document.getElementById("circle");
 
-const position = document.getElementById("position");
+const daily =
+document.getElementById("daily");
 
-const daily = document.getElementById("daily");
+const team =
+document.getElementById("team");
 
-const ranking = document.getElementById("ranking");
+const modal =
+document.getElementById("modal");
 
-const message = document.getElementById("message");
-
-const saleButton = document.getElementById("saleButton");
-
-
-month.textContent = data.mes;
+const message =
+document.getElementById("message");
 
 
-sellers.forEach((vendedor, index) => {
+month.textContent =
+data.mes;
 
-  const option = document.createElement("option");
+
+sellers.forEach((vendedor,index) => {
+
+  const option =
+  document.createElement("option");
 
   option.value = index;
 
@@ -632,7 +645,7 @@ sellers.forEach((vendedor, index) => {
     " · " +
     vendedor.sucursal;
 
-  select.appendChild(option);
+  sellerSelect.appendChild(option);
 
 });
 
@@ -640,235 +653,324 @@ sellers.forEach((vendedor, index) => {
 let currentSeller = 0;
 
 
-function render() {
+function getSucursal(vendedor){
 
-  const vendedor = sellers[currentSeller];
-
-  if (!vendedor) return;
-
-
-  const meta = vendedor.meta;
-
-  const ventas = vendedor.ventas;
-
-  const porcentaje = meta
-    ? Math.min(
-        Math.round((ventas / meta) * 100),
-        100
-      )
-    : 0;
-
-
-  const faltan =
-    Math.max(meta - ventas, 0);
-
-
-  const grados =
-    porcentaje * 3.6;
-
-
-  sales.textContent = ventas;
-
-  goal.textContent = meta;
-
-  branch.textContent =
-    vendedor.sucursal;
-
-  remaining.textContent =
-    faltan;
-
-  percent.textContent =
-    porcentaje + "%";
-
-  progressText.textContent =
-    ventas + " de " + meta;
-
-  fill.style.width =
-    porcentaje + "%";
-
-
-  circle.style.background =
-    "conic-gradient(" +
-    "#111 0deg " +
-    grados +
-    "deg, " +
-    "#e5e5e5 " +
-    grados +
-    "deg 360deg)";
-
-
-  branchGoal.textContent =
-    meta;
-
-
-  const sucursal =
-    data.sucursales.find(
-      s => s.nombre === vendedor.sucursal
-    );
-
-
-  let ventasSucursal = 0;
-
-
-  if (sucursal) {
-
-    ventasSucursal =
-      sucursal.vendedores.reduce(
-        (total, vendedor) =>
-          total +
-          Number(vendedor.ventas || 0),
-        0
-      );
-
-  }
-
-
-  branchSales.textContent =
-    ventasSucursal;
-
-
-  const ordenados =
-    [...sellers].sort(
-      (a, b) =>
-        b.ventas - a.ventas
-    );
-
-
-  const index =
-    ordenados.findIndex(
-      v =>
-        v.nombre === vendedor.nombre &&
-        v.sucursal === vendedor.sucursal
-    );
-
-
-  position.textContent =
-    index >= 0
-      ? "#" + (index + 1)
-      : "—";
-
-
-  const hoy =
-    new Date();
-
-
-  const ultimoDia =
-    new Date(
-      hoy.getFullYear(),
-      hoy.getMonth() + 1,
-      0
-    ).getDate();
-
-
-  const diasRestantes =
-    Math.max(
-      ultimoDia - hoy.getDate() + 1,
-      1
-    );
-
-
-  daily.textContent =
-    (faltan / diasRestantes)
-      .toFixed(1);
-
-
-  ranking.innerHTML = "";
-
-
-  ordenados.forEach(
-    (vendedor, index) => {
-
-      const row =
-        document.createElement("div");
-
-      row.className = "row";
-
-
-      row.innerHTML = `
-
-        <div class="position">
-          ${index + 1}
-        </div>
-
-        <div class="avatar">
-          ${vendedor.nombre
-            .substring(0,2)
-            .toUpperCase()}
-        </div>
-
-        <div class="seller">
-
-          <div class="seller-name">
-            ${vendedor.nombre}
-          </div>
-
-          <div class="seller-branch">
-            ${vendedor.sucursal}
-          </div>
-
-        </div>
-
-        <div class="seller-sales">
-          ${vendedor.ventas}
-        </div>
-
-      `;
-
-
-      ranking.appendChild(row);
-
-    }
+  return data.sucursales.find(
+    s => s.nombre === vendedor.sucursal
   );
 
 }
 
 
-select.addEventListener(
-  "change",
-  function() {
+function render(){
 
-    currentSeller =
-      Number(this.value);
+  const vendedor =
+    sellers[currentSeller];
 
-    message.textContent = "";
+  if(!vendedor) return;
 
-    render();
+
+  const sucursal =
+    getSucursal(vendedor);
+
+
+  const meta =
+    sucursal?.meta;
+
+
+  const ventasEquipo =
+    sucursal
+    ? sucursal.vendedores.reduce(
+        (total,v) =>
+          total + Number(v.ventas || 0),
+        0
+      )
+    : 0;
+
+
+  personalSales.textContent =
+    vendedor.ventas;
+
+
+  branch.textContent =
+    vendedor.sucursal;
+
+
+  branchSales.textContent =
+    ventasEquipo;
+
+
+  if(meta){
+
+    branchGoal.textContent =
+      meta;
+
+    const porcentaje =
+      Math.min(
+        Math.round(
+          (ventasEquipo / meta) * 100
+        ),
+        100
+      );
+
+    const faltan =
+      Math.max(
+        meta - ventasEquipo,
+        0
+      );
+
+    const grados =
+      porcentaje * 3.6;
+
+
+    percent.textContent =
+      porcentaje + "%";
+
+
+    remaining.innerHTML =
+      "Faltan " +
+      faltan +
+      " 🔋";
+
+
+    progressText.textContent =
+      ventasEquipo +
+      " de " +
+      meta;
+
+
+    fill.style.width =
+      porcentaje + "%";
+
+
+    circle.style.background =
+      "conic-gradient(" +
+      "#111 0deg " +
+      grados +
+      "deg, " +
+      "#e5e5e5 " +
+      grados +
+      "deg 360deg)";
+
+
+    const hoy =
+      new Date();
+
+    const ultimoDia =
+      new Date(
+        hoy.getFullYear(),
+        hoy.getMonth()+1,
+        0
+      ).getDate();
+
+
+    const diasRestantes =
+      Math.max(
+        ultimoDia - hoy.getDate() + 1,
+        1
+      );
+
+
+    daily.textContent =
+      (faltan / diasRestantes)
+      .toFixed(1);
+
+  }else{
+
+    branchGoal.textContent =
+      "—";
+
+    percent.textContent =
+      "—";
+
+    remaining.textContent =
+      "Meta pendiente";
+
+    progressText.textContent =
+      "Meta pendiente";
+
+    fill.style.width =
+      "0%";
+
+    circle.style.background =
+      "#e5e5e5";
+
+    daily.textContent =
+      "—";
 
   }
-);
 
 
-saleButton.addEventListener(
-  "click",
-  function() {
+  /* VENTAS DEL EQUIPO */
 
-    const vendedor =
-      sellers[currentSeller];
+  team.innerHTML = "";
 
 
-    if (
-      vendedor.ventas <
-      vendedor.meta
-    ) {
+  if(sucursal){
 
-      vendedor.ventas++;
+    sucursal.vendedores.forEach(v => {
+
+      const row =
+        document.createElement("div");
+
+      row.className =
+        "team-row";
 
 
-      message.textContent =
-        "¡Venta registrada! 🔋";
+      row.innerHTML = `
+
+        <div class="avatar">
+          ${v.nombre
+            .substring(0,2)
+            .toUpperCase()}
+        </div>
+
+        <div class="team-name">
+          ${v.nombre}
+        </div>
+
+        <div class="team-sales">
+          ${v.ventas} 🔋
+        </div>
+
+      `;
 
 
-      render();
+      team.appendChild(row);
 
-    } else {
+    });
 
-      message.textContent =
-        "🎉 ¡Meta alcanzada!";
+  }
+
+}
+
+
+/* SELECTOR */
+
+sellerSelect.addEventListener(
+"change",
+function(){
+
+  currentSeller =
+    Number(this.value);
+
+  message.textContent = "";
+
+  render();
+
+});
+
+
+/* ABRIR MODAL */
+
+document
+.getElementById("saleButton")
+.addEventListener(
+"click",
+function(){
+
+  modalSeller.innerHTML = "";
+
+  sellers.forEach(
+    (vendedor,index) => {
+
+      const option =
+        document.createElement("option");
+
+      option.value =
+        index;
+
+      option.textContent =
+        vendedor.nombre +
+        " · " +
+        vendedor.sucursal;
+
+      modalSeller.appendChild(option);
+
+    }
+  );
+
+
+  modalSeller.value =
+    currentSeller;
+
+
+  modal.style.display =
+    "flex";
+
+});
+
+
+/* CANCELAR */
+
+document
+.getElementById("cancelButton")
+.addEventListener(
+"click",
+function(){
+
+  modal.style.display =
+    "none";
+
+});
+
+
+/* CONFIRMAR VENTA */
+
+document
+.getElementById("confirmButton")
+.addEventListener(
+"click",
+function(){
+
+  const index =
+    Number(modalSeller.value);
+
+  const vendedor =
+    sellers[index];
+
+  const sucursal =
+    getSucursal(vendedor);
+
+
+  vendedor.ventas++;
+
+
+  if(sucursal){
+
+    const original =
+      sucursal.vendedores.find(
+        v => v.nombre === vendedor.nombre
+      );
+
+    if(original){
+
+      original.ventas =
+        vendedor.ventas;
 
     }
 
   }
-);
+
+
+  currentSeller =
+    index;
+
+  sellerSelect.value =
+    index;
+
+
+  modal.style.display =
+    "none";
+
+
+  message.textContent =
+    "¡Venta registrada! 🔋";
+
+
+  render();
+
+});
 
 
 render();
