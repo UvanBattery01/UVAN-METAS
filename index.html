@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,480 +6,2020 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UVAN METAS</title>
 <meta name="theme-color" content="#111111">
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,Helvetica,sans-serif;background:#f4f4f4;color:#151515}
-.app{max-width:520px;margin:auto;min-height:100vh;background:#f7f7f7}
-.header{background:#111;color:#fff;padding:22px 20px 28px;border-radius:0 0 25px 25px}
-.brand{display:flex;justify-content:space-between;margin-bottom:25px}
-.brand-name{font-size:21px;font-weight:800}.brand-name span{color:#999;font-weight:500}
-.month{color:#aaa;font-size:12px;text-transform:uppercase}.greeting{font-size:28px;font-weight:800}
-.subtitle{color:#aaa;margin-top:5px}.content{padding:18px}
-.card{background:#fff;border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 3px 15px rgba(0,0,0,.06)}
-.profile-card,.week-card{border-radius:18px;padding:18px;margin-bottom:14px;background:#111;color:#fff}
-.profile-name{font-size:17px;font-weight:800}.profile-role{color:#aaa;font-size:12px;margin-top:4px;text-transform:uppercase}
-.title{font-size:13px;font-weight:800;color:#666;margin-bottom:12px}
-select{width:100%;padding:14px;border:1px solid #ddd;border-radius:12px;background:#fff;font-size:16px;color:#151515}
-.goal{display:flex;align-items:center;gap:20px}.circle{width:120px;height:120px;border-radius:50%;background:#e5e5e5;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.circle-inner{width:91px;height:91px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.percent{font-size:25px;font-weight:800}.small{font-size:11px;color:#777}.numbers{font-size:34px;font-weight:800}.numbers small{font-size:18px;color:#888}
-.branch{color:#777;font-size:13px;margin-top:5px}.remaining{margin-top:13px;font-size:13px;font-weight:700}
-.progress{margin-top:18px}.progress-head{display:flex;justify-content:space-between;font-size:12px;color:#666;margin-bottom:7px}
-.bar{height:10px;background:#e5e5e5;border-radius:20px;overflow:hidden}.fill{height:100%;width:0;background:#111;border-radius:20px;transition:.3s}
-.daily{display:flex;justify-content:space-between;align-items:center}.daily-number{font-size:38px;font-weight:800}
-.daily-text{color:#777;font-size:13px;text-align:right;max-width:210px}
-.week-title{font-size:13px;font-weight:800;color:#ddd;margin-bottom:14px}.week-winner{font-size:25px;font-weight:800;margin-bottom:7px}
-.week-sales{font-size:34px;font-weight:800}.week-sales span{font-size:12px;color:#aaa;font-weight:600}
-.ranking,.team,.history{display:flex;flex-direction:column}
-.rank-row,.team-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #eee}
-.rank-position{width:28px;font-weight:800;color:#777}.rank-avatar,.avatar{width:38px;height:38px;border-radius:50%;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
-.rank-name,.team-name{flex:1;font-weight:700}.rank-sales,.team-sales{font-size:18px;font-weight:800}
-.history-row{padding:12px 0;border-bottom:1px solid #eee}.history-top{display:flex;justify-content:space-between;align-items:center}
-.history-name{font-weight:800;font-size:14px}.history-date{font-size:11px;color:#888;margin-top:4px}
-.delete-sale{width:auto;padding:8px 10px;border-radius:10px;font-size:11px;background:#b00020;color:#fff}
-button{width:100%;padding:17px;border:0;border-radius:15px;background:#111;color:#fff;font-size:16px;font-weight:800;cursor:pointer}
-button:disabled{opacity:.5}.secondary{background:#e9e9e9;color:#111;margin-top:10px}
-.message{text-align:center;color:#777;font-size:12px;margin-top:10px;min-height:16px}
-.error-box{background:#fff0f0;color:#a00000;border-radius:14px;padding:14px;margin-bottom:14px;font-size:13px;display:none}
-.loading{background:#111;color:#fff;border-radius:15px;padding:15px;font-size:13px;margin-bottom:14px}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);align-items:flex-end;justify-content:center;z-index:1000}
-.modal-box{width:100%;max-width:520px;background:#fff;border-radius:25px 25px 0 0;padding:24px;max-height:90vh;overflow-y:auto}
-.modal-title{font-size:22px;font-weight:800;margin-bottom:5px}.modal-subtitle{color:#777;font-size:13px;margin-bottom:20px}
-.modal-actions{display:flex;gap:10px;margin-top:15px}.modal-actions button{flex:1}.hidden{display:none!important}
-footer{text-align:center;padding:20px;color:#aaa;font-size:11px}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f4f4;
+  color:#151515;
+}
+
+.app{
+  max-width:520px;
+  margin:auto;
+  min-height:100vh;
+  background:#f7f7f7;
+}
+
+.header{
+  background:#111;
+  color:white;
+  padding:22px 20px 28px;
+  border-radius:0 0 25px 25px;
+}
+
+.brand{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:25px;
+}
+
+.brand-name{
+  font-size:21px;
+  font-weight:800;
+}
+
+.brand-name span{
+  color:#999;
+  font-weight:500;
+}
+
+.month{
+  color:#aaa;
+  font-size:12px;
+  text-transform:uppercase;
+}
+
+.greeting{
+  font-size:28px;
+  font-weight:800;
+}
+
+.subtitle{
+  color:#aaa;
+  margin-top:5px;
+}
+
+.content{
+  padding:18px;
+}
+
+.card{
+  background:white;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:14px;
+  box-shadow:0 3px 15px rgba(0,0,0,.06);
+}
+
+.admin-card{
+  background:#111;
+  color:white;
+}
+
+.title{
+  font-size:13px;
+  font-weight:800;
+  color:#666;
+  margin-bottom:12px;
+}
+
+.admin-card .title{
+  color:#aaa;
+}
+
+select{
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  background:white;
+  font-size:16px;
+}
+
+.goal{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.circle{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:#e5e5e5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+
+.circle-inner{
+  width:91px;
+  height:91px;
+  background:white;
+  border-radius:50%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.percent{
+  font-size:25px;
+  font-weight:800;
+}
+
+.small{
+  font-size:11px;
+  color:#777;
+}
+
+.numbers{
+  font-size:34px;
+  font-weight:800;
+}
+
+.numbers small{
+  font-size:18px;
+  color:#888;
+}
+
+.branch{
+  color:#777;
+  font-size:13px;
+  margin-top:5px;
+}
+
+.remaining{
+  margin-top:13px;
+  font-size:13px;
+  font-weight:700;
+}
+
+.progress{
+  margin-top:18px;
+}
+
+.progress-head{
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
+  color:#666;
+  margin-bottom:7px;
+}
+
+.bar{
+  height:10px;
+  background:#e5e5e5;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.fill{
+  height:100%;
+  width:0;
+  background:#111;
+  border-radius:20px;
+}
+
+.daily{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.daily-number{
+  font-size:38px;
+  font-weight:800;
+}
+
+.daily-text{
+  color:#777;
+  font-size:13px;
+  text-align:right;
+  max-width:210px;
+}
+
+button{
+  width:100%;
+  padding:17px;
+  border:0;
+  border-radius:15px;
+  background:#111;
+  color:white;
+  font-size:16px;
+  font-weight:800;
+}
+
+button:disabled{
+  opacity:.5;
+}
+
+.secondary{
+  background:#e9e9e9;
+  color:#111;
+}
+
+.message{
+  text-align:center;
+  color:#777;
+  font-size:12px;
+  margin-top:10px;
+}
+
+.team-row,
+.rank-row,
+.history-row,
+.branch-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+}
+
+.avatar{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#111;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  font-weight:800;
+}
+
+.team-name,
+.rank-name{
+  flex:1;
+  font-weight:700;
+}
+
+.team-sales,
+.rank-sales{
+  font-size:18px;
+  font-weight:800;
+}
+
+.position{
+  width:25px;
+  font-weight:800;
+  color:#777;
+}
+
+.branch-info{
+  flex:1;
+}
+
+.branch-name{
+  font-weight:800;
+}
+
+.branch-meta{
+  color:#888;
+  font-size:11px;
+  margin-top:3px;
+}
+
+.branch-sales{
+  text-align:right;
+}
+
+.branch-sales strong{
+  font-size:20px;
+}
+
+.branch-percent{
+  font-size:11px;
+  color:#888;
+}
+
+.delete{
+  width:auto;
+  padding:8px 10px;
+  border-radius:10px;
+  font-size:11px;
+  background:#b00020;
+}
+
+.week-winner{
+  font-size:25px;
+  font-weight:800;
+  margin-bottom:8px;
+}
+
+.week-number{
+  font-size:34px;
+  font-weight:800;
+}
+
+.week-number span{
+  font-size:12px;
+  color:#aaa;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  align-items:flex-end;
+  justify-content:center;
+  z-index:100;
+}
+
+.modal-box{
+  width:100%;
+  max-width:520px;
+  background:white;
+  border-radius:25px 25px 0 0;
+  padding:24px;
+}
+
+.modal-title{
+  font-size:22px;
+  font-weight:800;
+  margin-bottom:5px;
+}
+
+.modal-subtitle{
+  color:#777;
+  font-size:13px;
+  margin-bottom:20px;
+}
+
+.modal-actions{
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+}
+
+.modal-actions button{
+  flex:1;
+}
+
+.error{
+  background:#fff0f0;
+  color:#a00000;
+  padding:14px;
+  border-radius:14px;
+  margin-bottom:14px;
+  font-size:13px;
+}
+
+.loading{
+  background:#111;
+  color:white;
+  padding:15px;
+  border-radius:14px;
+  margin-bottom:14px;
+  font-size:13px;
+}
+
+.hidden{
+  display:none!important;
+}
+
+footer{
+  text-align:center;
+  padding:20px;
+  color:#aaa;
+  font-size:11px;
+}
 </style>
 </head>
+
 <body>
+
 <div class="app">
+
 <header class="header">
-<div class="brand"><div class="brand-name">UVAN <span>METAS</span></div><div class="month" id="month">—</div></div>
-<div class="greeting" id="greeting">UVAN METAS 🔋</div>
-<div class="subtitle">Control de metas y ventas</div>
+
+<div class="brand">
+
+<div class="brand-name">
+UVAN <span>METAS</span>
+</div>
+
+<div class="month" id="month"></div>
+
+</div>
+
+<div class="greeting" id="greeting">
+UVAN METAS 🔋
+</div>
+
+<div class="subtitle">
+Control de metas y ventas
+</div>
+
 </header>
+
+
 <main class="content">
-<div class="loading" id="loading">Verificando sesión...</div>
-<div class="error-box" id="errorBox"></div>
 
-<section class="profile-card hidden" id="profileCard">
-<div class="profile-name" id="profileName">—</div><div class="profile-role" id="profileRole">—</div>
+<div id="loading" class="loading">
+Verificando sesión...
+</div>
+
+<div id="error" class="error hidden"></div>
+
+
+<!-- PERFIL -->
+
+<section id="profileCard" class="card admin-card hidden">
+
+<div id="profileName" style="font-size:18px;font-weight:800">
+—
+</div>
+
+<div id="profileRole" style="font-size:12px;color:#aaa;margin-top:5px;text-transform:uppercase">
+—
+</div>
+
 </section>
 
-<section class="card hidden" id="sellerCard">
-<div class="title">VENDEDOR</div><select id="sellerSelect"></select>
+
+<!-- PANEL GENERAL ADMIN -->
+
+<section id="adminDashboard" class="card hidden">
+
+<div class="title">
+📊 RESUMEN GENERAL
+</div>
+
+<div id="branchSummary"></div>
+
 </section>
 
-<section class="card hidden" id="mainContent">
-<div class="title">META DE SUCURSAL</div>
+
+<!-- VENDEDOR -->
+
+<section id="sellerCard" class="card hidden">
+
+<div class="title">
+VENDEDOR
+</div>
+
+<select id="sellerSelect"></select>
+
+</section>
+
+
+<!-- META -->
+
+<section id="goalCard" class="card hidden">
+
+<div class="title">
+META DE SUCURSAL
+</div>
+
 <div class="goal">
-<div class="circle" id="circle"><div class="circle-inner"><div class="percent" id="percent">0%</div><div class="small">cumplido</div></div></div>
-<div><div class="numbers"><span id="branchSales">0</span> <small>/<span id="branchGoal">—</span></small></div>
-<div class="branch" id="branch">Sucursal</div><div class="remaining" id="remaining">Meta pendiente</div></div>
+
+<div class="circle" id="circle">
+
+<div class="circle-inner">
+
+<div class="percent" id="percent">
+0%
 </div>
-<div class="progress"><div class="progress-head"><span>Avance de la sucursal</span><span id="progressText">—</span></div><div class="bar"><div class="fill" id="fill"></div></div></div>
+
+<div class="small">
+cumplido
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<div class="numbers">
+
+<span id="branchSales">
+0
+</span>
+
+<small>
+/
+<span id="branchGoal">—</span>
+</small>
+
+</div>
+
+<div class="branch" id="branch">
+Sucursal
+</div>
+
+<div class="remaining" id="remaining">
+Meta pendiente
+</div>
+
+</div>
+
+</div>
+
+
+<div class="progress">
+
+<div class="progress-head">
+
+<span>
+Avance de la sucursal
+</span>
+
+<span id="progressText">
+—
+</span>
+
+</div>
+
+<div class="bar">
+
+<div class="fill" id="fill"></div>
+
+</div>
+
+</div>
+
 </section>
 
-<section class="card hidden" id="personalCard">
-<div class="title">MIS VENTAS</div><div class="numbers" id="personalSales">0</div>
-<div class="branch">Baterías vendidas por este vendedor</div>
+
+<!-- MIS VENTAS -->
+
+<section id="personalCard" class="card hidden">
+
+<div class="title">
+MIS VENTAS
+</div>
+
+<div class="numbers" id="personalSales">
+0
+</div>
+
+<div class="branch">
+Baterías vendidas por este vendedor
+</div>
+
 </section>
 
-<section class="card hidden" id="rhythmCard">
-<div class="title">RITMO DE LA SUCURSAL</div><div class="daily"><div class="daily-number" id="daily">—</div>
-<div class="daily-text">baterías por día necesita vender la sucursal para alcanzar su meta.</div></div>
+
+<!-- RITMO -->
+
+<section id="rhythmCard" class="card hidden">
+
+<div class="title">
+RITMO DE LA SUCURSAL
+</div>
+
+<div class="daily">
+
+<div class="daily-number" id="daily">
+—
+</div>
+
+<div class="daily-text">
+baterías por día necesita vender la sucursal para alcanzar su meta.
+</div>
+
+</div>
+
 </section>
 
-<section class="week-card hidden" id="winnerCard">
-<div class="week-title">🏆 VENDEDOR DE LA SEMANA</div><div class="week-winner" id="weekWinner">—</div>
-<div class="week-sales"><span id="weekWinnerSales">0</span> <span>🔋 esta semana</span></div>
+
+<!-- VENDEDOR DE LA SEMANA -->
+
+<section id="winnerCard" class="card admin-card hidden">
+
+<div class="title">
+🏆 VENDEDOR DE LA SEMANA
+</div>
+
+<div class="week-winner" id="weekWinner">
+—
+</div>
+
+<div class="week-number">
+
+<span id="weekWinnerSales">
+0
+</span>
+
+<span>
+🔋 esta semana
+</span>
+
+</div>
+
 </section>
 
-<section class="card hidden" id="rankingCard">
-<div class="title">🏆 RANKING DE LA SEMANA</div><div class="ranking" id="ranking">Cargando ranking...</div>
+
+<!-- RANKING -->
+
+<section id="rankingCard" class="card hidden">
+
+<div class="title">
+🏆 RANKING DE LA SEMANA
+</div>
+
+<div id="ranking"></div>
+
 </section>
 
-<section class="card hidden" id="registerCard">
-<div class="title">REGISTRAR VENTA</div><button id="saleButton">+ REGISTRAR BATERÍA</button>
+
+<!-- REGISTRAR -->
+
+<section id="registerCard" class="card hidden">
+
+<div class="title">
+REGISTRAR VENTA
+</div>
+
+<button id="saleButton">
++ REGISTRAR BATERÍA
+</button>
+
 <div class="message" id="message"></div>
+
 </section>
 
-<section class="card hidden" id="teamCard">
-<div class="title">VENTAS DEL EQUIPO</div><div class="team" id="team"></div>
-</section>
 
-<section class="card hidden" id="historyCard">
-<div class="title">🗑️ HISTORIAL DE VENTAS</div><div class="history" id="history">Cargando historial...</div>
-</section>
+<!-- EQUIPO -->
 
-<section class="card hidden" id="refreshCard"><button class="secondary" id="refreshButton">🔄 ACTUALIZAR DATOS</button></section>
-<section class="card hidden" id="logoutCard"><button class="secondary" id="logoutButton">CERRAR SESIÓN</button></section>
-</main>
-<footer>UVAN BATTERY · Expertos en baterías</footer>
+<section id="teamCard" class="card hidden">
+
+<div class="title">
+VENTAS DEL EQUIPO
 </div>
 
-<div class="modal" id="modal"><div class="modal-box">
-<div class="modal-title">Registrar venta 🔋</div><div class="modal-subtitle">Selecciona el vendedor que realizó la venta.</div>
+<div id="team"></div>
+
+</section>
+
+
+<!-- HISTORIAL -->
+
+<section id="historyCard" class="card hidden">
+
+<div class="title">
+🗑️ HISTORIAL DE VENTAS
+</div>
+
+<div id="history"></div>
+
+</section>
+
+
+<section class="card hidden" id="refreshCard">
+
+<button id="refreshButton" class="secondary">
+🔄 ACTUALIZAR DATOS
+</button>
+
+</section>
+
+
+<section class="card hidden" id="logoutCard">
+
+<button id="logoutButton" class="secondary">
+CERRAR SESIÓN
+</button>
+
+</section>
+
+</main>
+
+
+<footer>
+UVAN BATTERY · Expertos en baterías
+</footer>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+<div class="modal-box">
+
+<div class="modal-title">
+Registrar venta 🔋
+</div>
+
+<div class="modal-subtitle">
+Selecciona el vendedor que realizó la venta.
+</div>
+
 <select id="modalSeller"></select>
-<div class="modal-actions"><button class="secondary" id="cancelButton">Cancelar</button><button id="confirmButton">Registrar</button></div>
-</div></div>
+
+<div class="modal-actions">
+
+<button class="secondary" id="cancelButton">
+Cancelar
+</button>
+
+<button id="confirmButton">
+Registrar
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SUPABASE -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="supabase-config.js"></script>
+
+
 <script>
+
 'use strict';
 
-const db=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY,{
-  auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}
+
+const db =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_ANON_KEY,
+{
+auth:{
+persistSession:true,
+autoRefreshToken:true,
+detectSessionInUrl:true
+}
 });
 
-let UVAN_PERFIL=null,sellers=[],sucursales=[],ventas=[],currentSeller=0;
 
-const $=id=>document.getElementById(id);
-const loading=$('loading'),errorBox=$('errorBox'),greeting=$('greeting'),month=$('month');
-const profileCard=$('profileCard'),profileName=$('profileName'),profileRole=$('profileRole');
-const sellerCard=$('sellerCard'),sellerSelect=$('sellerSelect'),mainContent=$('mainContent');
-const personalCard=$('personalCard'),rhythmCard=$('rhythmCard'),winnerCard=$('winnerCard');
-const rankingCard=$('rankingCard'),registerCard=$('registerCard'),teamCard=$('teamCard');
-const historyCard=$('historyCard'),refreshCard=$('refreshCard'),logoutCard=$('logoutCard');
-const branch=$('branch'),branchSales=$('branchSales'),branchGoal=$('branchGoal');
-const personalSales=$('personalSales'),remaining=$('remaining'),percent=$('percent');
-const progressText=$('progressText'),fill=$('fill'),circle=$('circle'),daily=$('daily');
-const team=$('team'),ranking=$('ranking'),history=$('history'),weekWinner=$('weekWinner');
-const weekWinnerSales=$('weekWinnerSales'),modal=$('modal'),modalSeller=$('modalSeller'),message=$('message');
+let perfil = null;
 
-const ahora=new Date();
-const inicioMes=new Date(ahora.getFullYear(),ahora.getMonth(),1);
-const inicioSiguienteMes=new Date(ahora.getFullYear(),ahora.getMonth()+1,1);
-month.textContent=ahora.toLocaleDateString('es-MX',{month:'long',year:'numeric'}).toUpperCase();
+let sellers = [];
 
-function inicioSemana(){
- const d=new Date();const n=d.getDay();
- d.setDate(d.getDate()-(n===0?6:n-1));d.setHours(0,0,0,0);return d;
+let sucursales = [];
+
+let ventas = [];
+
+let currentSeller = 0;
+
+
+const $ =
+id => document.getElementById(id);
+
+
+const esAdmin =
+() => {
+
+const rol =
+String(
+perfil?.rol || ""
+)
+.toLowerCase()
+.trim();
+
+return (
+rol === "supervisor" ||
+rol === "administrador"
+);
+
+};
+
+
+const ahora =
+new Date();
+
+
+const inicioMes =
+new Date(
+ahora.getFullYear(),
+ahora.getMonth(),
+1
+);
+
+
+const inicioSiguienteMes =
+new Date(
+ahora.getFullYear(),
+ahora.getMonth()+1,
+1
+);
+
+
+$("month").textContent =
+ahora.toLocaleDateString(
+"es-MX",
+{
+month:"long",
+year:"numeric"
 }
-function timeout(p,ms=12000){
- return Promise.race([p,new Promise((_,reject)=>setTimeout(()=>reject(new Error('Tiempo de espera agotado al conectar con Supabase.')),ms))]);
+).toUpperCase();
+
+
+function esperar(
+promesa,
+tiempo = 12000
+){
+
+return Promise.race([
+
+promesa,
+
+new Promise(
+(_,reject) =>
+
+setTimeout(
+() => reject(
+new Error(
+"Supabase tardó demasiado en responder."
+)
+),
+tiempo
+)
+
+)
+
+]);
+
 }
-function mostrarError(t){errorBox.textContent=t;errorBox.style.display='block'}
+
+
 function mostrarApp(){
- loading.classList.add('hidden');
- [profileCard,sellerCard,mainContent,personalCard,rhythmCard,winnerCard,rankingCard,registerCard,teamCard,refreshCard,logoutCard]
- .forEach(x=>x.classList.remove('hidden'));
+
+[
+"profileCard",
+"sellerCard",
+"goalCard",
+"personalCard",
+"rhythmCard",
+"winnerCard",
+"rankingCard",
+"registerCard",
+"teamCard",
+"refreshCard",
+"logoutCard"
+]
+
+.forEach(
+id =>
+$(id).classList.remove("hidden")
+);
+
+
+if(esAdmin()){
+
+$("adminDashboard")
+.classList.remove("hidden");
+
+$("historyCard")
+.classList.remove("hidden");
+
 }
+
+}
+
 
 async function verificarAcceso(){
- try{
-  loading.textContent='Verificando sesión...';
 
-  // getSession solo se usa para recuperar la sesión local rápidamente.
-  // Si falla, mostramos el error en vez de dejar la pantalla congelada.
-  const r=await timeout(db.auth.getSession());
-  if(r.error)throw r.error;
+try{
 
-  const session=r.data?.session;
-  if(!session){
-   window.location.replace('login.html');
-   return false;
-  }
+const respuesta =
+await esperar(
+db.auth.getSession()
+);
 
-  loading.textContent='Cargando usuario...';
 
-  const p=await timeout(
-   db.from('profiles')
-   .select('id,nombre,rol,sucursal,activo,vendedor_id')
-   .eq('id',session.user.id)
-   .maybeSingle()
-  );
+if(respuesta.error)
+throw respuesta.error;
 
-  if(p.error)throw p.error;
 
-  if(!p.data){
-   await db.auth.signOut();
-   window.location.replace('login.html');
-   return false;
-  }
+const session =
+respuesta.data.session;
 
-  if(p.data.activo===false){
-   await db.auth.signOut();
-   window.location.replace('login.html');
-   return false;
-  }
 
-  UVAN_PERFIL=p.data;
-  greeting.textContent='Hola, '+(p.data.nombre||'Usuario')+' 🔋';
-  profileName.textContent=p.data.nombre||'Usuario';
-  profileRole.textContent=p.data.rol||'Usuario';
+if(!session){
 
-  mostrarApp();
-  await cargarDatos();
-  return true;
+window.location.replace(
+"login.html"
+);
 
- }catch(e){
-  console.error('UVAN METAS auth:',e);
-  loading.textContent='No se pudo iniciar';
-  mostrarError('No se pudo verificar tu sesión. '+(e.message||e));
-  return false;
- }
+return false;
+
 }
+
+
+const resultado =
+await esperar(
+
+db
+
+.from("profiles")
+
+.select(
+"id,nombre,rol,sucursal,activo,vendedor_id"
+)
+
+.eq(
+"id",
+session.user.id
+)
+
+.maybeSingle()
+
+);
+
+
+if(resultado.error)
+throw resultado.error;
+
+
+const perfilDB =
+resultado.data;
+
+
+if(
+!perfilDB ||
+perfilDB.activo === false
+){
+
+await db.auth.signOut();
+
+window.location.replace(
+"login.html"
+);
+
+return false;
+
+}
+
+
+perfil =
+perfilDB;
+
+
+$("greeting").textContent =
+"Hola, " +
+(perfil.nombre || "Usuario") +
+" 🔋";
+
+
+$("profileName").textContent =
+perfil.nombre ||
+"Usuario";
+
+
+$("profileRole").textContent =
+perfil.rol ||
+"Usuario";
+
+
+mostrarApp();
+
+
+await cargarDatos();
+
+
+return true;
+
+
+}catch(error){
+
+console.error(
+"Error de acceso:",
+error
+);
+
+
+$("loading").textContent =
+"No se pudo iniciar";
+
+
+$("error").textContent =
+"No se pudo verificar tu sesión: " +
+error.message;
+
+
+$("error")
+.classList.remove("hidden");
+
+
+return false;
+
+}
+
+}
+
 
 async function cargarDatos(){
- message.textContent='Cargando datos...';
- try{
-  const [s,v,ve]=await Promise.all([
-   timeout(db.from('sucursales').select('*').eq('activa',true).order('nombre')),
-   timeout(db.from('vendedores').select('*').eq('activo',true).order('nombre')),
-   timeout(db.from('ventas').select('*')
-    .gte('fecha',inicioMes.toISOString())
-    .lt('fecha',inicioSiguienteMes.toISOString())
-    .order('fecha',{ascending:false}))
-  ]);
 
-  if(s.error)throw s.error;
-  if(v.error)throw v.error;
-  if(ve.error)throw ve.error;
+try{
 
-  sucursales=s.data||[];
-  ventas=ve.data||[];
+$("message").textContent =
+"Cargando datos...";
 
-  sellers=(v.data||[]).map(x=>{
-   const suc=sucursales.find(y=>String(y.id)===String(x.sucursal_id));
-   return {
-    id:x.id,nombre:x.nombre,sucursalId:x.sucursal_id,
-    sucursal:suc?suc.nombre:'Sin sucursal',
-    metaSucursal:suc?suc.meta_mensual:null,ventas:0
-   };
-  });
 
-  llenarSelector();
-  render();
-  renderRanking();
-  renderHistory();
-  message.textContent='';
+const resultados =
+await Promise.all([
 
- }catch(e){
-  console.error('UVAN METAS datos:',e);
-  message.textContent='';
-  mostrarError('Error cargando datos: '+(e.message||e));
- }
+esperar(
+
+db
+
+.from("sucursales")
+
+.select("*")
+
+.eq(
+"activa",
+true
+)
+
+.order(
+"nombre"
+)
+
+),
+
+esperar(
+
+db
+
+.from("vendedores")
+
+.select("*")
+
+.eq(
+"activo",
+true
+)
+
+.order(
+"nombre"
+)
+
+),
+
+esperar(
+
+db
+
+.from("ventas")
+
+.select("*")
+
+.gte(
+"fecha",
+inicioMes.toISOString()
+)
+
+.lt(
+"fecha",
+inicioSiguienteMes.toISOString()
+)
+
+.order(
+"fecha",
+{
+ascending:false
 }
+
+)
+
+)]);
+
+
+const resultadoSucursales =
+resultados[0];
+
+
+const resultadoVendedores =
+resultados[1];
+
+
+const resultadoVentas =
+resultados[2];
+
+
+if(resultadoSucursales.error)
+throw resultadoSucursales.error;
+
+
+if(resultadoVendedores.error)
+throw resultadoVendedores.error;
+
+
+if(resultadoVentas.error)
+throw resultadoVentas.error;
+
+
+sucursales =
+resultadoSucursales.data || [];
+
+
+ventas =
+resultadoVentas.data || [];
+
+
+sellers =
+(resultadoVendedores.data || [])
+.map(
+
+vendedor => {
+
+const sucursal =
+sucursales.find(
+s =>
+String(s.id) ===
+String(vendedor.sucursal_id)
+);
+
+
+return {
+
+id:
+vendedor.id,
+
+nombre:
+vendedor.nombre,
+
+sucursalId:
+vendedor.sucursal_id,
+
+sucursal:
+sucursal
+?
+sucursal.nombre
+:
+"Sin sucursal",
+
+meta:
+sucursal
+?
+sucursal.meta_mensual
+:
+null
+
+};
+
+}
+
+);
+
+
+llenarSelector();
+
+render();
+
+renderResumen();
+
+renderRanking();
+
+renderHistorial();
+
+
+$("loading")
+.classList.add("hidden");
+
+
+$("message").textContent =
+"";
+
+
+}catch(error){
+
+console.error(
+"Error cargando datos:",
+error
+);
+
+
+$("error").textContent =
+"No se pudieron cargar los datos: " +
+error.message;
+
+
+$("error")
+.classList.remove("hidden");
+
+}
+
+}
+
 
 function llenarSelector(){
- sellerSelect.innerHTML='';
- let lista=sellers;
 
- // Un vendedor normal solo puede ver su propio registro.
- if(String(UVAN_PERFIL?.rol||'').toLowerCase()!=='supervisor' && UVAN_PERFIL?.vendedor_id!=null){
-  lista=sellers.filter(x=>String(x.id)===String(UVAN_PERFIL.vendedor_id));
- }
+const selector =
+$("sellerSelect");
 
- lista.forEach(x=>{
-  const o=document.createElement('option');
-  o.value=sellers.indexOf(x);
-  o.textContent=x.nombre+' · '+x.sucursal;
-  sellerSelect.appendChild(o);
- });
 
- if(sellerSelect.options.length){
-  currentSeller=Number(sellerSelect.options[0].value);
-  sellerSelect.value=currentSeller;
- }
+selector.innerHTML =
+"";
+
+
+let lista =
+sellers;
+
+
+if(
+!esAdmin() &&
+perfil?.vendedor_id
+){
+
+lista =
+sellers.filter(
+v =>
+String(v.id) ===
+String(perfil.vendedor_id)
+);
+
 }
 
-function getSucursal(v){
- return sucursales.find(s=>String(s.id)===String(v.sucursalId));
+
+lista.forEach(
+vendedor => {
+
+const option =
+document.createElement(
+"option"
+);
+
+
+option.value =
+sellers.indexOf(
+vendedor
+);
+
+
+option.textContent =
+vendedor.nombre +
+" · " +
+vendedor.sucursal;
+
+
+selector.appendChild(
+option
+);
+
+});
+
+
+if(
+selector.options.length
+){
+
+currentSeller =
+Number(
+selector.options[0].value
+);
+
+
+selector.value =
+currentSeller;
+
 }
 
-function ventasDeVendedor(id,desde=null,hasta=null){
- return ventas.filter(x=>{
-  const f=new Date(x.fecha);
-  return String(x.vendedor_id)===String(id)&&(!desde||f>=desde)&&(!hasta||f<hasta);
- }).reduce((a,x)=>a+Number(x.cantidad||0),0);
 }
 
-function ventasSucursal(id){
- const ids=sellers.filter(x=>String(x.sucursalId)===String(id)).map(x=>String(x.id));
- return ventas.filter(x=>ids.includes(String(x.vendedor_id)))
- .reduce((a,x)=>a+Number(x.cantidad||0),0);
+
+function obtenerSucursal(
+vendedor
+){
+
+return sucursales.find(
+s =>
+String(s.id) ===
+String(vendedor.sucursalId)
+);
+
 }
+
+
+function ventasVendedor(
+id,
+desde = null
+){
+
+return ventas
+
+.filter(
+venta => {
+
+const fecha =
+new Date(
+venta.fecha
+);
+
+return (
+
+String(
+venta.vendedor_id
+) ===
+String(id)
+
+&&
+
+(
+!desde ||
+fecha >= desde
+)
+
+);
+
+}
+
+)
+
+.reduce(
+(total,venta) =>
+total +
+Number(
+venta.cantidad || 0
+),
+0
+);
+
+}
+
+
+function ventasSucursal(
+sucursalId
+){
+
+const ids =
+sellers
+
+.filter(
+v =>
+String(
+v.sucursalId
+) ===
+String(sucursalId)
+)
+
+.map(
+v =>
+String(v.id)
+);
+
+
+return ventas
+
+.filter(
+venta =>
+ids.includes(
+String(
+venta.vendedor_id
+)
+)
+)
+
+.reduce(
+(total,venta) =>
+total +
+Number(
+venta.cantidad || 0
+),
+0
+);
+
+}
+
 
 function render(){
- const v=sellers[currentSeller];
- if(!v)return;
 
- const s=getSucursal(v),meta=s?s.meta_mensual:null;
- const eq=s?ventasSucursal(s.id):0;
- const personal=ventasDeVendedor(v.id);
+const vendedor =
+sellers[currentSeller];
 
- personalSales.textContent=personal;
- branch.textContent=v.sucursal;
- branchSales.textContent=eq;
 
- if(meta){
-  branchGoal.textContent=meta;
-  const pct=Math.min(Math.round(eq/meta*100),100);
-  const faltan=Math.max(meta-eq,0);
-  const gr=pct*3.6;
+if(!vendedor)
+return;
 
-  percent.textContent=pct+'%';
-  remaining.textContent='Faltan '+faltan+' 🔋';
-  progressText.textContent=eq+' de '+meta;
-  fill.style.width=pct+'%';
-  circle.style.background='conic-gradient(#111 0deg '+gr+'deg,#e5e5e5 '+gr+'deg 360deg)';
 
-  const ultimo=new Date(ahora.getFullYear(),ahora.getMonth()+1,0).getDate();
-  daily.textContent=(faltan/Math.max(ultimo-ahora.getDate()+1,1)).toFixed(1);
- }else{
-  branchGoal.textContent='—';percent.textContent='—';remaining.textContent='Meta pendiente';
-  progressText.textContent='Meta pendiente';fill.style.width='0';circle.style.background='#e5e5e5';daily.textContent='—';
- }
+const sucursal =
+obtenerSucursal(
+vendedor
+);
 
- team.innerHTML='';
- sellers.filter(x=>String(x.sucursalId)===String(v.sucursalId)).forEach(x=>{
-  const row=document.createElement('div');row.className='team-row';
-  row.innerHTML='<div class="avatar">'+x.nombre.substring(0,2).toUpperCase()+'</div>'+
-  '<div class="team-name">'+x.nombre+'</div><div class="team-sales">'+ventasDeVendedor(x.id)+' 🔋</div>';
-  team.appendChild(row);
- });
+
+const meta =
+sucursal
+?
+sucursal.meta_mensual
+:
+null;
+
+
+const ventasEquipo =
+sucursal
+?
+ventasSucursal(
+sucursal.id
+)
+:
+0;
+
+
+const ventasPersonales =
+ventasVendedor(
+vendedor.id
+);
+
+
+$("personalSales").textContent =
+ventasPersonales;
+
+
+$("branch").textContent =
+vendedor.sucursal;
+
+
+$("branchSales").textContent =
+ventasEquipo;
+
+
+if(meta){
+
+$("branchGoal").textContent =
+meta;
+
+
+const porcentaje =
+Math.min(
+Math.round(
+ventasEquipo /
+meta *
+100
+),
+100
+);
+
+
+const faltan =
+Math.max(
+meta -
+ventasEquipo,
+0
+);
+
+
+const grados =
+porcentaje *
+3.6;
+
+
+$("percent").textContent =
+porcentaje +
+"%";
+
+
+$("remaining").textContent =
+"Faltan " +
+faltan +
+" 🔋";
+
+
+$("progressText").textContent =
+ventasEquipo +
+" de " +
+meta;
+
+
+$("fill").style.width =
+porcentaje +
+"%";
+
+
+$("circle").style.background =
+"conic-gradient(" +
+"#111 0deg " +
+grados +
+"deg,#e5e5e5 " +
+grados +
+"deg 360deg)";
+
+
+const ultimoDia =
+new Date(
+ahora.getFullYear(),
+ahora.getMonth()+1,
+0
+).getDate();
+
+
+const diasRestantes =
+Math.max(
+ultimoDia -
+ahora.getDate() +
+1,
+1
+);
+
+
+$("daily").textContent =
+(
+faltan /
+diasRestantes
+)
+.toFixed(1);
+
+}else{
+
+$("branchGoal").textContent =
+"—";
+
+
+$("percent").textContent =
+"—";
+
+
+$("remaining").textContent =
+"Meta pendiente";
+
+
+$("progressText").textContent =
+"Meta pendiente";
+
+
+$("fill").style.width =
+"0";
+
+
+$("circle").style.background =
+"#e5e5e5";
+
+
+$("daily").textContent =
+"—";
+
 }
+
+
+renderEquipo(
+vendedor.sucursalId
+);
+
+}
+
+
+function renderEquipo(
+sucursalId
+){
+
+$("team").innerHTML =
+"";
+
+
+sellers
+
+.filter(
+v =>
+String(v.sucursalId) ===
+String(sucursalId)
+)
+
+.forEach(
+vendedor => {
+
+const ventas =
+ventasVendedor(
+vendedor.id
+);
+
+
+const row =
+document.createElement(
+"div"
+);
+
+
+row.className =
+"team-row";
+
+
+row.innerHTML = `
+
+<div class="avatar">
+${vendedor.nombre
+.substring(0,2)
+.toUpperCase()}
+</div>
+
+<div class="team-name">
+${vendedor.nombre}
+</div>
+
+<div class="team-sales">
+${ventas} 🔋
+</div>
+
+`;
+
+
+$("team")
+.appendChild(row);
+
+});
+
+}
+
+
+function renderResumen(){
+
+if(!esAdmin())
+return;
+
+
+const contenedor =
+$("branchSummary");
+
+
+contenedor.innerHTML =
+"";
+
+
+sucursales.forEach(
+sucursal => {
+
+const meta =
+Number(
+sucursal.meta_mensual || 0
+);
+
+
+const ventas =
+ventasSucursal(
+sucursal.id
+);
+
+
+const porcentaje =
+meta
+?
+Math.min(
+Math.round(
+ventas /
+meta *
+100
+),
+100
+)
+:
+0;
+
+
+const row =
+document.createElement(
+"div"
+);
+
+
+row.className =
+"branch-row";
+
+
+row.innerHTML = `
+
+<div class="branch-info">
+
+<div class="branch-name">
+${sucursal.nombre}
+</div>
+
+<div class="branch-meta">
+Meta: ${meta || "Sin meta"}
+</div>
+
+</div>
+
+<div class="branch-sales">
+
+<strong>
+${ventas}
+</strong>
+🔋
+
+<div class="branch-percent">
+${meta ? porcentaje + "%" : "—"}
+</div>
+
+</div>
+
+`;
+
+
+contenedor.appendChild(
+row
+);
+
+});
+
+}
+
 
 function renderRanking(){
- const ini=inicioSemana();
- const mapa=sellers.map(v=>({v,ventas:ventasDeVendedor(v.id,ini)})).sort((a,b)=>b.ventas-a.ventas);
 
- if(!mapa.length){
-  weekWinner.textContent='—';weekWinnerSales.textContent='0';ranking.textContent='No hay vendedores';return;
- }
+const inicio =
+new Date();
 
- weekWinner.textContent=mapa[0].ventas>0?mapa[0].v.nombre:'—';
- weekWinnerSales.textContent=mapa[0].ventas;
- ranking.innerHTML='';
 
- mapa.forEach((x,i)=>{
-  const row=document.createElement('div');row.className='rank-row';
-  row.innerHTML='<div class="rank-position">'+(i+1)+'</div>'+
-  '<div class="rank-avatar">'+x.v.nombre.substring(0,2).toUpperCase()+'</div>'+
-  '<div class="rank-name">'+x.v.nombre+'<div style="font-size:11px;color:#888">'+x.v.sucursal+'</div></div>'+
-  '<div class="rank-sales">'+x.ventas+' 🔋</div>';
-  ranking.appendChild(row);
- });
+const dia =
+inicio.getDay();
+
+
+inicio.setDate(
+inicio.getDate() -
+(dia === 0 ? 6 : dia - 1)
+);
+
+
+inicio.setHours(
+0,0,0,0
+);
+
+
+const ranking =
+sellers
+
+.map(
+vendedor => ({
+
+vendedor,
+
+ventas:
+ventasVendedor(
+vendedor.id,
+inicio
+)
+
+})
+
+)
+
+.sort(
+(a,b) =>
+b.ventas -
+a.ventas
+);
+
+
+if(
+ranking.length &&
+ranking[0].ventas > 0
+){
+
+$("weekWinner").textContent =
+ranking[0]
+.vendedor
+.nombre;
+
+
+$("weekWinnerSales").textContent =
+ranking[0]
+.ventas;
+
+}else{
+
+$("weekWinner").textContent =
+"—";
+
+
+$("weekWinnerSales").textContent =
+"0";
+
 }
 
-function renderHistory(){
- const supervisor=String(UVAN_PERFIL?.rol||'').toLowerCase()==='supervisor';
 
- if(!supervisor){
-  historyCard.classList.add('hidden');
-  return;
- }
+$("ranking").innerHTML =
+"";
 
- historyCard.classList.remove('hidden');
- history.innerHTML='';
 
- const lista=ventas.slice(0,50);
+ranking.forEach(
+(item,index) => {
 
- if(!lista.length){
-  history.textContent='No hay ventas registradas este mes.';
-  return;
- }
+const row =
+document.createElement(
+"div"
+);
 
- lista.forEach(x=>{
-  const v=sellers.find(y=>String(y.id)===String(x.vendedor_id));
-  const row=document.createElement('div');row.className='history-row';
 
-  row.innerHTML='<div class="history-top"><div>'+
-   '<div class="history-name">'+(v?v.nombre:'Vendedor')+' · '+(v?v.sucursal:'')+'</div>'+
-   '<div class="history-date">'+new Date(x.fecha).toLocaleString('es-MX')+' · '+Number(x.cantidad||0)+' 🔋</div>'+
-   '</div><button class="delete-sale" data-id="'+x.id+'">Borrar</button></div>';
+row.className =
+"rank-row";
 
-  history.appendChild(row);
- });
+
+row.innerHTML = `
+
+<div class="position">
+${index + 1}
+</div>
+
+<div class="avatar">
+${item.vendedor.nombre
+.substring(0,2)
+.toUpperCase()}
+</div>
+
+<div class="rank-name">
+
+${item.vendedor.nombre}
+
+<div style="
+font-size:11px;
+color:#888;
+margin-top:3px;
+">
+
+${item.vendedor.sucursal}
+
+</div>
+
+</div>
+
+<div class="rank-sales">
+${item.ventas} 🔋
+</div>
+
+`;
+
+
+$("ranking")
+.appendChild(row);
+
+});
+
 }
 
-sellerSelect.addEventListener('change',()=>{
- currentSeller=Number(sellerSelect.value);
- render();
+
+function renderHistorial(){
+
+if(!esAdmin())
+return;
+
+
+const contenedor =
+$("history");
+
+
+contenedor.innerHTML =
+"";
+
+
+if(!ventas.length){
+
+contenedor.textContent =
+"No hay ventas registradas este mes.";
+
+return;
+
+}
+
+
+ventas
+
+.slice(0,50)
+
+.forEach(
+venta => {
+
+const vendedor =
+sellers.find(
+v =>
+String(v.id) ===
+String(venta.vendedor_id)
+);
+
+
+const row =
+document.createElement(
+"div"
+);
+
+
+row.className =
+"history-row";
+
+
+row.innerHTML = `
+
+<div style="flex:1">
+
+<strong>
+${vendedor
+?
+vendedor.nombre
+:
+"Vendedor"}
+</strong>
+
+<div class="history-date">
+
+${vendedor
+?
+vendedor.sucursal
+:
+""}
+
+<br>
+
+${new Date(
+venta.fecha
+).toLocaleString(
+"es-MX"
+)}
+
+· ${venta.cantidad} 🔋
+
+</div>
+
+</div>
+
+<button
+class="delete"
+data-id="${venta.id}"
+>
+Borrar
+</button>
+
+`;
+
+
+contenedor.appendChild(
+row
+);
+
 });
 
-$('saleButton').addEventListener('click',()=>{
- modalSeller.innerHTML='';
- sellers.forEach((v,i)=>{
-  const o=document.createElement('option');
-  o.value=i;o.textContent=v.nombre+' · '+v.sucursal;
-  modalSeller.appendChild(o);
- });
- modalSeller.value=currentSeller;
- modal.style.display='flex';
+}
+
+
+$("sellerSelect")
+.addEventListener(
+"change",
+function(){
+
+currentSeller =
+Number(
+this.value
+);
+
+render();
+
 });
 
-$('cancelButton').addEventListener('click',()=>modal.style.display='none');
 
-$('confirmButton').addEventListener('click',async()=>{
- const v=sellers[Number(modalSeller.value)];
- if(!v)return;
+$("saleButton")
+.addEventListener(
+"click",
+function(){
 
- const b=$('confirmButton');
- b.disabled=true;b.textContent='Guardando...';
+$("modalSeller")
+.innerHTML =
+"";
 
- try{
-  const r=await timeout(db.from('ventas').insert({
-   vendedor_id:v.id,cantidad:1,fecha:new Date().toISOString()
-  }).select().single());
 
-  if(r.error)throw r.error;
+if(esAdmin()){
 
-  ventas.unshift(r.data);
-  currentSeller=sellers.indexOf(v);
-  sellerSelect.value=currentSeller;
-  modal.style.display='none';
-  message.textContent='¡Venta registrada! 🔋';
-  render();renderRanking();renderHistory();
+sellers.forEach(
+(vendedor,index) => {
 
- }catch(e){
-  alert('No se pudo registrar la venta:\n\n'+(e.message||e));
- }finally{
-  b.disabled=false;b.textContent='Registrar';
- }
+const option =
+document.createElement(
+"option"
+);
+
+
+option.value =
+index;
+
+
+option.textContent =
+vendedor.nombre +
+" · " +
+vendedor.sucursal;
+
+
+$("modalSeller")
+.appendChild(
+option
+);
+
 });
 
-history.addEventListener('click',async e=>{
- const b=e.target.closest('.delete-sale');
- if(!b)return;
 
- const id=b.dataset.id;
+}else{
 
- if(!confirm('¿Borrar esta venta? Esta acción no se puede deshacer.'))return;
+const vendedor =
+sellers[currentSeller];
 
- b.disabled=true;
 
- try{
-  const r=await timeout(db.from('ventas').delete().eq('id',id));
-  if(r.error)throw r.error;
+const option =
+document.createElement(
+"option"
+);
 
-  ventas=ventas.filter(x=>String(x.id)!==String(id));
-  render();renderRanking();renderHistory();
-
- }catch(e){
-  alert('No se pudo borrar la venta:\n\n'+(e.message||e));
- }finally{
-  b.disabled=false;
- }
-});
-
-$('refreshButton').addEventListener('click',cargarDatos);
-
-$('logoutButton').addEventListener('click',async()=>{
- await db.auth.signOut();
- window.location.replace('login.html');
-});
-
-// Si Supabase tarda o hay un error de JavaScript, nunca dejamos una pantalla muda.
-window.addEventListener('error',e=>{
- console.error(e.error||e.message);
- if(loading && !loading.classList.contains('hidden')){
-  loading.textContent='Error al cargar UVAN METAS';
-  mostrarError('Error de la aplicación: '+(e.message||'revisa la consola'));
- }
-});
-
-verificarAcceso();
-</script>
-</body>
-</html>
