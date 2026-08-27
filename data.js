@@ -6,21 +6,8 @@ window.UVAN_DATA = {
       nombre: "Chicoloapan",
       meta: 185,
       vendedores: [
-        {
-          nombre: "Chuchin",
-          ventas: 0
-        }
-      ]
-    },
-
-    {
-      nombre: "Ixtapaluca",
-      meta: 70,
-      vendedores: [
-        {
-          nombre: "Alejandro",
-          ventas: 21
-        }
+        { nombre: "Vero", ventas: 0, metaIndividual: null },
+        { nombre: "Chuchin", ventas: 0, metaIndividual: null }
       ]
     },
 
@@ -28,21 +15,7 @@ window.UVAN_DATA = {
       nombre: "Texcoco",
       meta: 60,
       vendedores: [
-        {
-          nombre: "Christopher",
-          ventas: 21
-        }
-      ]
-    },
-
-    {
-      nombre: "Chimalhuacán",
-      meta: 40,
-      vendedores: [
-        {
-          nombre: "Owen",
-          ventas: 13
-        }
+        { nombre: "Christoper", ventas: 0, metaIndividual: null }
       ]
     },
 
@@ -50,32 +23,23 @@ window.UVAN_DATA = {
       nombre: "Santa Rosa",
       meta: 40,
       vendedores: [
-        {
-          nombre: "Kateryn",
-          ventas: 14
-        }
+        { nombre: "Kateryn", ventas: 0, metaIndividual: null }
       ]
     },
 
     {
-      nombre: "Central de Abastos",
-      meta: 56,
+      nombre: "Chimalhuacán",
+      meta: 40,
       vendedores: [
-        {
-          nombre: "Araceli",
-          ventas: 8
-        }
+        { nombre: "Owen", ventas: 0, metaIndividual: null }
       ]
     },
 
     {
-      nombre: "Nezahualcóyotl",
-      meta: 60,
+      nombre: "Ixtapaluca",
+      meta: 70,
       vendedores: [
-        {
-          nombre: "Javier",
-          ventas: 18
-        }
+        { nombre: "Alejandro", ventas: 0, metaIndividual: null }
       ]
     },
 
@@ -83,10 +47,38 @@ window.UVAN_DATA = {
       nombre: "Los Reyes",
       meta: 56,
       vendedores: [
-        {
-          nombre: "Angel",
-          ventas: 14
-        }
+        { nombre: "Ángel", ventas: 0, metaIndividual: null }
+      ]
+    },
+
+    {
+      nombre: "Central",
+      meta: 56,
+      vendedores: [
+        { nombre: "Cristian", ventas: 0, metaIndividual: null }
+      ]
+    },
+
+    {
+      nombre: "Nezahualcóyotl",
+      meta: 60,
+      vendedores: [
+        { nombre: "Javier", ventas: 0, metaIndividual: null }
+      ]
+    },
+
+    {
+      nombre: "Ermita",
+      meta: null,
+      vendedores: []
+    },
+
+    {
+      nombre: "Zaragoza",
+      meta: null,
+      vendedores: [
+        { nombre: "Ulises", ventas: 0, metaIndividual: null },
+        { nombre: "Sebas", ventas: 0, metaIndividual: null }
       ]
     }
   ]
