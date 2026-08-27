@@ -1,1746 +1,484 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UVAN METAS</title>
-
-<meta
-  name="theme-color"
-  content="#111111"
->
-
+<meta name="theme-color" content="#111111">
 <style>
-
-/* =========================
-   BASE
-========================= */
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-body{
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-  background:#f4f4f4;
-
-  color:#151515;
-}
-
-.app{
-
-  max-width:520px;
-
-  margin:auto;
-
-  min-height:100vh;
-
-  background:#f7f7f7;
-}
-
-
-/* =========================
-   HEADER
-========================= */
-
-.header{
-
-  background:#111;
-
-  color:white;
-
-  padding:22px 20px 28px;
-
-  border-radius:
-    0 0 25px 25px;
-}
-
-.brand{
-
-  display:flex;
-
-  justify-content:
-    space-between;
-
-  margin-bottom:25px;
-}
-
-.brand-name{
-
-  font-size:21px;
-
-  font-weight:800;
-}
-
-.brand-name span{
-
-  color:#999;
-
-  font-weight:500;
-}
-
-.month{
-
-  color:#aaa;
-
-  font-size:12px;
-
-  text-transform:uppercase;
-}
-
-.greeting{
-
-  font-size:28px;
-
-  font-weight:800;
-}
-
-.subtitle{
-
-  color:#aaa;
-
-  margin-top:5px;
-}
-
-
-/* =========================
-   CONTENIDO
-========================= */
-
-.content{
-
-  padding:18px;
-}
-
-.card{
-
-  background:white;
-
-  border-radius:18px;
-
-  padding:18px;
-
-  margin-bottom:14px;
-
-  box-shadow:
-    0 3px 15px
-    rgba(0,0,0,.06);
-}
-
-.title{
-
-  font-size:13px;
-
-  font-weight:800;
-
-  color:#666;
-
-  margin-bottom:12px;
-}
-
-
-/* =========================
-   PERFIL
-========================= */
-
-.profile-card{
-
-  background:#111;
-
-  color:white;
-
-  border-radius:18px;
-
-  padding:17px;
-
-  margin-bottom:14px;
-}
-
-.profile-name{
-
-  font-size:17px;
-
-  font-weight:800;
-}
-
-.profile-role{
-
-  color:#aaa;
-
-  font-size:12px;
-
-  margin-top:4px;
-
-  text-transform:uppercase;
-}
-
-
-/* =========================
-   SELECT
-========================= */
-
-select{
-
-  width:100%;
-
-  padding:14px;
-
-  border:
-    1px solid #ddd;
-
-  border-radius:12px;
-
-  background:white;
-
-  font-size:16px;
-
-  color:#151515;
-}
-
-
-/* =========================
-   META
-========================= */
-
-.goal{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:20px;
-}
-
-.circle{
-
-  width:120px;
-
-  height:120px;
-
-  border-radius:50%;
-
-  background:#e5e5e5;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  flex-shrink:0;
-}
-
-.circle-inner{
-
-  width:91px;
-
-  height:91px;
-
-  background:white;
-
-  border-radius:50%;
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  justify-content:center;
-}
-
-.percent{
-
-  font-size:25px;
-
-  font-weight:800;
-}
-
-.small{
-
-  font-size:11px;
-
-  color:#777;
-}
-
-.numbers{
-
-  font-size:34px;
-
-  font-weight:800;
-}
-
-.numbers small{
-
-  font-size:18px;
-
-  color:#888;
-}
-
-.branch{
-
-  color:#777;
-
-  font-size:13px;
-
-  margin-top:5px;
-}
-
-.remaining{
-
-  margin-top:13px;
-
-  font-size:13px;
-
-  font-weight:700;
-}
-
-
-/* =========================
-   PROGRESS
-========================= */
-
-.progress{
-
-  margin-top:18px;
-}
-
-.progress-head{
-
-  display:flex;
-
-  justify-content:
-    space-between;
-
-  font-size:12px;
-
-  color:#666;
-
-  margin-bottom:7px;
-}
-
-.bar{
-
-  height:10px;
-
-  background:#e5e5e5;
-
-  border-radius:20px;
-
-  overflow:hidden;
-}
-
-.fill{
-
-  height:100%;
-
-  width:0;
-
-  background:#111;
-
-  border-radius:20px;
-
-  transition:.3s;
-}
-
-
-/* =========================
-   RITMO
-========================= */
-
-.daily{
-
-  display:flex;
-
-  justify-content:
-    space-between;
-
-  align-items:center;
-}
-
-.daily-number{
-
-  font-size:38px;
-
-  font-weight:800;
-}
-
-.daily-text{
-
-  color:#777;
-
-  font-size:13px;
-
-  text-align:right;
-
-  max-width:210px;
-}
-
-
-/* =========================
-   RANKING
-========================= */
-
-.week-card{
-
-  background:#111;
-
-  color:white;
-
-  border-radius:18px;
-
-  padding:20px;
-
-  margin-bottom:14px;
-}
-
-.week-title{
-
-  font-size:13px;
-
-  font-weight:800;
-
-  color:#ddd;
-
-  margin-bottom:14px;
-}
-
-.week-winner{
-
-  font-size:25px;
-
-  font-weight:800;
-
-  margin-bottom:7px;
-}
-
-.week-sales{
-
-  font-size:34px;
-
-  font-weight:800;
-}
-
-.week-sales span{
-
-  font-size:12px;
-
-  color:#aaa;
-
-  font-weight:600;
-}
-
-.ranking{
-
-  display:flex;
-
-  flex-direction:column;
-}
-
-.rank-row{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:12px;
-
-  padding:12px 0;
-
-  border-bottom:
-    1px solid #eee;
-}
-
-.rank-position{
-
-  width:28px;
-
-  font-weight:800;
-
-  color:#777;
-}
-
-.rank-avatar{
-
-  width:38px;
-
-  height:38px;
-
-  border-radius:50%;
-
-  background:#111;
-
-  color:white;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-size:12px;
-
-  font-weight:800;
-}
-
-.rank-name{
-
-  flex:1;
-
-  font-weight:700;
-}
-
-.rank-sales{
-
-  font-size:18px;
-
-  font-weight:800;
-}
-
-
-/* =========================
-   EQUIPO
-========================= */
-
-.team{
-
-  display:flex;
-
-  flex-direction:column;
-}
-
-.team-row{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:12px;
-
-  padding:12px 0;
-
-  border-bottom:
-    1px solid #eee;
-}
-
-.avatar{
-
-  width:38px;
-
-  height:38px;
-
-  border-radius:50%;
-
-  background:#111;
-
-  color:white;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-size:12px;
-
-  font-weight:800;
-}
-
-.team-name{
-
-  flex:1;
-
-  font-weight:700;
-}
-
-.team-sales{
-
-  font-size:18px;
-
-  font-weight:800;
-}
-
-
-/* =========================
-   BOTONES
-========================= */
-
-button{
-
-  width:100%;
-
-  padding:17px;
-
-  border:0;
-
-  border-radius:15px;
-
-  background:#111;
-
-  color:white;
-
-  font-size:16px;
-
-  font-weight:800;
-
-  cursor:pointer;
-}
-
-button:disabled{
-
-  opacity:.5;
-
-  cursor:not-allowed;
-}
-
-.secondary{
-
-  background:#e9e9e9;
-
-  color:#111;
-
-  margin-top:10px;
-}
-
-.danger{
-
-  background:#b00020;
-
-  color:white;
-}
-
-
-/* =========================
-   MENSAJES
-========================= */
-
-.message{
-
-  text-align:center;
-
-  color:#777;
-
-  font-size:12px;
-
-  margin-top:10px;
-
-  min-height:16px;
-}
-
-.error-box{
-
-  background:#fff0f0;
-
-  color:#a00000;
-
-  border-radius:14px;
-
-  padding:14px;
-
-  margin-bottom:14px;
-
-  font-size:13px;
-
-  display:none;
-}
-
-
-/* =========================
-   HISTORIAL
-========================= */
-
-.history{
-
-  display:flex;
-
-  flex-direction:column;
-}
-
-.history-row{
-
-  padding:12px 0;
-
-  border-bottom:
-    1px solid #eee;
-}
-
-.history-top{
-
-  display:flex;
-
-  justify-content:
-    space-between;
-
-  align-items:center;
-}
-
-.history-name{
-
-  font-weight:800;
-
-  font-size:14px;
-}
-
-.history-date{
-
-  font-size:11px;
-
-  color:#888;
-
-  margin-top:4px;
-}
-
-.delete-sale{
-
-  width:auto;
-
-  padding:8px 10px;
-
-  border-radius:10px;
-
-  font-size:11px;
-
-  background:#b00020;
-}
-
-
-/* =========================
-   MODAL
-========================= */
-
-.modal{
-
-  display:none;
-
-  position:fixed;
-
-  inset:0;
-
-  background:
-    rgba(0,0,0,.55);
-
-  align-items:flex-end;
-
-  justify-content:center;
-
-  z-index:1000;
-}
-
-.modal-box{
-
-  width:100%;
-
-  max-width:520px;
-
-  background:white;
-
-  border-radius:
-    25px 25px 0 0;
-
-  padding:24px;
-
-  max-height:90vh;
-
-  overflow-y:auto;
-}
-
-.modal-title{
-
-  font-size:22px;
-
-  font-weight:800;
-
-  margin-bottom:5px;
-}
-
-.modal-subtitle{
-
-  color:#777;
-
-  font-size:13px;
-
-  margin-bottom:20px;
-}
-
-.modal-actions{
-
-  display:flex;
-
-  gap:10px;
-
-  margin-top:15px;
-}
-
-.modal-actions button{
-
-  flex:1;
-}
-
-
-/* =========================
-   LOADING
-========================= */
-
-.loading{
-
-  background:#111;
-
-  color:white;
-
-  border-radius:15px;
-
-  padding:15px;
-
-  font-size:13px;
-
-  margin-bottom:14px;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-
-  text-align:center;
-
-  padding:20px;
-
-  color:#aaa;
-
-  font-size:11px;
-}
-
-
-/* =========================
-   HIDDEN
-========================= */
-
-.hidden{
-
-  display:none !important;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#f4f4f4;color:#151515}
+.app{max-width:520px;margin:auto;min-height:100vh;background:#f7f7f7}
+.header{background:#111;color:#fff;padding:22px 20px 28px;border-radius:0 0 25px 25px}
+.brand{display:flex;justify-content:space-between;margin-bottom:25px}
+.brand-name{font-size:21px;font-weight:800}.brand-name span{color:#999;font-weight:500}
+.month{color:#aaa;font-size:12px;text-transform:uppercase}.greeting{font-size:28px;font-weight:800}
+.subtitle{color:#aaa;margin-top:5px}.content{padding:18px}
+.card{background:#fff;border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 3px 15px rgba(0,0,0,.06)}
+.profile-card,.week-card{border-radius:18px;padding:18px;margin-bottom:14px;background:#111;color:#fff}
+.profile-name{font-size:17px;font-weight:800}.profile-role{color:#aaa;font-size:12px;margin-top:4px;text-transform:uppercase}
+.title{font-size:13px;font-weight:800;color:#666;margin-bottom:12px}
+select{width:100%;padding:14px;border:1px solid #ddd;border-radius:12px;background:#fff;font-size:16px;color:#151515}
+.goal{display:flex;align-items:center;gap:20px}.circle{width:120px;height:120px;border-radius:50%;background:#e5e5e5;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.circle-inner{width:91px;height:91px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.percent{font-size:25px;font-weight:800}.small{font-size:11px;color:#777}.numbers{font-size:34px;font-weight:800}.numbers small{font-size:18px;color:#888}
+.branch{color:#777;font-size:13px;margin-top:5px}.remaining{margin-top:13px;font-size:13px;font-weight:700}
+.progress{margin-top:18px}.progress-head{display:flex;justify-content:space-between;font-size:12px;color:#666;margin-bottom:7px}
+.bar{height:10px;background:#e5e5e5;border-radius:20px;overflow:hidden}.fill{height:100%;width:0;background:#111;border-radius:20px;transition:.3s}
+.daily{display:flex;justify-content:space-between;align-items:center}.daily-number{font-size:38px;font-weight:800}
+.daily-text{color:#777;font-size:13px;text-align:right;max-width:210px}
+.week-title{font-size:13px;font-weight:800;color:#ddd;margin-bottom:14px}.week-winner{font-size:25px;font-weight:800;margin-bottom:7px}
+.week-sales{font-size:34px;font-weight:800}.week-sales span{font-size:12px;color:#aaa;font-weight:600}
+.ranking,.team,.history{display:flex;flex-direction:column}
+.rank-row,.team-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #eee}
+.rank-position{width:28px;font-weight:800;color:#777}.rank-avatar,.avatar{width:38px;height:38px;border-radius:50%;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+.rank-name,.team-name{flex:1;font-weight:700}.rank-sales,.team-sales{font-size:18px;font-weight:800}
+.history-row{padding:12px 0;border-bottom:1px solid #eee}.history-top{display:flex;justify-content:space-between;align-items:center}
+.history-name{font-weight:800;font-size:14px}.history-date{font-size:11px;color:#888;margin-top:4px}
+.delete-sale{width:auto;padding:8px 10px;border-radius:10px;font-size:11px;background:#b00020;color:#fff}
+button{width:100%;padding:17px;border:0;border-radius:15px;background:#111;color:#fff;font-size:16px;font-weight:800;cursor:pointer}
+button:disabled{opacity:.5}.secondary{background:#e9e9e9;color:#111;margin-top:10px}
+.message{text-align:center;color:#777;font-size:12px;margin-top:10px;min-height:16px}
+.error-box{background:#fff0f0;color:#a00000;border-radius:14px;padding:14px;margin-bottom:14px;font-size:13px;display:none}
+.loading{background:#111;color:#fff;border-radius:15px;padding:15px;font-size:13px;margin-bottom:14px}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);align-items:flex-end;justify-content:center;z-index:1000}
+.modal-box{width:100%;max-width:520px;background:#fff;border-radius:25px 25px 0 0;padding:24px;max-height:90vh;overflow-y:auto}
+.modal-title{font-size:22px;font-weight:800;margin-bottom:5px}.modal-subtitle{color:#777;font-size:13px;margin-bottom:20px}
+.modal-actions{display:flex;gap:10px;margin-top:15px}.modal-actions button{flex:1}.hidden{display:none!important}
+footer{text-align:center;padding:20px;color:#aaa;font-size:11px}
 </style>
-
 </head>
-
-
 <body>
-
-
 <div class="app">
-
-
-<!-- =========================
-     HEADER
-========================= -->
-
 <header class="header">
-
-  <div class="brand">
-
-    <div class="brand-name">
-      UVAN <span>METAS</span>
-    </div>
-
-    <div
-      class="month"
-      id="month"
-    >
-      —
-    </div>
-
-  </div>
-
-
-  <div
-    class="greeting"
-    id="greeting"
-  >
-    UVAN METAS 🔋
-  </div>
-
-
-  <div class="subtitle">
-    Control de metas y ventas
-  </div>
-
+<div class="brand"><div class="brand-name">UVAN <span>METAS</span></div><div class="month" id="month">—</div></div>
+<div class="greeting" id="greeting">UVAN METAS 🔋</div>
+<div class="subtitle">Control de metas y ventas</div>
 </header>
-
-
 <main class="content">
+<div class="loading" id="loading">Verificando sesión...</div>
+<div class="error-box" id="errorBox"></div>
 
+<section class="profile-card hidden" id="profileCard">
+<div class="profile-name" id="profileName">—</div><div class="profile-role" id="profileRole">—</div>
+</section>
 
-<!-- =========================
-     ESTADO
-========================= -->
+<section class="card hidden" id="sellerCard">
+<div class="title">VENDEDOR</div><select id="sellerSelect"></select>
+</section>
 
-<div
-  class="loading"
-  id="loading"
->
-  Verificando sesión...
+<section class="card hidden" id="mainContent">
+<div class="title">META DE SUCURSAL</div>
+<div class="goal">
+<div class="circle" id="circle"><div class="circle-inner"><div class="percent" id="percent">0%</div><div class="small">cumplido</div></div></div>
+<div><div class="numbers"><span id="branchSales">0</span> <small>/<span id="branchGoal">—</span></small></div>
+<div class="branch" id="branch">Sucursal</div><div class="remaining" id="remaining">Meta pendiente</div></div>
 </div>
-
-
-<div
-  class="error-box"
-  id="errorBox"
-></div>
-
-
-<!-- =========================
-     PERFIL
-========================= -->
-
-<section
-  class="profile-card hidden"
-  id="profileCard"
->
-
-  <div
-    class="profile-name"
-    id="profileName"
-  >
-    —
-  </div>
-
-  <div
-    class="profile-role"
-    id="profileRole"
-  >
-    —
-  </div>
-
+<div class="progress"><div class="progress-head"><span>Avance de la sucursal</span><span id="progressText">—</span></div><div class="bar"><div class="fill" id="fill"></div></div></div>
 </section>
 
-
-<!-- =========================
-     VENDEDOR
-========================= -->
-
-<section
-  class="card hidden"
-  id="sellerCard"
->
-
-  <div class="title">
-    VENDEDOR
-  </div>
-
-  <select
-    id="sellerSelect"
-  ></select>
-
+<section class="card hidden" id="personalCard">
+<div class="title">MIS VENTAS</div><div class="numbers" id="personalSales">0</div>
+<div class="branch">Baterías vendidas por este vendedor</div>
 </section>
 
-
-<!-- =========================
-     META
-========================= -->
-
-<section
-  class="card hidden"
-  id="mainContent"
->
-
-  <div class="title">
-    META DE SUCURSAL
-  </div>
-
-
-  <div class="goal">
-
-
-    <div
-      class="circle"
-      id="circle"
-    >
-
-      <div class="circle-inner">
-
-        <div
-          class="percent"
-          id="percent"
-        >
-          0%
-        </div>
-
-        <div class="small">
-          cumplido
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div>
-
-      <div class="numbers">
-
-        <span
-          id="branchSales"
-        >
-          0
-        </span>
-
-        <small>
-          /
-          <span
-            id="branchGoal"
-          >
-            —
-          </span>
-        </small>
-
-      </div>
-
-
-      <div
-        class="branch"
-        id="branch"
-      >
-        Sucursal
-      </div>
-
-
-      <div
-        class="remaining"
-        id="remaining"
-      >
-        Meta pendiente
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="progress">
-
-    <div class="progress-head">
-
-      <span>
-        Avance de la sucursal
-      </span>
-
-      <span
-        id="progressText"
-      >
-        —
-      </span>
-
-    </div>
-
-
-    <div class="bar">
-
-      <div
-        class="fill"
-        id="fill"
-      ></div>
-
-    </div>
-
-  </div>
-
+<section class="card hidden" id="rhythmCard">
+<div class="title">RITMO DE LA SUCURSAL</div><div class="daily"><div class="daily-number" id="daily">—</div>
+<div class="daily-text">baterías por día necesita vender la sucursal para alcanzar su meta.</div></div>
 </section>
 
-
-<!-- =========================
-     MIS VENTAS
-========================= -->
-
-<section
-  class="card hidden"
-  id="personalCard"
->
-
-  <div class="title">
-    MIS VENTAS
-  </div>
-
-  <div class="numbers">
-
-    <span
-      id="personalSales"
-    >
-      0
-    </span>
-
-  </div>
-
-  <div class="branch">
-    Baterías vendidas por este vendedor
-  </div>
-
+<section class="week-card hidden" id="winnerCard">
+<div class="week-title">🏆 VENDEDOR DE LA SEMANA</div><div class="week-winner" id="weekWinner">—</div>
+<div class="week-sales"><span id="weekWinnerSales">0</span> <span>🔋 esta semana</span></div>
 </section>
 
-
-<!-- =========================
-     RITMO
-========================= -->
-
-<section
-  class="card hidden"
-  id="rhythmCard"
->
-
-  <div class="title">
-    RITMO DE LA SUCURSAL
-  </div>
-
-
-  <div class="daily">
-
-    <div
-      class="daily-number"
-      id="daily"
-    >
-      —
-    </div>
-
-    <div class="daily-text">
-      baterías por día necesita vender
-      la sucursal para alcanzar su meta.
-    </div>
-
-  </div>
-
+<section class="card hidden" id="rankingCard">
+<div class="title">🏆 RANKING DE LA SEMANA</div><div class="ranking" id="ranking">Cargando ranking...</div>
 </section>
 
-
-<!-- =========================
-     VENDEDOR DE LA SEMANA
-========================= -->
-
-<section
-  class="week-card hidden"
-  id="winnerCard"
->
-
-  <div class="week-title">
-    🏆 VENDEDOR DE LA SEMANA
-  </div>
-
-  <div
-    class="week-winner"
-    id="weekWinner"
-  >
-    —
-  </div>
-
-  <div class="week-sales">
-
-    <span id="weekWinnerSales">
-      0
-    </span>
-
-    <span>
-      🔋 esta semana
-    </span>
-
-  </div>
-
+<section class="card hidden" id="registerCard">
+<div class="title">REGISTRAR VENTA</div><button id="saleButton">+ REGISTRAR BATERÍA</button>
+<div class="message" id="message"></div>
 </section>
 
-
-<!-- =========================
-     RANKING
-========================= -->
-
-<section
-  class="card hidden"
-  id="rankingCard"
->
-
-  <div class="title">
-    🏆 RANKING DE LA SEMANA
-  </div>
-
-  <div
-    class="ranking"
-    id="ranking"
-  >
-    Cargando ranking...
-  </div>
-
+<section class="card hidden" id="teamCard">
+<div class="title">VENTAS DEL EQUIPO</div><div class="team" id="team"></div>
 </section>
 
-
-<!-- =========================
-     REGISTRAR
-========================= -->
-
-<section
-  class="card hidden"
-  id="registerCard"
->
-
-  <div class="title">
-    REGISTRAR VENTA
-  </div>
-
-  <button
-    id="saleButton"
-  >
-    + REGISTRAR BATERÍA
-  </button>
-
-  <div
-    class="message"
-    id="message"
-  ></div>
-
+<section class="card hidden" id="historyCard">
+<div class="title">🗑️ HISTORIAL DE VENTAS</div><div class="history" id="history">Cargando historial...</div>
 </section>
 
-
-<!-- =========================
-     EQUIPO
-========================= -->
-
-<section
-  class="card hidden"
-  id="teamCard"
->
-
-  <div class="title">
-    VENTAS DEL EQUIPO
-  </div>
-
-  <div
-    class="team"
-    id="team"
-  ></div>
-
-</section>
-
-
-<!-- =========================
-     HISTORIAL SUPERVISOR
-========================= -->
-
-<section
-  class="card hidden"
-  id="historyCard"
->
-
-  <div class="title">
-    🗑️ HISTORIAL DE VENTAS
-  </div>
-
-  <div
-    class="history"
-    id="history"
-  >
-    Cargando historial...
-  </div>
-
-</section>
-
-
-<!-- =========================
-     ACTUALIZAR
-========================= -->
-
-<section
-  class="card hidden"
-  id="refreshCard"
->
-
-  <button
-    class="secondary"
-    id="refreshButton"
-  >
-    🔄 ACTUALIZAR DATOS
-  </button>
-
-</section>
-
-
-<!-- =========================
-     CERRAR SESIÓN
-========================= -->
-
-<section
-  class="card hidden"
-  id="logoutCard"
->
-
-  <button
-    class="secondary"
-    id="logoutButton"
-  >
-    CERRAR SESIÓN
-  </button>
-
-</section>
-
-
+<section class="card hidden" id="refreshCard"><button class="secondary" id="refreshButton">🔄 ACTUALIZAR DATOS</button></section>
+<section class="card hidden" id="logoutCard"><button class="secondary" id="logoutButton">CERRAR SESIÓN</button></section>
 </main>
-
-
-<footer>
-  UVAN BATTERY · Expertos en baterías
-</footer>
-
-
+<footer>UVAN BATTERY · Expertos en baterías</footer>
 </div>
 
-
-<!-- =========================
-     MODAL REGISTRAR
-========================= -->
-
-<div
-  class="modal"
-  id="modal"
->
-
-  <div class="modal-box">
-
-    <div class="modal-title">
-      Registrar venta 🔋
-    </div>
-
-    <div class="modal-subtitle">
-      Selecciona el vendedor que realizó la venta.
-    </div>
-
-
-    <select
-      id="modalSeller"
-    ></select>
-
-
-    <div class="modal-actions">
-
-      <button
-        class="secondary"
-        id="cancelButton"
-      >
-        Cancelar
-      </button>
-
-      <button
-        id="confirmButton"
-      >
-        Registrar
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- =========================
-     SUPABASE
-========================= -->
+<div class="modal" id="modal"><div class="modal-box">
+<div class="modal-title">Registrar venta 🔋</div><div class="modal-subtitle">Selecciona el vendedor que realizó la venta.</div>
+<select id="modalSeller"></select>
+<div class="modal-actions"><button class="secondary" id="cancelButton">Cancelar</button><button id="confirmButton">Registrar</button></div>
+</div></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
+<script src="supabase-config.js"></script>
 <script>
+'use strict';
 
-/* =====================================================
-   CONFIGURACIÓN SUPABASE
-===================================================== */
+const db=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY,{
+  auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}
+});
 
-const SUPABASE_URL =
-  "https://rbucdijidzxvkxbrimwh.supabase.co";
+let UVAN_PERFIL=null,sellers=[],sucursales=[],ventas=[],currentSeller=0;
 
-const SUPABASE_KEY =
-  "sb_publishable_SfsU0-sUu19pjQRoeWD2Yw_O0UQdn_M";
+const $=id=>document.getElementById(id);
+const loading=$('loading'),errorBox=$('errorBox'),greeting=$('greeting'),month=$('month');
+const profileCard=$('profileCard'),profileName=$('profileName'),profileRole=$('profileRole');
+const sellerCard=$('sellerCard'),sellerSelect=$('sellerSelect'),mainContent=$('mainContent');
+const personalCard=$('personalCard'),rhythmCard=$('rhythmCard'),winnerCard=$('winnerCard');
+const rankingCard=$('rankingCard'),registerCard=$('registerCard'),teamCard=$('teamCard');
+const historyCard=$('historyCard'),refreshCard=$('refreshCard'),logoutCard=$('logoutCard');
+const branch=$('branch'),branchSales=$('branchSales'),branchGoal=$('branchGoal');
+const personalSales=$('personalSales'),remaining=$('remaining'),percent=$('percent');
+const progressText=$('progressText'),fill=$('fill'),circle=$('circle'),daily=$('daily');
+const team=$('team'),ranking=$('ranking'),history=$('history'),weekWinner=$('weekWinner');
+const weekWinnerSales=$('weekWinnerSales'),modal=$('modal'),modalSeller=$('modalSeller'),message=$('message');
 
-
-const db =
-  supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
-
-
-/* =====================================================
-   VARIABLES
-===================================================== */
-
-let UVAN_PERFIL = null;
-
-let sellers = [];
-
-let sucursales = [];
-
-let ventas = [];
-
-let currentSeller = 0;
-
-
-/* =====================================================
-   ELEMENTOS
-===================================================== */
-
-const loading =
-  document.getElementById("loading");
-
-const errorBox =
-  document.getElementById("errorBox");
-
-const greeting =
-  document.getElementById("greeting");
-
-const month =
-  document.getElementById("month");
-
-const profileCard =
-  document.getElementById("profileCard");
-
-const profileName =
-  document.getElementById("profileName");
-
-const profileRole =
-  document.getElementById("profileRole");
-
-const sellerCard =
-  document.getElementById("sellerCard");
-
-const sellerSelect =
-  document.getElementById("sellerSelect");
-
-const mainContent =
-  document.getElementById("mainContent");
-
-const personalCard =
-  document.getElementById("personalCard");
-
-const rhythmCard =
-  document.getElementById("rhythmCard");
-
-const winnerCard =
-  document.getElementById("winnerCard");
-
-const rankingCard =
-  document.getElementById("rankingCard");
-
-const registerCard =
-  document.getElementById("registerCard");
-
-const teamCard =
-  document.getElementById("teamCard");
-
-const historyCard =
-  document.getElementById("historyCard");
-
-const refreshCard =
-  document.getElementById("refreshCard");
-
-const logoutCard =
-  document.getElementById("logoutCard");
-
-const branch =
-  document.getElementById("branch");
-
-const branchSales =
-  document.getElementById("branchSales");
-
-const branchGoal =
-  document.getElementById("branchGoal");
-
-const personalSales =
-  document.getElementById("personalSales");
-
-const remaining =
-  document.getElementById("remaining");
-
-const percent =
-  document.getElementById("percent");
-
-const progressText =
-  document.getElementById("progressText");
-
-const fill =
-  document.getElementById("fill");
-
-const circle =
-  document.getElementById("circle");
-
-const daily =
-  document.getElementById("daily");
-
-const team =
-  document.getElementById("team");
-
-const ranking =
-  document.getElementById("ranking");
-
-const history =
-  document.getElementById("history");
-
-const weekWinner =
-  document.getElementById("weekWinner");
-
-const weekWinnerSales =
-  document.getElementById("weekWinnerSales");
-
-const modal =
-  document.getElementById("modal");
-
-const modalSeller =
-  document.getElementById("modalSeller");
-
-const message =
-  document.getElementById("message");
-
-
-/* =====================================================
-   FECHAS
-===================================================== */
-
-const ahora =
-  new Date();
-
-
-const inicioMes =
-  new Date(
-    ahora.getFullYear(),
-    ahora.getMonth(),
-    1
-  );
-
-
-const inicioSiguienteMes =
-  new Date(
-    ahora.getFullYear(),
-    ahora.getMonth() + 1,
-    1
-  );
-
-
-month.textContent =
-  ahora.toLocaleDateString(
-    "es-MX",
-    {
-      month:"long",
-      year:"numeric"
-    }
-  ).toUpperCase();
-
-
-/* =====================================================
-   INICIO DE SEMANA
-   LUNES = PRIMER DÍA
-===================================================== */
+const ahora=new Date();
+const inicioMes=new Date(ahora.getFullYear(),ahora.getMonth(),1);
+const inicioSiguienteMes=new Date(ahora.getFullYear(),ahora.getMonth()+1,1);
+month.textContent=ahora.toLocaleDateString('es-MX',{month:'long',year:'numeric'}).toUpperCase();
 
 function inicioSemana(){
-
-  const fecha =
-    new Date();
-
-  const dia =
-    fecha.getDay();
-
-  const diferencia =
-    dia === 0
-      ? 6
-      : dia - 1;
-
-  fecha.setDate(
-    fecha.getDate() -
-    diferencia
-  );
-
-  fecha.setHours(
-    0,0,0,0
-  );
-
-  return fecha;
-
+ const d=new Date();const n=d.getDay();
+ d.setDate(d.getDate()-(n===0?6:n-1));d.setHours(0,0,0,0);return d;
 }
-
-
-/* =====================================================
-   MOSTRAR ERROR
-===================================================== */
-
-function mostrarError(texto){
-
-  errorBox.textContent =
-    texto;
-
-  errorBox.style.display =
-    "block";
-
+function timeout(p,ms=12000){
+ return Promise.race([p,new Promise((_,reject)=>setTimeout(()=>reject(new Error('Tiempo de espera agotado al conectar con Supabase.')),ms))]);
 }
-
-
-/* =====================================================
-   MOSTRAR APP
-===================================================== */
-
+function mostrarError(t){errorBox.textContent=t;errorBox.style.display='block'}
 function mostrarApp(){
-
-  loading.classList.add(
-    "hidden"
-  );
-
-  profileCard.classList.remove(
-    "hidden"
-  );
-
-  sellerCard.classList.remove(
-    "hidden"
-  );
-
-  mainContent.classList.remove(
-    "hidden"
-  );
-
-  personalCard.classList.remove(
-    "hidden"
-  );
-
-  rhythmCard.classList.remove(
-    "hidden"
-  );
-
-  winnerCard.classList.remove(
-    "hidden"
-  );
-
-  rankingCard.classList.remove(
-    "hidden"
-  );
-
-  registerCard.classList.remove(
-    "hidden"
-  );
-
-  teamCard.classList.remove(
-    "hidden"
-  );
-
-  refreshCard.classList.remove(
-    "hidden"
-  );
-
-  logoutCard.classList.remove(
-    "hidden"
-  );
-
+ loading.classList.add('hidden');
+ [profileCard,sellerCard,mainContent,personalCard,rhythmCard,winnerCard,rankingCard,registerCard,teamCard,refreshCard,logoutCard]
+ .forEach(x=>x.classList.remove('hidden'));
 }
-
-
-/* =====================================================
-   VERIFICAR SESIÓN
-===================================================== */
 
 async function verificarAcceso(){
+ try{
+  loading.textContent='Verificando sesión...';
 
-  try{
+  // getSession solo se usa para recuperar la sesión local rápidamente.
+  // Si falla, mostramos el error en vez de dejar la pantalla congelada.
+  const r=await timeout(db.auth.getSession());
+  if(r.error)throw r.error;
 
-    loading.textContent =
-      "Verificando sesión...";
+  const session=r.data?.session;
+  if(!session){
+   window.location.replace('login.html');
+   return false;
+  }
 
+  loading.textContent='Cargando usuario...';
 
-    const {
-      data,
-      error
-    } =
-      await db.auth.getSession();
+  const p=await timeout(
+   db.from('profiles')
+   .select('id,nombre,rol,sucursal,activo,vendedor_id')
+   .eq('id',session.user.id)
+   .maybeSingle()
+  );
 
+  if(p.error)throw p.error;
 
-    if(error)
-      throw error;
+  if(!p.data){
+   await db.auth.signOut();
+   window.location.replace('login.html');
+   return false;
+  }
 
+  if(p.data.activo===false){
+   await db.auth.signOut();
+   window.location.replace('login.html');
+   return false;
+  }
 
-    const session =
-      data?.session;
+  UVAN_PERFIL=p.data;
+  greeting.textContent='Hola, '+(p.data.nombre||'Usuario')+' 🔋';
+  profileName.textContent=p.data.nombre||'Usuario';
+  profileRole.textContent=p.data.rol||'Usuario';
 
+  mostrarApp();
+  await cargarDatos();
+  return true;
 
-    /*
-     * NO HAY SESIÓN
-     */
+ }catch(e){
+  console.error('UVAN METAS auth:',e);
+  loading.textContent='No se pudo iniciar';
+  mostrarError('No se pudo verificar tu sesión. '+(e.message||e));
+  return false;
+ }
+}
 
-    if(!session){
+async function cargarDatos(){
+ message.textContent='Cargando datos...';
+ try{
+  const [s,v,ve]=await Promise.all([
+   timeout(db.from('sucursales').select('*').eq('activa',true).order('nombre')),
+   timeout(db.from('vendedores').select('*').eq('activo',true).order('nombre')),
+   timeout(db.from('ventas').select('*')
+    .gte('fecha',inicioMes.toISOString())
+    .lt('fecha',inicioSiguienteMes.toISOString())
+    .order('fecha',{ascending:false}))
+  ]);
 
-      window.location.replace(
-        "login.html"
-      );
+  if(s.error)throw s.error;
+  if(v.error)throw v.error;
+  if(ve.error)throw ve.error;
 
-      return false;
+  sucursales=s.data||[];
+  ventas=ve.data||[];
 
-    }
+  sellers=(v.data||[]).map(x=>{
+   const suc=sucursales.find(y=>String(y.id)===String(x.sucursal_id));
+   return {
+    id:x.id,nombre:x.nombre,sucursalId:x.sucursal_id,
+    sucursal:suc?suc.nombre:'Sin sucursal',
+    metaSucursal:suc?suc.meta_mensual:null,ventas:0
+   };
+  });
 
+  llenarSelector();
+  render();
+  renderRanking();
+  renderHistory();
+  message.textContent='';
 
-    /*
-     * BUSCAR PERFIL
-     */
+ }catch(e){
+  console.error('UVAN METAS datos:',e);
+  message.textContent='';
+  mostrarError('Error cargando datos: '+(e.message||e));
+ }
+}
 
-    loading.textContent =
-      "Cargando usuario...";
+function llenarSelector(){
+ sellerSelect.innerHTML='';
+ let lista=sellers;
 
+ // Un vendedor normal solo puede ver su propio registro.
+ if(String(UVAN_PERFIL?.rol||'').toLowerCase()!=='supervisor' && UVAN_PERFIL?.vendedor_id!=null){
+  lista=sellers.filter(x=>String(x.id)===String(UVAN_PERFIL.vendedor_id));
+ }
 
-    const {
-      data: perfil,
-      error: perfilError
-    } =
-      await db
-        .from("profiles")
-        .select(
-          "id,nombre,rol,sucursal,activo,vendedor_id"
-        )
-        .eq(
-          "id",
-          session.user.id
-        )
-        .maybeSingle();
+ lista.forEach(x=>{
+  const o=document.createElement('option');
+  o.value=sellers.indexOf(x);
+  o.textContent=x.nombre+' · '+x.sucursal;
+  sellerSelect.appendChild(o);
+ });
 
+ if(sellerSelect.options.length){
+  currentSeller=Number(sellerSelect.options[0].value);
+  sellerSelect.value=currentSeller;
+ }
+}
 
-    if(perfilError)
-      throw perfilError;
+function getSucursal(v){
+ return sucursales.find(s=>String(s.id)===String(v.sucursalId));
+}
 
+function ventasDeVendedor(id,desde=null,hasta=null){
+ return ventas.filter(x=>{
+  const f=new Date(x.fecha);
+  return String(x.vendedor_id)===String(id)&&(!desde||f>=desde)&&(!hasta||f<hasta);
+ }).reduce((a,x)=>a+Number(x.cantidad||0),0);
+}
 
-    /*
-     * PERFIL NO EXISTE
-     */
+function ventasSucursal(id){
+ const ids=sellers.filter(x=>String(x.sucursalId)===String(id)).map(x=>String(x.id));
+ return ventas.filter(x=>ids.includes(String(x.vendedor_id)))
+ .reduce((a,x)=>a+Number(x.cantidad||0),0);
+}
 
-    if(!perfil){
+function render(){
+ const v=sellers[currentSeller];
+ if(!v)return;
 
-      await db.auth.signOut();
+ const s=getSucursal(v),meta=s?s.meta_mensual:null;
+ const eq=s?ventasSucursal(s.id):0;
+ const personal=ventasDeVendedor(v.id);
 
-      alert(
-        "Tu cuenta existe, pero no tiene un perfil creado en la tabla profiles."
-      );
+ personalSales.textContent=personal;
+ branch.textContent=v.sucursal;
+ branchSales.textContent=eq;
 
-      window.location.replace(
-        "login.html"
-      );
+ if(meta){
+  branchGoal.textContent=meta;
+  const pct=Math.min(Math.round(eq/meta*100),100);
+  const faltan=Math.max(meta-eq,0);
+  const gr=pct*3.6;
 
-      return false;
+  percent.textContent=pct+'%';
+  remaining.textContent='Faltan '+faltan+' 🔋';
+  progressText.textContent=eq+' de '+meta;
+  fill.style.width=pct+'%';
+  circle.style.background='conic-gradient(#111 0deg '+gr+'deg,#e5e5e5 '+gr+'deg 360deg)';
 
-    }
+  const ultimo=new Date(ahora.getFullYear(),ahora.getMonth()+1,0).getDate();
+  daily.textContent=(faltan/Math.max(ultimo-ahora.getDate()+1,1)).toFixed(1);
+ }else{
+  branchGoal.textContent='—';percent.textContent='—';remaining.textContent='Meta pendiente';
+  progressText.textContent='Meta pendiente';fill.style.width='0';circle.style.background='#e5e5e5';daily.textContent='—';
+ }
 
+ team.innerHTML='';
+ sellers.filter(x=>String(x.sucursalId)===String(v.sucursalId)).forEach(x=>{
+  const row=document.createElement('div');row.className='team-row';
+  row.innerHTML='<div class="avatar">'+x.nombre.substring(0,2).toUpperCase()+'</div>'+
+  '<div class="team-name">'+x.nombre+'</div><div class="team-sales">'+ventasDeVendedor(x.id)+' 🔋</div>';
+  team.appendChild(row);
+ });
+}
 
-    /*
-     * USUARIO INACTIVO
-     */
+function renderRanking(){
+ const ini=inicioSemana();
+ const mapa=sellers.map(v=>({v,ventas:ventasDeVendedor(v.id,ini)})).sort((a,b)=>b.ventas-a.ventas);
 
-    if(perfil.activo === false){
+ if(!mapa.length){
+  weekWinner.textContent='—';weekWinnerSales.textContent='0';ranking.textContent='No hay vendedores';return;
+ }
+
+ weekWinner.textContent=mapa[0].ventas>0?mapa[0].v.nombre:'—';
+ weekWinnerSales.textContent=mapa[0].ventas;
+ ranking.innerHTML='';
+
+ mapa.forEach((x,i)=>{
+  const row=document.createElement('div');row.className='rank-row';
+  row.innerHTML='<div class="rank-position">'+(i+1)+'</div>'+
+  '<div class="rank-avatar">'+x.v.nombre.substring(0,2).toUpperCase()+'</div>'+
+  '<div class="rank-name">'+x.v.nombre+'<div style="font-size:11px;color:#888">'+x.v.sucursal+'</div></div>'+
+  '<div class="rank-sales">'+x.ventas+' 🔋</div>';
+  ranking.appendChild(row);
+ });
+}
+
+function renderHistory(){
+ const supervisor=String(UVAN_PERFIL?.rol||'').toLowerCase()==='supervisor';
+
+ if(!supervisor){
+  historyCard.classList.add('hidden');
+  return;
+ }
+
+ historyCard.classList.remove('hidden');
+ history.innerHTML='';
+
+ const lista=ventas.slice(0,50);
+
+ if(!lista.length){
+  history.textContent='No hay ventas registradas este mes.';
+  return;
+ }
+
+ lista.forEach(x=>{
+  const v=sellers.find(y=>String(y.id)===String(x.vendedor_id));
+  const row=document.createElement('div');row.className='history-row';
+
+  row.innerHTML='<div class="history-top"><div>'+
+   '<div class="history-name">'+(v?v.nombre:'Vendedor')+' · '+(v?v.sucursal:'')+'</div>'+
+   '<div class="history-date">'+new Date(x.fecha).toLocaleString('es-MX')+' · '+Number(x.cantidad||0)+' 🔋</div>'+
+   '</div><button class="delete-sale" data-id="'+x.id+'">Borrar</button></div>';
+
+  history.appendChild(row);
+ });
+}
+
+sellerSelect.addEventListener('change',()=>{
+ currentSeller=Number(sellerSelect.value);
+ render();
+});
+
+$('saleButton').addEventListener('click',()=>{
+ modalSeller.innerHTML='';
+ sellers.forEach((v,i)=>{
+  const o=document.createElement('option');
+  o.value=i;o.textContent=v.nombre+' · '+v.sucursal;
+  modalSeller.appendChild(o);
+ });
+ modalSeller.value=currentSeller;
+ modal.style.display='flex';
+});
+
+$('cancelButton').addEventListener('click',()=>modal.style.display='none');
+
+$('confirmButton').addEventListener('click',async()=>{
+ const v=sellers[Number(modalSeller.value)];
+ if(!v)return;
+
+ const b=$('confirmButton');
+ b.disabled=true;b.textContent='Guardando...';
+
+ try{
+  const r=await timeout(db.from('ventas').insert({
+   vendedor_id:v.id,cantidad:1,fecha:new Date().toISOString()
+  }).select().single());
+
+  if(r.error)throw r.error;
+
+  ventas.unshift(r.data);
+  currentSeller=sellers.indexOf(v);
+  sellerSelect.value=currentSeller;
+  modal.style.display='none';
+  message.textContent='¡Venta registrada! 🔋';
+  render();renderRanking();renderHistory();
+
+ }catch(e){
+  alert('No se pudo registrar la venta:\n\n'+(e.message||e));
+ }finally{
+  b.disabled=false;b.textContent='Registrar';
+ }
+});
+
+history.addEventListener('click',async e=>{
+ const b=e.target.closest('.delete-sale');
+ if(!b)return;
+
+ const id=b.dataset.id;
+
+ if(!confirm('¿Borrar esta venta? Esta acción no se puede deshacer.'))return;
+
+ b.disabled=true;
+
+ try{
+  const r=await timeout(db.from('ventas').delete().eq('id',id));
+  if(r.error)throw r.error;
+
+  ventas=ventas.filter(x=>String(x.id)!==String(id));
+  render();renderRanking();renderHistory();
+
+ }catch(e){
+  alert('No se pudo borrar la venta:\n\n'+(e.message||e));
+ }finally{
+  b.disabled=false;
+ }
+});
+
+$('refreshButton').addEventListener('click',cargarDatos);
+
+$('logoutButton').addEventListener('click',async()=>{
+ await db.auth.signOut();
+ window.location.replace('login.html');
+});
+
+// Si Supabase tarda o hay un error de JavaScript, nunca dejamos una pantalla muda.
+window.addEventListener('error',e=>{
+ console.error(e.error||e.message);
+ if(loading && !loading.classList.contains('hidden')){
+  loading.textContent='Error al cargar UVAN METAS';
+  mostrarError('Error de la aplicación: '+(e.message||'revisa la consola'));
+ }
+});
+
+verificarAcceso();
+</script>
+</body>
+</html>
