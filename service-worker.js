@@ -4,24 +4,23 @@ self.addEventListener("push", event => {
 
   try {
     data = event.data ? event.data.json() : {};
-  } catch(e) {}
+  } catch (e) {}
 
   const title = data.title || "UVAN METAS 🔋";
 
   const options = {
     body: data.body || "Nueva venta registrada",
-    icon: "/icon-192.png",
-    badge: "/icon-192.png",
+    icon: "./icon-192.png",
+    badge: "./icon-192.png",
     vibrate: [200, 100, 200],
     data: {
-      url: "/index.html"
+      url: "./index.html"
     }
   };
 
   event.waitUntil(
     self.registration.showNotification(title, options)
   );
-
 });
 
 
@@ -35,21 +34,16 @@ self.addEventListener("notificationclick", event => {
       includeUncontrolled: true
     }).then(clientList => {
 
-      for(const client of clientList){
+      for (const client of clientList) {
 
-        if("focus" in client){
-
-          client.focus();
-
-          return;
+        if ("focus" in client) {
+          return client.focus();
         }
 
       }
 
-      if(clients.openWindow){
-
-        return clients.openWindow("/index.html");
-
+      if (clients.openWindow) {
+        return clients.openWindow("./index.html");
       }
 
     })
