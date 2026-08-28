@@ -206,9 +206,20 @@ async function activarNotificaciones(){
 
   try{
 
-    if(!("serviceWorker" in navigator)) return;
+    if(!("Notification" in window)){
+      console.log("Este navegador no soporta notificaciones.");
+      return;
+    }
 
-    if(!("PushManager" in window)) return;
+    if(!("serviceWorker" in navigator)){
+      console.log("Este navegador no soporta Service Worker.");
+      return;
+    }
+
+    if(!("PushManager" in window)){
+      console.log("Este navegador no soporta Push.");
+      return;
+    }
 
     const {
       data: {
@@ -225,59 +236,91 @@ async function activarNotificaciones(){
       await Notification.requestPermission();
 
     if(permiso !== "granted"){
-
       console.log("Notificaciones no permitidas.");
-
       return;
-
     }
 
     const registration =
       await navigator.serviceWorker.register(
-        "/service-worker.js"
+        "./service-worker.js"
       );
+
+    await navigator.serviceWorker.ready;
 
     const respuesta =
       await fetch(
-        "https://rbucdijidzxvkxbrimwh.supabase.co/functions/v1/send-sale-push"
+        UVAN_URL +
+        "/functions/v1/send-sale-push",
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":"application/json",
+            "Authorization":
+              "Bearer " + UVAN_KEY
+          },
+
+          body:JSON.stringify({
+            action:"get_public_key"
+          })
+        }
       );
+
+    if(!respuesta.ok){
+      throw new Error(
+        "No se pudo obtener la clave VAPID."
+      );
+    }
 
     const config =
       await respuesta.json();
 
-    const subscription =
-      await registration.pushManager.subscribe({
+    if(!config.publicKey){
+      throw new Error(
+        "Supabase no devolvió la clave VAPID."
+      );
+    }
 
-        userVisibleOnly:true,
+    let subscription =
+      await registration.pushManager.getSubscription();
 
-        applicationServerKey:
-          convertirClave(config.publicKey)
+    if(!subscription){
 
-      });
+      subscription =
+        await registration.pushManager.subscribe({
 
-    const json =
-      subscription.toJSON();
+          userVisibleOnly:true,
 
-    await db
-      .from("push_subscriptions")
-      .upsert({
+          applicationServerKey:
+            convertirClave(
+              config.publicKey
+            )
 
-        user_id:
-          SUPERVISOR_ID,
+        });
 
-        endpoint:
-          json.endpoint,
+    }
 
-        p256dh:
-          json.keys.p256dh,
+    const resultado =
+      await db
+        .from("push_subscriptions")
+        .upsert(
+          {
+            user_id:
+              session.user.id,
 
-        auth:
-          json.keys.auth
+            subscription:
+              subscription.toJSON()
 
-      },{
-        onConflict:"endpoint"
+          },
+          {
+            onConflict:
+              "user_id"
+          }
+        );
 
-      });
+    if(resultado.error){
+      throw resultado.error;
+    }
 
     console.log(
       "🔔 Notificaciones UVAN METAS activadas."
@@ -286,7 +329,7 @@ async function activarNotificaciones(){
   }catch(error){
 
     console.error(
-      "Error activando notificaciones:",
+      "❌ Error activando notificaciones:",
       error
     );
 
